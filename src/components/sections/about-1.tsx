@@ -5,6 +5,7 @@ import TextBlock from "../UI/text-block";
 import ImageBlock from "../UI/image-block";
 import { cult1, cult2 } from "@/lib/text";
 import { font_accent } from "@/lib/fonts";
+import Draining from "../animation/draining";
 
 export default function AboutSection1() {
   return (
@@ -19,7 +20,7 @@ export default function AboutSection1() {
         <div className="col-span-1 row-span-2 lg:row-span-1 lg:hidden">
           <TextBlock
             text={cult2}
-            options="bg-brown text-secondary"
+            options="bg-brown text-secondary lg:bg-secondary text-brown"
             translateLeft
           />
         </div>
@@ -29,7 +30,7 @@ export default function AboutSection1() {
         <div className="col-span-1 row-span-2 lg:row-span-1 hidden lg:flex">
           <TextBlock
             text={cult2}
-            options="bg-secondary text-primary"
+            options="bg-secondary text-brown"
             translateLeft
           />
         </div>

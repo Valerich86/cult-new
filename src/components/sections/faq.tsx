@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import {motion} from "framer-motion"
 import { AiOutlineUp } from "react-icons/ai";
 import { font_accent } from "@/lib/fonts";
 import { faq } from "@/lib/text";

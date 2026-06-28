@@ -7,7 +7,7 @@ export const photoComposition = [
 ];
 
 export const masters = [
-  {name: "Андрей", folder: "tan"},
-  {name: "Соня", folder: "sonya"},
-  {name: "Артур", folder: "arthur"},
+  {name: "Андрей", id: "tan"},
+  {name: "Соня", id: "sonya"},
+  {name: "Артур", id: "arthur"},
 ];

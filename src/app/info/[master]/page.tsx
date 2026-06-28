@@ -68,7 +68,6 @@ export default async function Info(props: {
         {photos?.map((url, i) => (
           <div className="relative w-36 h-28" key={i}>
             <GalleryItem
-              index={i}
               src={url}
               rotate={Math.floor(Math.random() * 20) - 10}
               containerId="gallery"

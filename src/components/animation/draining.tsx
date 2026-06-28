@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import { delay, motion } from "framer-motion";
 
-export default function Draining() {
+interface Props {
+  length?: number;
+  maxHeight?: 100 | 200 | 300| 500 | 700;
+}
+
+export default function Draining({length=10, maxHeight=200}:Props) {
   const [items, setItems] = useState<
     {
       height: number;
@@ -14,8 +19,8 @@ export default function Draining() {
   >([]);
 
   useEffect(() => {
-    const newItems = Array.from({ length: 10 }, (_, i) => ({
-      height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * 200 + 100,
+    const newItems = Array.from({ length: length }, (_, i) => ({
+      height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * maxHeight + 100,
       width: 7 + Math.random() * 20,
       duration: 100 + Math.random() * 200,
       delay: Math.random() * 50,

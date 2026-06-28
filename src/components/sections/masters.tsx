@@ -14,6 +14,7 @@ type Gallery = {
 };
 
 export default function MastersSection({ gallery }: { gallery: Gallery }) {
+
   const PhotoContainer = ({
     images,
     interval = 4000,
@@ -68,7 +69,7 @@ export default function MastersSection({ gallery }: { gallery: Gallery }) {
           <div
             key={index}
             className="grid gap-4 grid-cols-1 h-[200vh] lg:h-screen lg:grid-cols-2 grid-rows-4 lg:grid-rows-2"
-            id="masters"
+            id={master.id}
           >
             <div
               className={`col-span-1 row-span-1 ${font_accent.className} text-5xl lg:text-6xl flex items-center justify-center lg:justify-start`}
@@ -88,14 +89,13 @@ export default function MastersSection({ gallery }: { gallery: Gallery }) {
             </div>
             <div
               className="col-span-1 row-span-1 border-r-2 border-b-2 border-brown relative"
-              id="arthur"
             >
               <ImageBlock
-                src={`/tech/${master.folder}.png`}
-                position={master.folder !== "tan" ? "10% 25%" : "10% 60%"}
+                src={`/tech/${master.id}.png`}
+                position={master.id !== "tan" ? "10% 25%" : "10% 60%"}
                 options="bg-secondary"
               />
-              <PopupLink href={"/info/tan"} />
+              <PopupLink href={`/info/${master.id}`} />
             </div>
           </div>
         );
