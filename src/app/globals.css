@@ -1,26 +1,40 @@
+@config "../../tailwind.config.ts";
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #0d0d0d;
+  --color-secondary: #bdbfbf;
+  --color-brown: #402319;
+  --color-peachy1: #d9b29c;
+  --color-peachy2: #8c5e4d;
+  --color-black: #030303;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+p,
+span,
+pre,
+h1, h2 {
+  text-wrap: initial;
+  caret-color: transparent;
+  user-select: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+h2 {
+  @apply text-4xl text-center sm:text-left sm:text-5xl;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.x-spacing {
+  @apply lg:px-50 px-5 sm:px-25;
+}
+
+.link {
+  @apply animate-pulse text-2xl cursor-pointer hover:text-shadow-[0px_0px_5px_2px_white] transition duration-500;
+}
+
+.image-text {
+  @apply text-secondary text-sm absolute bottom-5 bg-primary left-0 px-5 py-2 hover:scale-120 hover:bg-brown transition duration-2000 z-10;
+};
+
+.master-name {
+  @apply absolute top-5 text-secondary bg-primary text-3xl left-0 px-5 py-2 hover:scale-120 hover:bg-brown transition duration-2000 z-10;
 }
