@@ -10,7 +10,7 @@ import { useState } from "react";
 export default function FaqSection() {
   const [visibleAnswer, setVisibleAnswer] = useState<Number|null>(null);
   return (
-    <div className="grid grid-cols-1 h-[150vh] lg:h-screen lg:grid-cols-2 grid-rows-3 lg:grid-rows-2 bg-primary text-secondary">
+    <div className="grid grid-cols-1 h-screen lg:h-screen lg:grid-cols-2 grid-rows-4 lg:grid-rows-2 bg-primary text-secondary" id="faq">
       <div
         className={`${font_accent.className} col-span-1 lg:col-span-1 row-span-1 
         text-5xl lg:text-6xl flex items-center justify-center lg:justify-start px-5`}
@@ -26,7 +26,7 @@ export default function FaqSection() {
           className={`object-cover grayscale-80`}
         />
       </div>
-      <div className="col-span-1 row-span-2 lg:row-span-1 flex flex-col justify-between">
+      <div className="col-span-1 row-span-3 lg:row-span-1 flex flex-col justify-between">
         {faq.map((item, index) => {
           return (
             <div

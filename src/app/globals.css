@@ -8,12 +8,25 @@
   --color-peachy1: #d9b29c;
   --color-peachy2: #8c5e4d;
   --color-black: #030303;
+
+  --animate-links: links 7s;
+}
+
+@keyframes links {
+  0%,
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 p,
 span,
 pre,
-h1, h2 {
+h1,
+h2 {
   text-wrap: initial;
   caret-color: transparent;
   user-select: none;
@@ -28,12 +41,12 @@ h2 {
 }
 
 .link {
-  @apply animate-pulse text-2xl cursor-pointer hover:text-white transition duration-500;
+  @apply text-2xl cursor-pointer hover:scale-105 transition duration-500;
 }
 
 .image-text {
   @apply text-secondary text-sm absolute bottom-5 bg-primary left-0 px-5 py-2 hover:scale-120 hover:bg-brown transition duration-2000 z-10;
-};
+}
 
 .master-name {
   @apply absolute top-5 text-secondary bg-primary text-3xl left-0 px-5 py-2 hover:scale-120 hover:bg-brown transition duration-2000 z-10;

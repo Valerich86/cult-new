@@ -24,14 +24,14 @@ export default async function Home() {
 
   return (
     <main
-      className="lg:px-50 flex flex-col gap-4 pb-25 relative"
+      className="lg:px-50 flex flex-col gap-10 pb-25 relative"
       aria-label="Главная"
     >
       <div className="absolute top-0 right-0 w-50 hidden lg:flex">
         <Draining length={5} maxHeight={100}/>
       </div>
       <HeroSection />
-      <div className="px-5 lg:px-0 flex flex-col gap-4">
+      <div className="px-5 lg:px-0 flex flex-col gap-10">
         <AboutSection1 />
         <AboutSection2 />
         {gallery && <MastersSection gallery={gallery} />}
