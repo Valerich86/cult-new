@@ -6,14 +6,11 @@ import { footerText } from "@/lib/text";
 export default function Footer() {
   return (
     <div
-      className="bg-primary/80 x-spacing flex flex-col lg:flex-row text-xs lg:text-sm justify-between relative"
+      className="bg-white x-spacing flex flex-col lg:flex-row text-xs lg:text-sm justify-between"
       aria-label="footer"
     >
-      <div className="absolute top-0 -translate-y-1/2 left-5 lg:left-18 w-full">
-        <img src={"/tech/logo.png"} alt="logo" width={50} height={50}></img>
-      </div>
       <div className="w-full lg:w-[30%] lg:h-[50vh] py-10 flex flex-col justify-between">
-        <pre className="whitespace-pre-wrap text-secondary">{footerText}</pre>
+        <pre className="whitespace-pre-wrap">{footerText}</pre>
       </div>
       {/* соцсети */}
       <div className="w-full lg:w-[30%] lg:h-[50vh] py-10 flex flex-col justify-between gap-5">

@@ -6,9 +6,11 @@ import Link from "next/link";
 
 interface Props {
   href: string;
+  text?: string;
+  blank?: boolean;
 }
 
-export default function PopupLink({ href }: Props) {
+export default function PopupLink({ href, text="Подробнее", blank=false }: Props) {
   return (
     <motion.div
       initial={{ height: 0 }}
@@ -17,8 +19,8 @@ export default function PopupLink({ href }: Props) {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="w-full flex justify-center items-center bg-brown opacity-80 absolute bottom-0 left-0"
     >
-      <Link href={href} className={`${font_caption.className} link text-secondary text-sm`}>
-        Подробнее
+      <Link href={href} target={blank ? "_blank" : "_self"} className={`${font_caption.className} link text-secondary text-sm`}>
+        {text}
       </Link>
     </motion.div>
   );

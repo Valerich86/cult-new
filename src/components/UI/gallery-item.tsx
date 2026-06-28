@@ -7,7 +7,6 @@ import { useState } from "react";
 interface ImageContainerProps {
   src: string;
   optionalStyles?: string;
-  index: number;
   position?: string;
   rotate?: number;
   delay?: number;
@@ -18,7 +17,6 @@ interface ImageContainerProps {
 
 export default function GalleryItem({
   src,
-  index,
   optionalStyles,
   delay = 0,
   border = true,
@@ -68,7 +66,7 @@ export default function GalleryItem({
     >
       <Image
         src={src}
-        alt={`Фото URL=${src}`}
+        alt={`Фото тату "${src}"`}
         width={400}
         height={300}
         loading="eager"

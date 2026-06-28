@@ -22,12 +22,12 @@ export default function Socials({
   phone_href = undefined,
 }: SocialsProps) {
   return (
-    <div className="flex flex-wrap gap-5 items-center">
-      <Link href={href} className={`text-secondary text-xs link ${font_caption.className}`}>{name}</Link>
+    <div className="flex flex-wrap gap-5 items-center text-xs">
+      <Link href={href} className={`link ${font_caption.className}`}>{name}</Link>
       {tg_href && (
         <a href={tg_href} target="_blank" aria-label="Telegram">
           <RiTelegramFill
-            className="hover:text-[#ff6f61] text-[#85b2ff] transition-colors"
+            className="link"
             size={27}
           />
         </a>
@@ -35,7 +35,7 @@ export default function Socials({
       {vk_href && (
         <a href={vk_href} target="_blank" aria-label="ВКонтакте">
           <FaVk
-            className="hover:text-secondary text-[#4680C2] transition-colors"
+            className="link"
             size={30}
           />
         </a>
@@ -43,7 +43,7 @@ export default function Socials({
       {phone && (
         <a href={phone_href} target="_blank" aria-label="Телефон">
           <FaPhone
-            className="hover:text-secondary text-peachy1 transition-colors"
+            className="link"
             size={20}
           />
         </a>

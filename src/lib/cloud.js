@@ -8,7 +8,7 @@ export function useCloudPath() {
 }
 
 export const s3Client = new S3Client({
-  region: "ru-msk", 
+  region: "ru-msk",
   endpoint: baseUrl,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -17,7 +17,7 @@ export const s3Client = new S3Client({
   forcePathStyle: true,
 });
 
-export async function getGallery(folder, limit=0) {
+export async function getGallery(folder, limit = 0) {
   try {
     const command = new ListObjectsV2Command({
       Bucket: bucketName, // имя вашего бакета
@@ -29,14 +29,23 @@ export async function getGallery(folder, limit=0) {
 
     let photos = contents
       .filter((obj) => obj.Key !== `${folder}/`) // убираем саму папку из списка, если она попала
-      .map((obj) => `${baseUrl.replace(/\/$/, "")}/${bucketName.replace(/^\//, "")}/${obj.Key.replace(/^\/+/, "")}`);
+      .map(
+        (obj) =>
+          `${baseUrl.replace(/\/$/, "")}/${bucketName.replace(/^\//, "")}/${obj.Key.replace(/^\/+/, "")}`,
+      );
+
+    for (let i = photos.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [photos[i], photos[j]] = [photos[j], photos[i]];
+    }
 
     if (limit !== 0) {
-      photos = photos.slice(0, 8);
+      photos = photos.slice(0, limit);
     }
 
     return photos;
   } catch (error) {
     console.error("Ошибка получения данных:", error);
+    throw error;
   }
 }

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Caption from "../animation/caption";
 import Hero from "../animation/hero";
 
-export default function Section1() {
+export default function HeroSection() {
   return (
     <div
       aria-label="hero-section" id="cult"
