@@ -41,7 +41,7 @@ export default function PostNewsPage() {
         const { error } = await response.json();
         setError(error);
       }
-
+      router.refresh();
       router.replace("/admin");
     } catch (error) {
       setError((error as Error).message);

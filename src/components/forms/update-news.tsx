@@ -43,7 +43,7 @@ export default function UpdateNewsForm({ news }: { news: News }) {
         const { error } = await response.json();
         setError(error);
       }
-
+      router.refresh();
       router.replace("/admin");
     } catch (error) {
       setError((error as Error).message);

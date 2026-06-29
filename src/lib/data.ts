@@ -9,7 +9,7 @@ export type News = {
 }
 
 export async function getNews (limit?:number):Promise<News[]> {
-  let query = "SELECT * FROM news ORDER BY published_at";
+  let query = "SELECT * FROM news ORDER BY published_at DESC";
   if (limit) query += `LIMIT ${limit}`;
   try {
     const result = await pool.query(query);
