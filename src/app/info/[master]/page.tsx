@@ -5,7 +5,7 @@ import Draining from "@/components/animation/draining";
 import { font_accent } from "@/lib/fonts";
 import BackButton from "@/components/UI/back-button";
 import ImageBlock from "@/components/UI/image-block";
-import { masters } from "@/lib/text";
+import { mastersInfo } from "@/lib/text";
 import TextBlock from "@/components/UI/text-block";
 
 export async function generateMetadata(props: {
@@ -25,22 +25,23 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function Info(props: {
+export default async function InfoPage(props: {
   params: Promise<{ master: string }>;
 }) {
   const { master } = await props.params;
   const info =
     master === "tan"
-      ? masters[0]
+      ? mastersInfo[0]
       : master === "sonya"
-        ? masters[1]
-        : masters[2];
+        ? mastersInfo[1]
+        : mastersInfo[2];
   const photos = await getGallery(master);
 
   return (
     <main
-      className="x-spacing flex flex-col gap-10 pb-25 lg:pt-10"
+      className="x-spacing flex flex-col gap-10 pb-25 lg:py-10"
       aria-label={`Информация о мастере ${master}`}
+      id="gallery"
     >
       <BackButton target={`/#${master}`} />
       <Draining />
@@ -55,7 +56,7 @@ export default async function Info(props: {
           {info.name}
         </div>
         <div className="lg:w-1/2 w-full h-screen lg:h-full relative bg-primary border-4 border-primary">
-          <ImageBlock src={info.src} alt={info.alt} />
+          <ImageBlock src={info.src} alt={info.alt} priority/>
         </div>
       </div>
       <div className="w-full min-h-screen lg:min-h-[50vh]">

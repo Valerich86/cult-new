@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface Props {
   length?: number;
-  maxHeight?: 100 | 200 | 300| 500 | 700;
+  maxHeight?: 0 | 100 | 200 | 300| 500 | 700;
 }
 
-export default function Draining({length=10, maxHeight=200}:Props) {
+export default function Draining({length=10, maxHeight=100}:Props) {
   const [items, setItems] = useState<
     {
       height: number;
@@ -20,7 +20,7 @@ export default function Draining({length=10, maxHeight=200}:Props) {
 
   useEffect(() => {
     const newItems = Array.from({ length: length }, (_, i) => ({
-      height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * maxHeight + 100,
+      height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * maxHeight + 30,
       width: 7 + Math.random() * 20,
       duration: 100 + Math.random() * 200,
       delay: Math.random() * 50,

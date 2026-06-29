@@ -12,38 +12,6 @@ const config: Config = {
         blur: "blur(10px)",
       },
       keyframes: {
-        // iconTopHover: {
-        //   "0%, 50%": {
-        //     transform: "scaleY(1) translateY(0)",
-        //   },
-        //   "20%": {
-        //     transform: "scaleY(1.5) translateY(-3px)",
-        //   },
-        //   "100%": {
-        //     transform: "scaleY(2) translateY(-4px)",
-        //   },
-        // },
-        // spinOnce: {
-        //   to: {
-        //     transform: "rotate(540deg)",
-        //   },
-        // },
-        rightsCaption: {
-          "0%, 50%": {
-            opacity: 0,
-          },
-          "100%": {
-            opacity: 1,
-          },
-        },
-        bgImageSlide: {
-          "0%": {
-            backgroundPosition: "right",
-          },
-          "100%": {
-            backgroundPosition: "left",
-          },
-        },
         logoShiningBG: {
           "0%": {
             backgroundColor: "black",
@@ -53,7 +21,7 @@ const config: Config = {
             backgroundColor: "black",
           },
           "100%": {
-            opacity: 0.7,
+            opacity: 0.8,
           },
         },
         logoShiningFG: {
@@ -82,13 +50,8 @@ const config: Config = {
         },
       },
       animation: {
-        // iconTopHover: "iconTopHover 1s",
-        // spinOnce: "spinOnce 0.7s ease-in-out",
-        bgImageSlide: "bgImageSlide 120s linear infinite",
         logoShiningBG: "logoShiningBG 10s ",
         logoShiningFG: "logoShiningFG 10s ease-out forwards",
-        rightsCaption: "rightsCaption 5s",
-        alternativeBG: "logoShiningBG 1s ",
       },
     },
     variants: {

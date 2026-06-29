@@ -6,7 +6,7 @@ import ImageBlock from "../UI/image-block";
 import { cult1, cult2 } from "@/lib/text";
 import { font_accent } from "@/lib/fonts";
 
-export default function AboutSection2(){
+export default function AboutSection2({cloudPath}:{cloudPath:string}){
   return (
     <div className="grid grid-cols-1 gap-4 h-[250vh] lg:h-screen lg:grid-cols-4 lg:grid-rows-2">
             <div
@@ -17,7 +17,7 @@ export default function AboutSection2(){
             </div>
     
             <div className="col-span-1 row-span-1 relative">
-              <ImageBlock src={"/tech/legs.jpg"} position="20% 50%" />
+              <ImageBlock src={`${cloudPath}/tech/about-4.webp`} position="20% 50%" />
               <motion.span
                 initial={{ backgroundColor: "#0d0d0d" }}
                 whileInView={{ backgroundColor: "#402319" }}
@@ -32,7 +32,7 @@ export default function AboutSection2(){
     
             {/* Голубой блок: на lg — занимает 2 строки */}
             <div className="col-span-1 lg:row-span-2 relative">
-              <ImageBlock src={"/tech/hero-mobile-1.jpg"} position="center" />
+              <ImageBlock src={`${cloudPath}/tech/about-6.webp`} position="center" />
               <motion.span
                 initial={{ backgroundColor: "#0d0d0d" }}
                 whileInView={{ backgroundColor: "#402319" }}
@@ -45,7 +45,7 @@ export default function AboutSection2(){
             </div>
     
             <div className="bg-gray-900 col-span-1 lg:col-span-2 lg:row-span-1 relative">
-              <ImageBlock src={"/tech/masters.jpg"} position="bottom" />
+              <ImageBlock src={`${cloudPath}/tech/about-3.webp`} position="bottom" />
               <motion.span
                 initial={{ backgroundColor: "#0d0d0d" }}
                 whileInView={{ backgroundColor: "#402319" }}
@@ -59,7 +59,7 @@ export default function AboutSection2(){
             </div>
     
             <div className="col-span-1 row-span-1 relative">
-              <ImageBlock src={"/tech/machine.jpg"} position="50%_50%" />
+              <ImageBlock src={`${cloudPath}/tech/about-5.webp`} position="50%_50%" />
               <motion.span
                 initial={{ backgroundColor: "#0d0d0d" }}
                 whileInView={{ backgroundColor: "#402319" }}

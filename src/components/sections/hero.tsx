@@ -22,29 +22,31 @@ export default function HeroSection() {
         src={"/tech/hero-desktop.jpg"}
         alt="Hero-image"
         fill
+        priority
         loading="eager"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="hidden lg:block object-cover"
+        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="hidden lg:block object-cover object-[75%_50%]"
       />
       <Image
         src={"/tech/hero-mobile.jpg"}
         alt="Hero-image"
         fill
         loading="eager"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        priority
+        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="lg:hidden object-cover"
       />
       <Hero />
-      <Caption />
-      <nav className="absolute bottom-20 sm:bottom-5 left-0 w-full flex justify-between px-5 animate-links">
+      <div className="absolute w-full flex justify-center left-0 top-[55vh] sm:top-[30vh]">
+        <Caption text="Студия татуировки. Пермь" />
+      </div>
+      <nav className="absolute bottom-20 sm:bottom-5 left-0 w-full flex justify-between px-5 animate-links" aria-label="Навигация по главной странице">
         {links.map((link, i) => (
           <Link
             key={i}
             href={link.href}
-            className={
-              `${font_caption.className} text-secondary -rotate-45 
-              sm:rotate-0 text-xs link animate-pulse`
-            }
+            className={`${font_caption.className} text-peachy1 -rotate-45 
+              sm:rotate-0 text-xs link animate-pulse`}
           >
             {link.name}
           </Link>

@@ -13,14 +13,20 @@ type Gallery = {
   arthur: string[];
 };
 
-export default function MastersSection({ gallery }: { gallery: Gallery }) {
+interface Props {
+  gallery: Gallery;
+  cloudPath: string;
+}
 
+export default function MastersSection({ gallery, cloudPath }:Props) {
   const PhotoContainer = ({
     images,
     interval = 4000,
+    borderLeft = false
   }: {
     images: string[];
     interval?: number;
+    borderLeft?: boolean;
   }) => {
     const [curIndex, setCurIndex] = useState(0);
 
@@ -31,7 +37,7 @@ export default function MastersSection({ gallery }: { gallery: Gallery }) {
     }, []);
 
     return (
-      <div className="h-full w-full overflow-x-hidden relative">
+      <div className={`${borderLeft ? "sm:border-l-2" : "sm:border-r-2"} h-full w-full overflow-x-hidden relative border-peachy1`}>
         {photoComposition.map((pos, i) => (
           <div key={i} className={`absolute w-60 h-60 ${pos}`}>
             <Image
@@ -66,38 +72,39 @@ export default function MastersSection({ gallery }: { gallery: Gallery }) {
         }
 
         return (
-          <div
+          <section
             key={index}
-            className="grid gap-4 grid-cols-1 h-[200vh] lg:h-screen lg:grid-cols-2 grid-rows-4 lg:grid-rows-2"
+            className="grid gap-4 grid-cols-1 h-[200vh] sm:h-screen sm:grid-cols-2 grid-rows-4 sm:grid-rows-2"
             id={master.id}
           >
             <div
-              className={`col-span-1 row-span-1 ${font_accent.className} text-5xl lg:text-6xl flex items-center justify-center lg:justify-start`}
+              className={
+                `col-span-1 row-span-1 ${font_accent.className} text-5xl sm:text-6xl 
+                flex items-center justify-center sm:justify-start`
+              }
             >
               {master.name}
             </div>
             <div className="col-span-1 row-span-1">
-              <PhotoContainer
-                images={images.slice(0, images.length / 2)}
-              />
+              <PhotoContainer images={images.slice(0, images.length / 2)} />
             </div>
-            <div className="col-span-1 row-span-1" id="sonya">
+            <div className="col-span-1 row-span-1">
               <PhotoContainer
                 images={images.slice(images.length / 2, images.length)}
                 interval={5000}
+                borderLeft
               />
             </div>
-            <div
-              className="col-span-1 row-span-1 border-r-2 border-b-2 border-brown relative"
-            >
+            <div className="col-span-1 row-span-1 border-b-2 border-brown relative">
               <ImageBlock
-                src={`/tech/${master.id}.png`}
+                src={`${cloudPath}/tech/masters-${master.id}.png`}
                 position={master.id !== "tan" ? "10% 25%" : "10% 60%"}
                 options="bg-secondary"
+                priority
               />
               <PopupLink href={`/info/${master.id}`} />
             </div>
-          </div>
+          </section>
         );
       })}
     </>

@@ -6,7 +6,7 @@ import { footerText } from "@/lib/text";
 export default function Footer() {
   return (
     <div
-      className="bg-white x-spacing flex flex-col lg:flex-row text-sm lg:text-sm justify-between"
+      className="bg-peachy1/20 border-t border-peachy1 x-spacing flex flex-col lg:flex-row text-sm lg:text-sm justify-between"
       aria-label="footer"
     >
       <div className="w-full lg:w-[30%] lg:h-[50vh] py-10 flex flex-col justify-between">
