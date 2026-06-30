@@ -21,7 +21,7 @@ export default function VideoBlock({ src }: VideoContainerProps) {
       timer = setTimeout(() => {
         video.play().catch(console.warn);
         video.playbackRate = 0.5;
-      }, 5000);
+      }, 2000);
     } else {
       if (timer) clearTimeout(timer);
       video.pause();
