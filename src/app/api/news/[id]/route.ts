@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { bucketName, s3Client } from "@/lib/cloud";
-import { pool } from "@/lib/db";
+// import { pool } from "@/lib/db";
+import { withDbClient } from "@/lib/db";
 import { generateFileName, uploadFileToCloud } from "../route";
 
 export async function DELETE(
@@ -11,20 +12,22 @@ export async function DELETE(
   const { id } = await params;
 
   try {
-    const result = await pool.query(
-      "DELETE FROM news WHERE id = $1 RETURNING media_url",
-      [id],
-    );
+    const result = await withDbClient(async(client) => {
+      const res = await client.query(
+        "DELETE FROM news WHERE id = $1 RETURNING media_url",
+        [id],
+      );
+      return res.rows[0];
+    })
 
     // Если запись не найдена — возвращаем 404
-    if (!result.rows.length || !result.rows[0].media_url) {
+    if (!result || !result.media_url) {
       return NextResponse.json(
         { message: "Новость не найдена" },
         { status: 404 },
       );
     }
-    const mediaUrl = result.rows[0].media_url;
-    await deleteFromCloud(mediaUrl, bucketName!);
+    await deleteFromCloud(result.media_url);
     return NextResponse.json({}, { status: 204 });
   } catch (error) {
     console.error("Ошибка удаления данных:", error);
@@ -35,20 +38,11 @@ export async function DELETE(
   }
 }
 
-async function deleteFromCloud(url: string, bucket: string) {
+async function deleteFromCloud(url: string) {
   try {
     const parsedUrl = new URL(url);
     const pathname = parsedUrl.pathname;
-    // pathname начинается с '/', поэтому убираем первый символ и разбиваем
     const parts = pathname.slice(1).split("/");
-    // Проверяем, что первый сегмент пути совпадает с именем бакета
-    // if (parts[0] !== bucket) {
-    //   console.warn(
-    //     `Бакет в URL (${parts[0]}) не совпадает с ожидаемым (${bucket})`,
-    //   );
-    //   // Попытка всё равно взять всё после первого сегмента, если формат нестандартный
-    //   return parts.slice(1).join("/");
-    // }
     const key = parts.slice(1).join("/");
     const command = new DeleteObjectCommand({
       Bucket: bucketName,
@@ -77,15 +71,18 @@ export async function PUT(
     const linkHref = formData.get("linkHref")?.toString() || "";
 
     const media = formData.get("media") as File | null;
-    const currentMediaResult = await pool.query(
-      "SELECT media_url, media_type FROM news WHERE id = $1",
-      [id],
-    );
-    let currentMediaUrl = currentMediaResult.rows[0].media_url;
-    let currentMediaType = currentMediaResult.rows[0].media_type;
+    const currentMediaResult = await withDbClient(async(client) => {
+      const res = await client.query(
+        "SELECT media_url, media_type FROM news WHERE id = $1",
+        [id],
+      );
+      return res.rows[0];
+    })
+    let currentMediaUrl = currentMediaResult.media_url;
+    let currentMediaType = currentMediaResult.media_type;
     if (media) {
       currentMediaType = media.type.startsWith("image/") ? "image" : "video";
-      await deleteFromCloud (currentMediaUrl, bucketName!);
+      await deleteFromCloud (currentMediaUrl);
       const fileName = generateFileName(media.name);
       currentMediaUrl = await uploadFileToCloud(media, fileName);
     } 
@@ -94,7 +91,9 @@ export async function PUT(
       media_type=$4, link_name=$5, link_href=$6 WHERE id=$7;
     `;
     const values = [title, content, currentMediaUrl, currentMediaType, linkName, linkHref, id];
-    const result = await pool.query(query, values); 
+    await withDbClient(async(client) => {
+      await client.query(query, values); 
+    })
     return NextResponse.json({ status: 200 });
   } catch (error) {
     return NextResponse.json(

@@ -32,7 +32,7 @@ export default function Draining({ length = 10, maxHeight = 100 }: Props) {
   if (items.length === 0) return <></>;
 
   return (
-    <div className="absolute left-0 top-0 w-full z-20">
+    <div className="absolute left-0 -top-10 w-full z-20">
       <div className="flex justify-around absolute w-full top-0">
         {items.map((item, i) => (
           <motion.div

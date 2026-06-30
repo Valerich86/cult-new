@@ -13,7 +13,7 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
       <Decor />
       <div
         className={`${font_accent.className} col-span-1 lg:col-span-2 lg:row-span-1
-              text-5xl lg:text-6xl flex items-center justify-center lg:justify-start`}
+        text-4xl sm:text-5xl lg:text-6xl flex items-center justify-center lg:justify-start`}
       >
         Почему мы?
       </div>

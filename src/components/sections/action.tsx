@@ -6,7 +6,7 @@ export default function ActionSection() {
   return (
     <section className="w-full h-screen flex flex-col justify-center items-center gap-y-10 text-center relative" id="action">
       <Decor />
-      <h1 className="text-xl md:text-2xl">
+      <h1 className="text-xl lg:text-2xl">
         Не уверены, что хотите тату? А вдруг хотите? Давайте поговорим.
       </h1>
       <p>Идея живёт в голове. Мы поможем ей обрести форму на вашей коже.</p>

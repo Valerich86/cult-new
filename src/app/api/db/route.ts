@@ -1,5 +1,7 @@
-import { pool } from "@/lib/db";
+import { Client } from "pg";
+import { withDbClient } from "@/lib/db";
 
+// Схема: создание таблиц (идемпотентно — безопасно вызывать много раз)
 const createTablesQuery = `
   CREATE TABLE IF NOT EXISTS news (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -17,25 +19,32 @@ const createTablesQuery = `
     link_href VARCHAR(500),
     published_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
   );
-
 `;
 
+// Индексы (тоже идемпотентны)
 const createIndexesQuery = `
   CREATE INDEX IF NOT EXISTS idx_news_id ON news(id);
-  
+  CREATE INDEX IF NOT EXISTS idx_photos_media_url ON photos(media_url);
 `;
 
 export async function GET(req: Request) {
   try {
-    await pool.query("BEGIN");
-    await pool.query(createTablesQuery);
-    await pool.query(createIndexesQuery);
-    await pool.query("INSERT INTO photos (media_url) VALUES ('какой-то URL')")
-    const result = await pool.query("SELECT * FROM photos");
-    await pool.query("COMMIT");
-    return Response.json({result: result.rows});
+    await withDbClient(async (client) => {
+      await client.query(createTablesQuery);
+      await client.query(createIndexesQuery);
+    });
+    return Response.json({
+      success: true,
+      message: "Схема инициализирована, данные получены",
+    });
   } catch (error) {
-    pool.query("ROLLBACK");
-    return Response.json({ error: error }, { status: 500 });
+    console.error("API GET error:", error);
+    return Response.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    );
   }
 }

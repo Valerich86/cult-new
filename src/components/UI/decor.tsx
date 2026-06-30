@@ -15,7 +15,7 @@ export default function Decor() {
 
   useEffect(() => {
     const generateStripes = () => {
-      const count = 5;
+      const count = 50;
       const newStripes = [];
 
       for (let i = 0; i < count; i++) {

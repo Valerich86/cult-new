@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { pool } from "@/lib/db";
+import { withDbClient } from "@/lib/db";
 import { getCloudPath, bucketName, s3Client } from "@/lib/cloud";
 
 export async function uploadFileToCloud(
@@ -50,13 +50,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const fileName = generateFileName(media.name);
     const mediaUrl = await uploadFileToCloud(media, fileName);
 
-    const result = await pool.query(
-      `INSERT INTO news (title, content, media_url, media_type, link_name, link_href)
-      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`,
-      [title, content, mediaUrl, mediaType, linkName, linkHref],
-    );
+    const result = await withDbClient(async(client) => {
+      const res = await client.query(
+        `INSERT INTO news (title, content, media_url, media_type, link_name, link_href)
+        VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`,
+        [title, content, mediaUrl, mediaType, linkName, linkHref],
+      );
+      return res.rows[0];
+    })
 
-    return NextResponse.json(result.rows[0], { status: 201 });
+    return NextResponse.json(result, { status: 201 });
   } catch (error) {
     return NextResponse.json(
       { error: `Критическая ошибка: ${error}` },

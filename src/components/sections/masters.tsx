@@ -79,7 +79,7 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
             <Decor />
             <div
               className={
-                `col-span-1 row-span-1 ${font_accent.className} text-5xl sm:text-6xl 
+                `col-span-1 row-span-1 ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl 
                 flex items-center justify-center sm:justify-start`
               }
             >
@@ -97,7 +97,7 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
             <div className="col-span-1 row-span-1 border-b-2 border-brown relative">
               <ImageBlock
                 src={`${cloudPath}/tech/masters-${master.id}.png`}
-                position={master.id !== "tan" ? "10% 25%" : "10% 60%"}
+                position={master.id === "tan" ? "10% 60%" : master.id === "sonya" ? "10% 35%" : "10% 20%"}
                 options="bg-secondary"
                 priority
               />

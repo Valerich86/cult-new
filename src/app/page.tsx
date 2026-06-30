@@ -5,10 +5,10 @@ import AboutSection2 from "@/components/sections/about-2";
 import MastersSection from "@/components/sections/masters";
 import ActionSection from "@/components/sections/action";
 import FaqSection from "@/components/sections/faq";
-import LivingTattooSection from "@/components/sections/living-tattoo";
 import Draining from "@/components/animation/draining";
 import NewsSection from "@/components/sections/news";
 import { getNews } from "@/lib/data";
+import Slider from "@/components/sections/slider";
 
 const folders = ["tan", "sonya", "arthur"] as const; // const-assertion фиксирует литералы
 
@@ -28,7 +28,7 @@ export default async function Home() {
 
   return (
     <main
-      className="xl:px-50 sm:px-25 flex flex-col gap-30 pb-25 relative"
+      className="xl:px-50 sm:px-25 flex flex-col gap-4 pb-25 relative"
       aria-label="Главная"
     >
       <div className="absolute top-0 right-0 w-50 hidden lg:flex">
@@ -38,9 +38,10 @@ export default async function Home() {
       <div className="px-5 xl:px-0 sm:px-0 flex flex-col lg:gap-30">
         <AboutSection1 cloudPath={cloudPath}/>
         <AboutSection2 cloudPath={cloudPath}/>
+        <Slider />
         {gallery && <MastersSection gallery={gallery} cloudPath={cloudPath}/>}
         {news && <NewsSection news={news}/>}
-        <LivingTattooSection />
+        {/* <LivingTattooSection /> */}
         <FaqSection cloudPath={cloudPath}/>
         <ActionSection />
       </div>

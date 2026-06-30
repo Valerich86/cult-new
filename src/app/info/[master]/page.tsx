@@ -53,7 +53,7 @@ export default async function InfoPage(props: {
       >
         <div
           className={`lg:w-1/2 w-full h-screen lg:h-full ${font_accent.className} 
-            lg:mr-2  text-6xl flex items-center justify-center lg:justify-start`}
+            lg:mr-2 text-4xl sm:text-5xl lg:text-6xl flex items-center`}
         >
           {info.name}
         </div>

@@ -40,7 +40,7 @@ export default async function NewsItemPage(props: {
       <Decor />
       <div className="w-full">
         <div
-          className={`w-full flex ${font_accent.className} text-5xl sm:text-6xl min-h-[50vh] items-center`}
+          className={`w-full flex ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl min-h-[50vh] items-center`}
         >
           {newsItem.title}
         </div>
@@ -72,7 +72,7 @@ export default async function NewsItemPage(props: {
             )}
             {newsItem.media_type === "video" && (
               <video
-                className="object-cover h-full w-full grayscale-90"
+                className="object-cover h-full w-full grayscale-90 pointer-events-none"
                 muted
                 autoPlay
                 playsInline

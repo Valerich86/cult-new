@@ -20,7 +20,7 @@ export default function VideoBlock({ src }: VideoContainerProps) {
     if (isInView) {
       timer = setTimeout(() => {
         video.play().catch(console.warn);
-        video.playbackRate = 0.5;
+        video.playbackRate = 0.7;
       }, 2000);
     } else {
       if (timer) clearTimeout(timer);
@@ -38,13 +38,13 @@ export default function VideoBlock({ src }: VideoContainerProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: isInView ? 0.5 : 0 }}
       transition={{ 
-        duration: 5, 
+        duration: 1, 
       }}
       className="w-full h-full overflow-hidden shadow-[0px_0px_5px_1px_black]"
     >
       <motion.video
         ref={ref}
-        className="object-cover h-full w-full grayscale-90"
+        className="object-cover h-full w-full grayscale-90 pointer-events-none"
         muted
         playsInline
         controls={false}

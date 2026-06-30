@@ -36,7 +36,7 @@ export default function NewsSection({ news, isPage = false }: Props) {
             <Decor />
             <div className="w-full lg:w-1/2 flex items-center flex-col">
               <div
-                className={`w-full flex ${font_accent.className} text-5xl sm:text-6xl min-h-[50vh] items-center`}
+                className={`w-full flex ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl min-h-[40vh] justify-center lg:justify-start items-center`}
               >
                 {item.title}
               </div>
@@ -64,7 +64,7 @@ export default function NewsSection({ news, isPage = false }: Props) {
                 </div>
               )}
             </div>
-            <div className="w-full lg:w-1/2 h-screen lg:flex-1">
+            <div className="w-full lg:w-1/2 h-[90vh] lg:flex-1">
               {item.media_type === "image" && (
                 <ImageBlock
                   src={item.media_url}
@@ -74,7 +74,7 @@ export default function NewsSection({ news, isPage = false }: Props) {
               )}
               {item.media_type === "video" && (
                 <video
-                  className="object-cover h-full w-full grayscale-90"
+                  className="object-cover h-full w-full grayscale-90 pointer-events-none"
                   muted
                   autoPlay
                   playsInline
