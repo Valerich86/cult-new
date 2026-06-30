@@ -9,11 +9,10 @@ interface Props {
   options?: string;
 }
 
-export default function TextBlock({ text, translateLeft=false, options="bg-primary text-secondary" }: Props) {
+export default function TextBlock({ text, translateLeft=false, options="bg-primary px-5 text-secondary" }: Props) {
   return (
     <div className={
-      `${options} w-full h-full flex 
-      justify-center items-center px-5 overflow-hidden`
+      `${options} w-full h-full flex items-center overflow-hidden`
       }>
       <motion.pre
         initial={{ x: translateLeft ? 100 : -100 }}

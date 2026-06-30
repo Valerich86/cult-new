@@ -11,7 +11,10 @@ const createTablesQuery = `
 
   CREATE TABLE IF NOT EXISTS photos (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    media_type VARCHAR(10),
     media_url VARCHAR(500),
+    link_name VARCHAR(100),
+    link_href VARCHAR(500),
     published_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
   );
 

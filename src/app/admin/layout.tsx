@@ -1,3 +1,4 @@
+import BackButton from "@/components/UI/back-button";
 import { font_caption } from "@/lib/fonts";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -18,7 +19,7 @@ export default function AdminLayout({
 }>) {
   return (
     <main aria-label="admin" className="bg-primary text-secondary w-full min-h-screen relative text-base">
-      <nav className="absolute h-5 inset-0 w-full flex justify-center gap-10 my-3" aria-label="Навигация по админ. панели">
+      {/* <nav className="absolute h-5 inset-0 w-full flex justify-center gap-10 my-3" aria-label="Навигация по админ. панели">
         {links.map((link, i) => (
           <Link
             key={i}
@@ -28,7 +29,7 @@ export default function AdminLayout({
             {link.name}
           </Link>
         ))}
-      </nav>
+      </nav> */}
       <div className="w-full x-spacing my-20">
         {children}
       </div>

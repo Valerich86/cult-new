@@ -6,6 +6,7 @@ import ImageBlock from "../UI/image-block";
 import PopupLink from "../UI/popup-link";
 import { font_accent } from "@/lib/fonts";
 import { photoComposition, masters } from "@/lib/utils";
+import Decor from "../UI/decor";
 
 type Gallery = {
   tan: string[];
@@ -21,12 +22,10 @@ interface Props {
 export default function MastersSection({ gallery, cloudPath }:Props) {
   const PhotoContainer = ({
     images,
-    interval = 4000,
-    borderLeft = false
+    interval = 2000,
   }: {
     images: string[];
     interval?: number;
-    borderLeft?: boolean;
   }) => {
     const [curIndex, setCurIndex] = useState(0);
 
@@ -37,7 +36,7 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
     }, []);
 
     return (
-      <div className={`${borderLeft ? "sm:border-l-2" : "sm:border-r-2"} h-full w-full overflow-x-hidden relative border-peachy1`}>
+      <div className={`h-full w-full overflow-x-hidden relative`}>
         {photoComposition.map((pos, i) => (
           <div key={i} className={`absolute w-60 h-60 ${pos}`}>
             <Image
@@ -47,7 +46,7 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
               height={300}
               loading="lazy"
               style={{ opacity: curIndex === i ? 1 : 0 }}
-              className={`object-contain h-full w-full object-center grayscale-80 transition-all duration-2000`}
+              className={`object-contain h-full w-full object-center grayscale-80 transition-all duration-1000`}
             />
           </div>
         ))}
@@ -74,9 +73,10 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
         return (
           <section
             key={index}
-            className="grid gap-4 grid-cols-1 h-[200vh] sm:h-screen sm:grid-cols-2 grid-rows-4 sm:grid-rows-2"
+            className="grid gap-4 grid-cols-1 h-[200vh] sm:h-screen sm:grid-cols-2 grid-rows-4 sm:grid-rows-2 relative"
             id={master.id}
           >
+            <Decor />
             <div
               className={
                 `col-span-1 row-span-1 ${font_accent.className} text-5xl sm:text-6xl 
@@ -91,8 +91,7 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
             <div className="col-span-1 row-span-1">
               <PhotoContainer
                 images={images.slice(images.length / 2, images.length)}
-                interval={5000}
-                borderLeft
+                interval={2500}
               />
             </div>
             <div className="col-span-1 row-span-1 border-b-2 border-brown relative">

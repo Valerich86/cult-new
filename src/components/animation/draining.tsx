@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 interface Props {
   length?: number;
-  maxHeight?: 0 | 100 | 200 | 300| 500 | 700;
+  maxHeight?: 0 | 100 | 200 | 300 | 500 | 700;
 }
 
-export default function Draining({length=10, maxHeight=100}:Props) {
+export default function Draining({ length = 10, maxHeight = 100 }: Props) {
   const [items, setItems] = useState<
     {
       height: number;
@@ -46,9 +46,7 @@ export default function Draining({length=10, maxHeight=100}:Props) {
             }}
             style={{ width: `${item.width}px` }}
             className="bg-linear-to-b from-brown to-primary rounded-b-full relative"
-          >
-            
-          </motion.div>
+          ></motion.div>
         ))}
       </div>
     </div>

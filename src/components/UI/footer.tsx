@@ -39,7 +39,7 @@ export default function Footer() {
           name="Артур"
           href={`/info/arthur`}
           vk_href="https://vk.com/id638396972"
-          tg_href="https://vk.com/away.php?utf=1&to=https%3A%2F%2Ft.me%2Feckerttattoo"
+          tg_href="https://t.me/eckerttattoo"
         />
       </div>
 

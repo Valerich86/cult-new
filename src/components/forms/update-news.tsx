@@ -23,6 +23,12 @@ export default function UpdateNewsForm({ news }: { news: News }) {
     const content = (
       form.elements.namedItem("content") as HTMLTextAreaElement
     ).value.trim();
+    const linkName = (
+      form.elements.namedItem("linkName") as HTMLTextAreaElement
+    ).value.trim();
+    const linkHref = (
+      form.elements.namedItem("linkHref") as HTMLTextAreaElement
+    ).value.trim();
     const fileInput = form.elements.namedItem("file") as HTMLInputElement;
     const file = fileInput.files?.[0];
 
@@ -30,6 +36,8 @@ export default function UpdateNewsForm({ news }: { news: News }) {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("content", content);
+      formData.append("linkName", linkName);
+      formData.append("linkHref", linkHref);
       if (file) {
         formData.append("media", file);
       }
@@ -88,6 +96,17 @@ export default function UpdateNewsForm({ news }: { news: News }) {
           accept="image/jpg,image/jpeg,image/png,image/webp,video/mp4,video/mov,video/webm"
         />
       </div>
+
+      <span className="border-t pt-3">Если нужно {news.link_href ? "изменить" : "добавить"} ссылку</span>
+        <div className="w-full">
+          <label>Имя ссылки:</label>
+          <input name="linkName" defaultValue={news.link_name}/>
+        </div>
+
+        <div className="w-full">
+          <label>URL ссылки:</label>
+          <input name="linkHref" type="url" defaultValue={news.link_href}/>
+        </div>
 
       <button type="submit" disabled={isLoading}>
         {isLoading ? (

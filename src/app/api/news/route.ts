@@ -36,32 +36,31 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         ? formData.get("title")?.toString()
         : undefined;
     const content = formData.get("content")?.toString() || "";
+    const linkName = formData.get("linkName")?.toString() || "";
+    const linkHref = formData.get("linkHref")?.toString() || "";
 
     const media = formData.get("media") as File | null;
     if (!media) {
       return NextResponse.json(
-      {error: `Ошибка получения данных файла`},
-      { status: 500 },
-    );
+        { error: `Ошибка получения данных файла` },
+        { status: 500 },
+      );
     }
-
+    const mediaType = media.type.startsWith("image/") ? "image" : "video";
     const fileName = generateFileName(media.name);
-    const media_url = await uploadFileToCloud(media, fileName);
+    const mediaUrl = await uploadFileToCloud(media, fileName);
 
-    const result = await pool.query(`
-      INSERT INTO news (title, content, media_url)
-      VALUES ($1, $2, $3) RETURNING id;
-    `, [title, content, media_url]);
+    const result = await pool.query(
+      `INSERT INTO news (title, content, media_url, media_type, link_name, link_href)
+      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`,
+      [title, content, mediaUrl, mediaType, linkName, linkHref],
+    );
 
     return NextResponse.json(result.rows[0], { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      {error: `Критическая ошибка: ${error}`},
+      { error: `Критическая ошибка: ${error}` },
       { status: 500 },
     );
   }
 }
-
-
-
-

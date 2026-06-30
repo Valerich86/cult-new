@@ -37,12 +37,12 @@ export default function FaqSection({cloudPath}:{cloudPath:string}) {
             >
               <p className="pr-2">{item.question}</p>
               <div
-                className={`link ${visibleAnswer !== index ? "rotate-180" : ""} transition duration-500`}
+                className={`link ${visibleAnswer !== index ? "rotate-180" : ""} transition duration-200`}
               >
                 <AiOutlineUp size={15} />
               </div>
               <div
-                className={`absolute top-full left-0 flex transition-all duration-500 
+                className={`absolute top-full left-0 flex transition-all duration-300 
                 bg-peachy1 text-brown shadow-sm shadow-secondary z-10 p-5 text-xs w-full
                 ${visibleAnswer === index ? "translate-y-0 opacity-100 scale-y-100" : "-translate-y-20 opacity-0 scale-y-0"}`}
               >

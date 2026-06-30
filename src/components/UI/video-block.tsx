@@ -48,7 +48,7 @@ export default function VideoBlock({ src }: VideoContainerProps) {
         muted
         playsInline
       >
-        <source src={src} type="video/mp4" />
+        <source src={src} />
       </motion.video>
     </motion.div>
   );

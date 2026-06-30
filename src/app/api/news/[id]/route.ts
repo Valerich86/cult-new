@@ -73,24 +73,28 @@ export async function PUT(
         ? formData.get("title")?.toString()
         : undefined;
     const content = formData.get("content")?.toString() || "";
+    const linkName = formData.get("linkName")?.toString() || "";
+    const linkHref = formData.get("linkHref")?.toString() || "";
 
     const media = formData.get("media") as File | null;
     const currentMediaResult = await pool.query(
-      "SELECT media_url FROM news WHERE id = $1",
+      "SELECT media_url, media_type FROM news WHERE id = $1",
       [id],
     );
-
     let currentMediaUrl = currentMediaResult.rows[0].media_url;
+    let currentMediaType = currentMediaResult.rows[0].media_type;
     if (media) {
+      currentMediaType = media.type.startsWith("image/") ? "image" : "video";
       await deleteFromCloud (currentMediaUrl, bucketName!);
       const fileName = generateFileName(media.name);
       currentMediaUrl = await uploadFileToCloud(media, fileName);
     } 
     const query = `
-      UPDATE news SET title=$1, content=$2, media_url=$3 WHERE id=$4;
+      UPDATE news SET title=$1, content=$2, media_url=$3, 
+      media_type=$4, link_name=$5, link_href=$6 WHERE id=$7;
     `;
-    const values = [title, content, currentMediaUrl, id];
-    const result = await pool.query(query, values);
+    const values = [title, content, currentMediaUrl, currentMediaType, linkName, linkHref, id];
+    const result = await pool.query(query, values); 
     return NextResponse.json({ status: 200 });
   } catch (error) {
     return NextResponse.json(

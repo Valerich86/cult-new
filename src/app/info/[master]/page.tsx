@@ -7,6 +7,7 @@ import BackButton from "@/components/UI/back-button";
 import ImageBlock from "@/components/UI/image-block";
 import { mastersInfo } from "@/lib/text";
 import TextBlock from "@/components/UI/text-block";
+import Decor from "@/components/UI/decor";
 
 export async function generateMetadata(props: {
   params: Promise<{ master: string }>;
@@ -20,7 +21,7 @@ export async function generateMetadata(props: {
         : "Артур Эккерт";
 
   return {
-    title: `Галерея | ${text}`,
+    title: `Подробнее о мастере | ${text}`,
     description: `${text}. Посмотрите реальные работы тату-мастера и запишитесь к нему на сеанс.`,
   };
 }
@@ -39,12 +40,13 @@ export default async function InfoPage(props: {
 
   return (
     <main
-      className="x-spacing flex flex-col gap-10 pb-25 lg:py-10"
+      className="x-spacing flex flex-col gap-10 pb-25 lg:py-10 relative"
       aria-label={`Информация о мастере ${master}`}
       id="gallery"
     >
       <BackButton target={`/#${master}`} />
       <Draining />
+      <Decor />
       <div
         className="w-full h-screen lg:h-[50vh] flex flex-col lg:flex-row"
         id="masters"
