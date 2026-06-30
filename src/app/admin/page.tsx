@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import DeleteNewsForm from "@/components/forms/delete-news";
 import { getNews } from "@/lib/data";
 import { font_caption } from "@/lib/fonts";
@@ -16,7 +18,7 @@ export default async function AdminPage() {
         Добавить новость
       </Link>
       <div className="w-full flex flex-col gap-5 mt-10">
-        {!news || news.length === 0 && (
+        {!news || news?.length === 0 && (
           <p>Новостей нет...</p>
         )}
         {news && news.length > 0 && news.map((item) => (

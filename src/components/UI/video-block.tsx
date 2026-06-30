@@ -47,6 +47,7 @@ export default function VideoBlock({ src }: VideoContainerProps) {
         className="object-cover h-full w-full grayscale-90"
         muted
         playsInline
+        controls={false}
       >
         <source src={src} />
       </motion.video>
