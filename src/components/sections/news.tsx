@@ -61,7 +61,7 @@ export default function NewsSection({ news }:Props) {
                 )}
               </div>
               <div className="w-full lg:w-1/2 flex flex-col justify-stretch">
-                <div className="w-full min-h-[90vh]">
+                <div className="w-full h-[90vh]">
                   {item.media_type === "image" && (
                     <ImageBlock
                       src={item.media_url}
