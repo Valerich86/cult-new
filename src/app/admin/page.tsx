@@ -10,7 +10,7 @@ export default async function AdminPage() {
   const news = await getNews();
 
   return (
-    <div className="">
+    <div>
       <Link
         href={"/admin/post-news"}
         className={`${font_caption.className} text-peachy1 text-xs link animate-pulse`}

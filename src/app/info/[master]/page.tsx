@@ -58,14 +58,11 @@ export default async function InfoPage(props: {
           {info.name}
         </div>
         <div className="lg:w-1/2 w-full h-screen lg:h-full relative bg-primary border-4 border-primary">
-          <ImageBlock src={info.src} alt={info.alt} priority/>
+          <ImageBlock src={info.src} alt={info.alt} priority />
         </div>
       </div>
       <div className="w-full min-h-screen lg:min-h-[50vh]">
-        <TextBlock
-          text={info.about}
-          // options="bg-brown text-secondary"
-        />
+        <TextBlock text={info.about} />
       </div>
       <div className="w-full flex flex-wrap justify-center gap-5 sm:justify-between z-50">
         {photos?.map((url, i) => (

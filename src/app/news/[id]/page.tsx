@@ -48,7 +48,7 @@ export default async function NewsItemPage(props: {
           <div className="w-full lg:w-1/2">
             <TextBlock
               text={newsItem.content}
-              options="bg-secondary text-brown text-sm"
+              options="bg-transparent text-brown text-sm"
             />
             {newsItem.link_href && (
               <div className="w-full flex justify-end pr-5">

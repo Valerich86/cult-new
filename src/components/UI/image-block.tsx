@@ -33,7 +33,7 @@ export default function ImageBlock({
         fill
         priority={priority}
         objectPosition={position}
-        className={`object-cover transition duration-2000 hover:scale-105 grayscale-80`}
+        className={`object-cover transition duration-2000 hover:scale-110 grayscale-80`}
         onLoadingComplete={() => setIsLoaded(true)}
       />
     </div>

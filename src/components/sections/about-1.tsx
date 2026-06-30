@@ -29,7 +29,7 @@ export default function AboutSection1({ cloudPath }: { cloudPath: string }) {
       <div className="col-span-1 row-span-2 lg:row-span-1 hidden lg:flex">
         <TextBlock
           text={cult2}
-          options="px-5 bg-secondary text-brown"
+          options="px-5 bg-transparent text-brown"
           translateLeft
         />
       </div>

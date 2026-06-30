@@ -19,8 +19,8 @@ export default function Decor() {
       const newStripes = [];
 
       for (let i = 0; i < count; i++) {
-        // Длина полоски в процентах от экрана (от 15% до 60%)
-        const lengthPercent = Math.random() * 45 + 15;
+        // Длина полоски в процентах от экрана (от 5% до 30%)
+        const lengthPercent = Math.random() * 25 + 5;
 
         // Угол поворота в градусах (от -90 до 90)
         const rotation = Math.random() * 180 - 90;
