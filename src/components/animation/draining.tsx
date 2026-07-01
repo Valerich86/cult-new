@@ -21,7 +21,7 @@ export default function Draining({ length = 5, maxHeight = 50 }: Props) {
   useEffect(() => {
     const newItems = Array.from({ length: length }, (_, i) => ({
       height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * maxHeight + 20,
-      width: 7 + Math.random() * 20,
+      width: 10 + Math.random() * 20,
       duration: 100 + Math.random() * 200,
       delay: Math.random() * 50,
     }));

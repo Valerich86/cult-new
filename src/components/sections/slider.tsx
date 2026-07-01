@@ -106,7 +106,7 @@ export default function Slider() {
               >
                 <div className="w-full lg:w-1/2 flex flex-col justify-between">
                   <div className="h-[30vh] flex items-center">
-                    <h2 className="p-5">{item.label}</h2>
+                    <h2 className="p-4">{item.label}</h2>
                   </div>
                   <div className="w-full h-full hidden lg:flex">
                     <TextBlock text={item.description} />

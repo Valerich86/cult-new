@@ -22,18 +22,18 @@ export default function HeroSection() {
         src={"/tech/hero-desktop.jpg"}
         alt="Hero-image"
         fill
+        sizes="100%"
         priority
         loading="eager"
-        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="hidden lg:block object-cover object-[75%_50%]"
       />
       <Image
         src={"/tech/hero-mobile.jpg"}
         alt="Hero-image"
         fill
+        sizes="100%"
         loading="eager"
         priority
-        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="lg:hidden object-cover"
       />
       <Hero />

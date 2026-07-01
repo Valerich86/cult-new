@@ -32,9 +32,10 @@ export default function ImageBlock({
         alt={alt}
         loading="eager"
         fill
+        sizes="100%"
         priority={priority}
-        objectPosition={position}
         className={`object-cover transition duration-2000 hover:scale-110 grayscale-80`}
+        style={{objectPosition: position}}
         onLoad={() => setIsLoaded(true)}
         onError={() => setIsError(true)}
       />

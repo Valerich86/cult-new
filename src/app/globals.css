@@ -37,7 +37,7 @@ h2 {
 }
 
 .x-spacing {
-  @apply xl:px-50 px-5 sm:px-25;
+  @apply xl:px-50 px-4 sm:px-25;
 }
 
 .link {
@@ -45,11 +45,7 @@ h2 {
 }
 
 .image-text {
-  @apply text-secondary text-sm absolute bottom-5 bg-primary left-0 px-5 py-2 hover:scale-105 hover:bg-brown transition duration-2000 z-10;
-}
-
-.master-name {
-  @apply absolute top-5 text-secondary bg-primary text-3xl left-0 px-5 py-2 hover:scale-120 hover:bg-brown transition duration-2000 z-10;
+  @apply text-secondary text-sm absolute bottom-5 bg-primary left-0 px-4 py-2 hover:scale-105 hover:bg-brown transition duration-2000 z-10;
 }
 
 form {
