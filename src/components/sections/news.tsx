@@ -48,7 +48,7 @@ export default function NewsSection({ news, isPage = false }: Props) {
                 <div className="w-full border relative mt-15">
                   <PopupLink
                     text="Читать полностью"
-                    href={`/news/${item.id}`}
+                    href={`/news/${item.id}?prevPage=${isPage ? `/news` : "/"}`}
                   />
                 </div>
               )}

@@ -19,6 +19,7 @@ export default function ImageBlock({
   priority = false
 }: Props) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isError, setIsError] = useState(false);
   return (
     <div className={`w-full h-full relative overflow-hidden ${options}`}>
       {!isLoaded && (
@@ -27,14 +28,15 @@ export default function ImageBlock({
         </div>
       )}
       <Image
-        src={src}
+        src={isError ? "/tech/skull.jpg" : src}
         alt={alt}
         loading="eager"
         fill
         priority={priority}
         objectPosition={position}
         className={`object-cover transition duration-2000 hover:scale-110 grayscale-80`}
-        onLoadingComplete={() => setIsLoaded(true)}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setIsError(true)}
       />
     </div>
   );

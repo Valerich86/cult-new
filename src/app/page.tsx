@@ -32,7 +32,7 @@ export default async function Home() {
       aria-label="Главная"
     >
       <div className="absolute top-0 right-0 w-50 hidden lg:flex">
-        <Draining length={5}/>
+        <Draining />
       </div>
       <HeroSection />
       <div className="px-5 xl:px-0 sm:px-0 flex flex-col lg:gap-30">

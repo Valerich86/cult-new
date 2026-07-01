@@ -15,15 +15,17 @@ export async function generateMetadata(props: {
   const newsItem = await getOneNewsItem(id);
 
   return {
-    title: `Полный текст новости | ${newsItem?.title}`,
+    title: `${newsItem?.title}`,
     description: `${newsItem?.title}. ${newsItem?.content.substring(0, 50)}`,
   };
 }
 
 export default async function NewsItemPage(props: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string }>, searchParams: Promise<{ prevPage: string }>;
 }) {
   const { id } = await props.params;
+  const { prevPage } = await props.searchParams;
+  console.log(prevPage)
   const newsItem = await getOneNewsItem(id);
   if (!newsItem) {
     throw new Error();
@@ -35,8 +37,8 @@ export default async function NewsItemPage(props: {
       aria-label={`Полный текст новости ${newsItem?.title}`}
       id={newsItem?.id}
     >
-      <BackButton target={`/#${newsItem?.id}`} />
-      <Draining length={5} />
+      <BackButton target={`${prevPage}#${newsItem?.id}`} />
+      <Draining />
       <Decor />
       <div className="w-full">
         <div

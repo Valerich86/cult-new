@@ -15,8 +15,8 @@ export default function TextBlock({ text, translateLeft=false, options="bg-prima
       `${options} w-full h-full flex items-center overflow-hidden`
       }>
       <motion.pre
-        initial={{ x: translateLeft ? 100 : -100 }}
-        whileInView={{ x: 0 }}
+        initial={{ x: translateLeft ? 100 : -100, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
         viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.4 }}
         className={`${font_default.className} whitespace-pre-wrap`}

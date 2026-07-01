@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef  } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
 import { FaPlay, FaPause } from "react-icons/fa";
 import TextBlock from "../UI/text-block";
 import { font_accent } from "@/lib/fonts";
 import { slides } from "@/lib/text";
 import VideoBlock from "../UI/video-block";
+import Decor from "../UI/decor";
+import ImageBlock from "../UI/image-block";
 
 export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,7 +41,7 @@ export default function Slider() {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
-    
+
     resetTimer(); // Запускаем таймер при включении
 
     return () => {
@@ -61,7 +63,6 @@ export default function Slider() {
     resetTimer();
   };
 
-
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
       if (currentSlide !== length - 1) {
@@ -79,15 +80,15 @@ export default function Slider() {
     trackMouse: true,
   });
 
-
   return (
-    <section id="styles" className="w-full">
+    <section id="styles" className="w-full relative">
+      <Decor />
       <div
         className={`w-full flex ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl mb-[20vh] mt-[20vh] lg:mt-0 items-center justify-center lg:justify-start`}
       >
         Что мы делаем:
       </div>
-      <div className="w-full h-[90vh] overflow-x-hidden relative">
+      <div className="w-full h-[90vh] overflow-x-hidden relative shadow-[0px_0px_2px_1px_gray]">
         <div
           className={`flex transition duration-300 h-full`}
           style={{
@@ -112,7 +113,11 @@ export default function Slider() {
                   </div>
                 </div>
                 <div className="w-full lg:w-1/2 h-[70vh] lg:h-[90vh]">
-                  <VideoBlock src={item.media_url} />
+                  {item.media_type === "video" ? (
+                    <VideoBlock src={item.media_url} />
+                  ) : (
+                    <ImageBlock src={item.media_url} alt={item.media_url} />
+                  )}
                 </div>
               </div>
             );

@@ -19,7 +19,7 @@ export default async function NewsPage() {
       aria-label={"Страница новостей"}
     >
       <BackButton target={`/#news`} />
-      <Draining length={5} />
+      <Draining />
       <Decor />
       
       <NewsSection news={news} isPage/>

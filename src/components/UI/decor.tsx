@@ -10,12 +10,15 @@ type Stripe = {
   y: number;
 };
 
-export default function Decor() {
+interface Props {
+  count?: number;
+}
+
+export default function Decor({count=30}:Props) {
   const [stripes, setStripes] = useState<Stripe[]>([]);
 
   useEffect(() => {
     const generateStripes = () => {
-      const count = 50;
       const newStripes = [];
 
       for (let i = 0; i < count; i++) {

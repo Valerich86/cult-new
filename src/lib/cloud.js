@@ -1,7 +1,7 @@
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 
-export const baseUrl = process.env.VK_CLOUD_ENDPOINT;
-export const bucketName = process.env.VK_CLOUD_BUCKET;
+export const baseUrl = process.env.NEXT_PUBLIC_VK_CLOUD_ENDPOINT;
+export const bucketName = process.env.NEXT_PUBLIC_VK_CLOUD_BUCKET;
 
 export function getCloudPath() {
   return `${baseUrl}/${bucketName}`;

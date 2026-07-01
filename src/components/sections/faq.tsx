@@ -11,7 +11,7 @@ import ImageBlock from "../UI/image-block";
 export default function FaqSection({cloudPath}:{cloudPath:string}) {
   const [visibleAnswer, setVisibleAnswer] = useState<Number|null>(null);
   return (
-    <div className="grid grid-cols-1 h-[200vh] lg:h-screen lg:grid-cols-2 lg:grid-rows-2 bg-primary text-secondary mt-20 lg:mt-0" id="faq">
+    <div className="grid grid-cols-1 h-[220vh] lg:h-[90vh] lg:grid-cols-2 grid-rows-5 lg:grid-rows-2 bg-primary text-secondary mt-20 lg:mt-0" id="faq">
       <div
         className={`${font_accent.className} col-span-1 lg:col-span-1 row-span-1 
         text-4xl sm:text-5xl lg:text-6xl flex items-center justify-center lg:justify-start px-5`}
@@ -52,7 +52,7 @@ export default function FaqSection({cloudPath}:{cloudPath:string}) {
           );
         })}
       </div>
-      <div className="col-span-1 h-screen relative lg:hidden">
+      <div className="col-span-1 row-span-2 relative lg:hidden">
         <Image
           src={`${cloudPath}/tech/faq-1.webp`}
           alt={"Задний фон секции FAQ"}

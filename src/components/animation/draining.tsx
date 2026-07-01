@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 interface Props {
   length?: number;
-  maxHeight?: 0 | 100 | 200 | 300 | 500 | 700;
+  maxHeight?: number;
 }
 
-export default function Draining({ length = 10, maxHeight = 100 }: Props) {
+export default function Draining({ length = 5, maxHeight = 50 }: Props) {
   const [items, setItems] = useState<
     {
       height: number;
@@ -20,7 +20,7 @@ export default function Draining({ length = 10, maxHeight = 100 }: Props) {
 
   useEffect(() => {
     const newItems = Array.from({ length: length }, (_, i) => ({
-      height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * maxHeight + 30,
+      height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * maxHeight + 20,
       width: 7 + Math.random() * 20,
       duration: 100 + Math.random() * 200,
       delay: Math.random() * 50,
@@ -45,7 +45,7 @@ export default function Draining({ length = 10, maxHeight = 100 }: Props) {
               ease: "easeOut",
             }}
             style={{ width: `${item.width}px` }}
-            className="bg-linear-to-b from-transparent via-brown to-primary rounded-b-full relative"
+            className="bg-linear-to-b from-transparent via-90% via-brown to-black rounded-b-full relative"
           ></motion.div>
         ))}
       </div>
