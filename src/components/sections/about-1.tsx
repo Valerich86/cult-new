@@ -9,15 +9,15 @@ import Decor from "../UI/decor";
 
 export default function AboutSection1({ cloudPath }: { cloudPath: string }) {
   return (
-    <div className="grid grid-cols-1 h-[300vh] lg:h-screen lg:grid-cols-2 grid-rows-6 lg:grid-rows-2 relative">
+    <div className="grid grid-cols-1 h-[200vh] lg:h-screen lg:grid-cols-2 grid-rows-4 lg:grid-rows-2 relative">
       <Decor />
-      <div className="col-span-1 row-span-2 lg:row-span-1">
+      <div className="col-span-1 row-span-1">
         <TextBlock text={cult1} />
       </div>
       <div className="col-span-1 row-span-1">
         <ImageBlock src={`${cloudPath}/tech/about-1.webp`} />
       </div>
-      <div className="col-span-1 row-span-2 lg:row-span-1 lg:hidden">
+      <div className="col-span-1 row-span-1 lg:hidden">
         <TextBlock
           text={cult2}
           translateLeft
@@ -26,7 +26,7 @@ export default function AboutSection1({ cloudPath }: { cloudPath: string }) {
       <div className="col-span-1 row-span-1">
         <ImageBlock src={`${cloudPath}/tech/about-2.webp`} />
       </div>
-      <div className="col-span-1 row-span-2 lg:row-span-1 hidden lg:flex">
+      <div className="col-span-1 row-span-1 hidden lg:flex">
         <TextBlock
           text={cult2}
           options="px-5 bg-transparent text-brown"
