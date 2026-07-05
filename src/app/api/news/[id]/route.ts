@@ -1,34 +1,32 @@
 import { NextResponse } from "next/server";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { bucketName, s3Client } from "@/lib/cloud";
-// import { pool } from "@/lib/db";
-import { withDbClient } from "@/lib/db";
+import pool from "@/lib/db";
 import { generateFileName, uploadFileToCloud } from "../route";
+import { RowDataPacket } from "mysql2";
 
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
+  const numId = Number(id);
 
   try {
-    const result = await withDbClient(async(client) => {
-      const res = await client.query(
-        "DELETE FROM news WHERE id = $1 RETURNING media_url",
-        [id],
-      );
-      return res.rows[0];
-    })
-
-    // Если запись не найдена — возвращаем 404
-    if (!result || !result.media_url) {
+    const [result] = await pool.execute<RowDataPacket[]>(
+      "SELECT media_url FROM news WHERE id = ?", [numId],
+    );
+    if (!result[0] || !result[0].media_url) {
       return NextResponse.json(
         { message: "Новость не найдена" },
         { status: 404 },
       );
     }
-    await deleteFromCloud(result.media_url);
-    return NextResponse.json({}, { status: 204 });
+    await pool.execute(
+      "DELETE FROM news WHERE id = ?", [numId],
+    );
+    await deleteFromCloud(result[0].media_url);
+    return NextResponse.json({ status: 204 });
   } catch (error) {
     console.error("Ошибка удаления данных:", error);
     return NextResponse.json(
@@ -51,7 +49,7 @@ async function deleteFromCloud(url: string) {
     await s3Client.send(command);
   } catch (e) {
     console.warn("Не удалось удалить файл:", url);
-      return NextResponse.json({}, { status: 204 });
+    return NextResponse.json({}, { status: 204 });
   }
 }
 
@@ -61,43 +59,44 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
+    const numId = Number(id);
     const formData = await request.formData();
-    const title =
-      formData.get("title")?.toString() !== ""
-        ? formData.get("title")?.toString()
-        : undefined;
+    const title = formData.get("title")?.toString() || "";
     const content = formData.get("content")?.toString() || "";
     const linkName = formData.get("linkName")?.toString() || "";
     const linkHref = formData.get("linkHref")?.toString() || "";
 
     const media = formData.get("media") as File | null;
-    const currentMediaResult = await withDbClient(async(client) => {
-      const res = await client.query(
-        "SELECT media_url, media_type FROM news WHERE id = $1",
-        [id],
-      );
-      return res.rows[0];
-    })
-    let currentMediaUrl = currentMediaResult.media_url;
-    let currentMediaType = currentMediaResult.media_type;
+    const [currentMediaResult] = await pool.execute<RowDataPacket[]>(
+      "SELECT media_url, media_type FROM news WHERE id = ?", [numId],
+    );
+
+    let currentMediaUrl = currentMediaResult[0].media_url;
+    let currentMediaType = currentMediaResult[0].media_type;
     if (media) {
       currentMediaType = media.type.startsWith("image/") ? "image" : "video";
-      await deleteFromCloud (currentMediaUrl);
+      await deleteFromCloud(currentMediaUrl);
       const fileName = generateFileName(media.name);
       currentMediaUrl = await uploadFileToCloud(media, fileName);
-    } 
+    }
     const query = `
-      UPDATE news SET title=$1, content=$2, media_url=$3, 
-      media_type=$4, link_name=$5, link_href=$6 WHERE id=$7;
+      UPDATE news SET title=?, content=?, media_url=?, 
+      media_type=?, link_name=?, link_href=? WHERE id=?;
     `;
-    const values = [title, content, currentMediaUrl, currentMediaType, linkName, linkHref, id];
-    await withDbClient(async(client) => {
-      await client.query(query, values); 
-    })
+    const values = [
+      title,
+      content,
+      currentMediaUrl,
+      currentMediaType,
+      linkName,
+      linkHref,
+      numId,
+    ];
+    await pool.execute(query, values);
     return NextResponse.json({ status: 200 });
   } catch (error) {
     return NextResponse.json(
-      {error: `Критическая ошибка: ${error}`},
+      { error: `Критическая ошибка: ${error}` },
       { status: 500 },
     );
   }

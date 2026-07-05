@@ -20,8 +20,8 @@ export default function ImageBlock({
 }: Props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
-  return (
-    <div className={`w-full h-full relative overflow-hidden ${options}`}>
+  return ( 
+    <div className={`w-full h-full relative overflow-hidden ${options} bg-transparent`}>
       {!isLoaded && (
         <div className="absolute inset-0 w-full h-full flex justify-center items-center">
           <div className="w-10 h-10 rounded-full border-b-3 border-secondary animate-spin"></div>

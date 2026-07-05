@@ -31,7 +31,7 @@ export default async function Home() {
       className="xl:px-50 sm:px-25 flex flex-col gap-4 pb-25 relative"
       aria-label="Главная"
     >
-      <div className="absolute top-0 right-0 w-50 hidden lg:flex">
+      <div className="absolute top-0 right-0 w-1/3 hidden lg:flex">
         <Draining />
       </div>
       <HeroSection />

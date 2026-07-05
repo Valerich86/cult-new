@@ -8,12 +8,12 @@ interface Props {
   maxHeight?: number;
 }
 
-export default function Draining({ length = 5, maxHeight = 50 }: Props) {
+export default function Draining({ length = 5, maxHeight = 100 }: Props) {
   const [items, setItems] = useState<
     {
       height: number;
       width: number;
-      duration: number;
+      // duration: number;
       delay: number;
     }[]
   >([]);
@@ -22,8 +22,8 @@ export default function Draining({ length = 5, maxHeight = 50 }: Props) {
     const newItems = Array.from({ length: length }, (_, i) => ({
       height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * maxHeight + 20,
       width: 10 + Math.random() * 20,
-      duration: 100 + Math.random() * 200,
-      delay: Math.random() * 50,
+      // duration: 150 + Math.random() * 250,
+      delay: 10 + Math.random() * 30,
     }));
 
     setItems(newItems);
@@ -40,7 +40,7 @@ export default function Draining({ length = 5, maxHeight = 50 }: Props) {
             initial={{ height: 0 }}
             animate={{ height: `${item.height}vh` }}
             transition={{
-              duration: item.duration,
+              duration: item.height + Math.random() * item.height,
               delay: item.delay,
               ease: "easeOut",
             }}

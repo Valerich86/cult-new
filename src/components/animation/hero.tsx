@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -8,9 +7,9 @@ export default function Hero() {
   const [isAnimated, setIsAnimated] = useState(false);
 
   return (
-    <motion.div className="w-screen h-screen overflow-hidden">
+    <div className="w-screen h-screen overflow-hidden">
       <div
-        className={`${isAnimated ? "animate-alternativeBG" : "animate-logoShiningBG"} opacity-80 absolute top-0 left-0 w-full h-full flex justify-center items-center overflow-hidden`}
+        className={`${isAnimated ? "animate-alternativeBG" : "animate-logoShiningBG"} opacity-70 absolute top-0 left-0 w-full h-full flex justify-center items-center overflow-hidden`}
       >
         <Image
           id="logo-BG"
@@ -37,6 +36,6 @@ export default function Hero() {
           style={{ objectFit: "contain", height: "auto", width: "100%" }}
         />
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -48,6 +48,14 @@ h2 {
   @apply text-secondary text-sm absolute bottom-5 bg-primary left-0 px-4 py-2 hover:scale-105 hover:bg-brown transition duration-2000 z-10;
 }
 
+.button-loader {
+  @apply w-6 h-6 rounded-full border-b-2 border-secondary animate-spin;
+}
+
+.error {
+  @apply text-xs text-red-600;
+}
+
 form {
   @apply w-full sm:w-2/3 lg:w-1/2 flex flex-col gap-5;
 }
@@ -58,9 +66,9 @@ label {
 
 input,
 textarea {
-  @apply w-full bg-secondary rounded min-h-8 px-2 outline-none border-none
- placeholder:text-gray-400 focus:shadow-[0px_0px_15px_1px_white] text-brown
-  transition-all duration-200 resize-none;
+  @apply w-full bg-secondary rounded min-h-8 px-2 outline-peachy2 border-none 
+ placeholder:text-gray-400 text-brown
+  transition-all duration-200 resize-none
 }
 
 button {

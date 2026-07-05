@@ -27,7 +27,7 @@ export default function DeleteNewsForm ({id}:Props) {
         router.refresh();
         setIsLoading(false);
       }
-    }
+    } else setIsLoading(false);
   }
 
   return (

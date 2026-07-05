@@ -25,7 +25,6 @@ export default async function NewsItemPage(props: {
 }) {
   const { id } = await props.params;
   const { prevPage } = await props.searchParams;
-  console.log(prevPage)
   const newsItem = await getOneNewsItem(id);
   if (!newsItem) {
     throw new Error();
@@ -35,7 +34,7 @@ export default async function NewsItemPage(props: {
     <main
       className="x-spacing flex flex-col gap-10 pb-25 relative"
       aria-label={`Полный текст новости ${newsItem?.title}`}
-      id={newsItem?.id}
+      id={newsItem?.id.toString()}
     >
       <BackButton target={`${prevPage}#${newsItem?.id}`} />
       <Draining />
@@ -64,7 +63,7 @@ export default async function NewsItemPage(props: {
               </div>
             )}
           </div>
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 h-[90vh]">
             {newsItem.media_type === "image" && (
               <ImageBlock
                 src={newsItem.media_url}

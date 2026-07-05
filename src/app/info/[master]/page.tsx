@@ -21,7 +21,7 @@ export async function generateMetadata(props: {
         : "Артур Эккерт";
 
   return {
-    title: `Подробнее о мастере | ${text}`,
+    title: `Мастер ${text}`,
     description: `${text}. Посмотрите реальные работы тату-мастера и запишитесь к нему на сеанс.`,
   };
 }

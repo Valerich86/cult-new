@@ -1,8 +1,8 @@
-// import { pool } from "./db";
-import { withDbClient } from "./db";
+import pool from "./db";
+import { RowDataPacket } from "mysql2/promise";
 
 export type News = {
-  id: string;
+  id: number;
   title: string;
   content: string;
   media_type: "image" | "video";
@@ -12,40 +12,30 @@ export type News = {
   published_at: string;
 };
 
-export async function getNews(limit?: number): Promise<News[]> {
-  return withDbClient(async (client) => {
-    let query = "SELECT * FROM news ORDER BY published_at DESC";
-    if (limit) query += ` LIMIT ${limit}`;
-    const result = await client.query(query);
-    return result.rows;
-  });
+export type User = {
+  id: number;
+  email: string;
+  password_hash: string;
 }
 
-export async function getOneNewsItem(id: string): Promise<News | null> {
-  return withDbClient(async (client) => {
-    const result = await client.query("SELECT * FROM news WHERE id=$1", [id]);
-    return result.rows[0];
-  });
+export async function getNews(limit?: number){
+  let query = 'SELECT * FROM news ORDER BY published_at DESC';
+  if (limit) query += ` LIMIT ${limit}`;
+  try {
+    const [result] = await pool.execute(query);
+    return result as News[];
+  } catch (error) {
+    console.error('Ошибка получения данных:', error);
+    return [];
+  } 
 }
 
-// export async function getNews (limit?:number):Promise<News[]> {
-//   let query = "SELECT * FROM news ORDER BY published_at DESC";
-//   if (limit) query += ` LIMIT ${limit}`;
-//   try {
-//     const result = await pool.query(query);
-//     return result.rows;
-//   } catch (error) {
-//     console.error("Ошибка получения данных:", error);
-//     return [];
-//   }
-// }
-
-// export async function getOneNewsItem (id:string):Promise<News|null> {
-//   try {
-//     const result = await pool.query("SELECT * FROM news WHERE id=$1", [id]);
-//     return result.rows[0];
-//   } catch (error) {
-//     console.error("Ошибка получения данных:", error);
-//     return null;
-//   }
-// }
+export async function getOneNewsItem(id: string) {
+  try {
+    const [result] = await pool.execute<RowDataPacket[]>('SELECT * FROM news WHERE id = ?', [id]);
+    return result[0] as News;
+  } catch (error) {
+    console.error('Ошибка получения данных:', error);
+    return null;
+  }
+}

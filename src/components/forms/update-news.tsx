@@ -103,14 +103,14 @@ export default function UpdateNewsForm({ news }: { news: News }) {
           <input name="linkName" defaultValue={news.link_name}/>
         </div>
 
-        <div className="w-full">
+        <div className="w-full mb-5">
           <label>URL ссылки:</label>
           <input name="linkHref" type="url" defaultValue={news.link_href}/>
         </div>
 
       <button type="submit" disabled={isLoading}>
         {isLoading ? (
-          <div className="w-6 h-6 rounded-full border-b-2 border-secondary animate-spin"></div>
+          <div className="button-loader"></div>
         ) : (
           "Сохранить"
         )}

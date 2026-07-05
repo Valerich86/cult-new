@@ -16,7 +16,7 @@ interface Props {
 
 export default function NewsSection({ news, isPage = false }: Props) {
   return (
-    <section id="news" className="w-full flex flex-col gap-30">
+    <section id="news" className="w-full flex flex-col gap-10">
       {news?.map((item) => {
         const arrayContent = item.content.split(" ");
         const croppedArray = arrayContent.slice(0, 60);
@@ -88,10 +88,8 @@ export default function NewsSection({ news, isPage = false }: Props) {
         );
       })}
       {!isPage && (
-        <div className="w-full flex justify-center">
-          <div className="w-full sm:w-2/3 lg:w-1/2 border relative">
-          <PopupLink text="Все новости здесь" href={`/news`} />
-        </div>
+        <div className="w-full flex justify-center lg:justify-end">
+          <span>Все новости <Link href={"/news"} className={`${font_caption.className} link animate-pulse`}>здесь</Link></span>
         </div>
       )}
     </section>

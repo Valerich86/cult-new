@@ -1,31 +1,23 @@
-// import { Pool } from 'pg';
+import mysql from 'mysql2/promise';
 
-// export const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: {
-//     rejectUnauthorized: true,
-//   },
-// });
+const pool = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  port: parseInt(process.env.MYSQL_PORT || '3306', 10),
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
 
-import { Client, QueryResult } from 'pg';
+// pool.getConnection()
+//   .then(connection => {
+//     console.log('Успешное подключение к базе данных MySQL');
+//     connection.release();
+//   })
+//   .catch(err => {
+//     console.error('Ошибка подключения к базе данных:', err);
+//   });
 
-export async function withDbClient<T>(
-  callback: (client: Client) => Promise<T>
-): Promise<T> {
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    // Никаких ssl: { rejectUnauthorized: false } — это антипаттерн для продакшена.
-    // Для разных провайдеров достаточно валидного SSL (он уже в DATABASE_URL).
-  });
-
-  await client.connect();
-
-  try {
-    return await callback(client);
-  } catch (error) {
-    console.error('DB error:', error);
-    throw error;
-  } finally {
-    await client.end(); // Гарантированно закрываем соединение
-  }
-}
+export default pool;

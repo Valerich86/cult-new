@@ -14,7 +14,7 @@ interface Props {
   count?: number;
 }
 
-export default function Decor({count=30}:Props) {
+export default function Decor({count=20}:Props) {
   const [stripes, setStripes] = useState<Stripe[]>([]);
 
   useEffect(() => {

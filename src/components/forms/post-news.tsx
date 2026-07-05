@@ -96,14 +96,14 @@ export default function PostNewsForm() {
           <input name="linkName" />
         </div>
 
-        <div className="w-full">
+        <div className="w-full mb-5">
           <label>URL ссылки:</label>
           <input name="linkHref" type="url"/>
         </div>
 
         <button type="submit" disabled={isLoading}>
           {isLoading ? (
-            <div className="w-6 h-6 rounded-full border-b-2 border-secondary animate-spin"></div>
+            <div className="button-loader"></div>
           ) : (
             "Сохранить"
           )}

@@ -94,7 +94,8 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
                 interval={2500}
               />
             </div>
-            <div className="col-span-1 row-span-1 border-b-2 border-brown relative">
+            <div className="col-span-1 row-span-1 border-b-2 border-brown relative overflow-hidden">
+              <div className="w-[120%] h-[130%] absolute top-[35%] left-0 lg:left-1/4 bg-peachy2 -rotate-35"></div>
               <ImageBlock
                 src={`${cloudPath}/tech/masters-${master.id}.png`}
                 position={master.id === "tan" ? "10% 60%" : master.id === "sonya" ? "10% 35%" : "10% 20%"}

@@ -25,7 +25,7 @@ export default function HeroSection() {
         sizes="100%"
         priority
         loading="eager"
-        className="hidden lg:block object-cover object-[75%_50%]"
+        className="hidden lg:block object-cover object-[85%_50%]"
       />
       <Image
         src={"/tech/hero-mobile.jpg"}

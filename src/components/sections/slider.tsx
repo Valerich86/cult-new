@@ -3,12 +3,20 @@
 import { useState, useEffect, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
 import { FaPlay, FaPause } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 import TextBlock from "../UI/text-block";
 import { font_accent } from "@/lib/fonts";
 import { slides } from "@/lib/text";
 import VideoBlock from "../UI/video-block";
 import Decor from "../UI/decor";
 import ImageBlock from "../UI/image-block";
+
+const presets = {
+  soft: { type: 'spring', stiffness: 150, damping: 12, mass: 1 },
+  bouncy: { type: 'spring', stiffness: 350, damping: 15, mass: 0.8 },
+  snappy: { type: 'spring', stiffness: 500, damping: 25, mass: 0.5 },
+  heavy: { type: 'spring', stiffness: 200, damping: 20, mass: 1.5 },
+};
 
 export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -65,16 +73,12 @@ export default function Slider() {
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
-      if (currentSlide !== length - 1) {
-        nextSlide();
-        resetTimer();
-      }
+      nextSlide();
+      resetTimer();
     },
     onSwipedRight: () => {
-      if (currentSlide !== 0) {
-        prevSlide();
-        resetTimer();
-      }
+      prevSlide();
+      resetTimer();
     },
     delta: 10,
     trackMouse: true,
@@ -86,63 +90,57 @@ export default function Slider() {
       <div
         className={`w-full flex ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl mb-[20vh] mt-[20vh] lg:mt-0 items-center justify-center lg:justify-start`}
       >
-        Что мы делаем:
+        Что мы делаем?
       </div>
-      <div className="w-full h-[90vh] overflow-x-hidden relative shadow-[0px_0px_2px_1px_gray]">
-        <div
-          className={`flex transition duration-300 h-full`}
-          style={{
-            width: `${length * 100}%`,
-            transform: `translateX(-${(currentSlide / length) * 100}%)`,
-          }}
-          {...swipeHandlers} // подключаем все обработчики
-        >
-          {slides?.map((item) => {
-            return (
-              <div
-                key={item.id}
-                id={item.id}
-                className="w-full flex flex-col lg:flex-row bg-primary text-secondary"
-              >
-                <div className="w-full lg:w-1/2 flex flex-col justify-between">
-                  <div className="h-[30vh] flex items-center">
-                    <h2 className="p-4">{item.label}</h2>
+      <div
+        className="w-full h-[90vh] relative overflow-x-hidden shadow-[0px_0px_2px_1px_gray] bg-primary"
+        {...swipeHandlers}
+      >
+        <AnimatePresence>
+          {slides?.map(
+            (item, index) =>
+              index === currentSlide && (
+                <motion.div
+                  key={item.id}
+                  id={item.id}
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "-100%" }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 20,
+                  }}
+                  className={`flex flex-col lg:flex-row w-full h-full absolute inset-0 bg-primary text-secondary`}
+                >
+                  <div className="w-full lg:w-1/2 flex flex-col h-1/2 lg:h-full justify-between">
+                    <div className="h-1/4 lg:h-1/3 flex items-center">
+                      <h2 className="p-4">{item.label}</h2>
+                    </div>
+                    <div className="w-full h-3/4 lg:h-full text-xs lg:text-base">
+                      <TextBlock text={item.description} translateLeft/>
+                    </div>
                   </div>
-                  <div className="w-full h-full hidden lg:flex">
-                    <TextBlock text={item.description} />
+                  <div className="w-full lg:w-1/2 h-1/2 lg:h-full">
+                    {item.media_type === "video" ? (
+                      <VideoBlock src={item.media_url} />
+                    ) : (
+                      <ImageBlock src={item.media_url} alt={item.media_url} />
+                    )}
                   </div>
-                </div>
-                <div className="w-full lg:w-1/2 h-[70vh] lg:h-[90vh]">
-                  {item.media_type === "video" ? (
-                    <VideoBlock src={item.media_url} />
-                  ) : (
-                    <ImageBlock src={item.media_url} alt={item.media_url} />
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                </motion.div>
+              ),
+          )}
+        </AnimatePresence>
         <div className="w-full absolute left-0 bottom-5 flex justify-center items-center gap-3">
           {slides.map((_, index) => (
             <div
               key={index}
               onClick={() => handleClickNav(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer
-                ${currentSlide === index ? "bg-peachy2 scale-50" : "bg-peachy1 scale-100"}`}
+                ${currentSlide === index ? "bg-peachy2 scale-65" : "bg-peachy1 scale-100"}`}
             ></div>
           ))}
-        </div>
-        <div className="w-full absolute left-0 top-5 flex justify-center text-peachy1">
-          {play ? (
-            <div onClick={() => setPlay(false)} className="cursor-pointer">
-              <FaPause />
-            </div>
-          ) : (
-            <div onClick={() => setPlay(true)} className="cursor-pointer">
-              <FaPlay />
-            </div>
-          )}
         </div>
       </div>
     </section>
