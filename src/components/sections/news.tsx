@@ -30,7 +30,7 @@ export default function NewsSection({ news, isPage = false }: Props) {
         return (
           <div
             key={item.id}
-            id={item.id}
+            id={item.id.toString()}
             className="w-full flex flex-col lg:flex-row gap-5 items-stretch justify-stretch relative"
           >
             <Decor />
