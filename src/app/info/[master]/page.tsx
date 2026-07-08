@@ -22,7 +22,7 @@ export async function generateMetadata(props: {
 
   return {
     title: `Мастер ${text}`,
-    description: `${text}. Посмотрите реальные работы тату-мастера и запишитесь к нему на сеанс.`,
+    description: `Реальные работы и информация о мастере ${text}.`,
   };
 }
 

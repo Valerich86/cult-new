@@ -34,12 +34,7 @@ export default function VideoBlock({ src }: VideoContainerProps) {
   }, [isInView]);
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isInView ? 0.5 : 0 }}
-      transition={{duration: 0.2}}
-      className="w-full h-full overflow-hidden shadow-[0px_0px_5px_1px_black]"
-    >
+    <div className="w-full h-full overflow-hidden shadow-[0px_0px_5px_1px_black] opacity-50">
       <motion.video
         ref={ref}
         className="object-cover h-full w-full grayscale-90 pointer-events-none"
@@ -49,6 +44,6 @@ export default function VideoBlock({ src }: VideoContainerProps) {
       >
         <source src={src} />
       </motion.video>
-    </motion.div>
+    </div>
   );
 }

@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useSwipeable } from "react-swipeable";
-import { FaPlay, FaPause } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import TextBlock from "../UI/text-block";
 import { font_accent } from "@/lib/fonts";
@@ -11,20 +10,13 @@ import VideoBlock from "../UI/video-block";
 import Decor from "../UI/decor";
 import ImageBlock from "../UI/image-block";
 
-const presets = {
-  soft: { type: 'spring', stiffness: 150, damping: 12, mass: 1 },
-  bouncy: { type: 'spring', stiffness: 350, damping: 15, mass: 0.8 },
-  snappy: { type: 'spring', stiffness: 500, damping: 25, mass: 0.5 },
-  heavy: { type: 'spring', stiffness: 200, damping: 20, mass: 1.5 },
-};
-
 export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [play, setPlay] = useState(true);
   const length = slides.length;
+  const timerRef = useRef<NodeJS.Timeout | null>(null); // Храним таймер в ref — он не будет сбрасываться при ререндерах
 
-  // Храним таймер в ref — он не будет сбрасываться при ререндерах
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
 
   // Функция сброса и перезапуска таймера
   const resetTimer = () => {
@@ -33,15 +25,15 @@ export default function Slider() {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
-
     // Останавливаем старый таймер, если есть
     if (timerRef.current) clearInterval(timerRef.current);
-
     // Запускаем новый
     timerRef.current = setInterval(() => {
       nextSlide();
     }, 10000);
   };
+
+
 
   // Эффект следит за состоянием play и запускает/останавливает таймер
   useEffect(() => {
@@ -49,27 +41,45 @@ export default function Slider() {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
-
     resetTimer(); // Запускаем таймер при включении
-
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [play]);
 
+
+
+  // предзагрузка следующего слайда (критически важно)
+  useEffect(() => {
+    const nextIndex = (currentSlide + 1) % slides.length;
+    const nextSlide = slides[nextIndex];
+    if (nextSlide?.media_url) {
+      const img = new Image();
+      img.src = nextSlide.media_url; // браузер начнёт качать заранее
+    }
+  }, [currentSlide, slides]);
+
+
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev !== length - 1 ? prev + 1 : 0));
   };
 
+
+
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev !== 0 ? prev - 1 : length - 1));
   };
+
+
 
   const handleClickNav = (index: number) => {
     setCurrentSlide(index);
     // При клике по навигации обязательно перезапускаем таймер (сбрасываем отсчет)
     resetTimer();
   };
+
+
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {
@@ -84,11 +94,15 @@ export default function Slider() {
     trackMouse: true,
   });
 
+
+
   return (
     <section id="styles" className="w-full relative">
       <Decor />
       <div
-        className={`w-full flex ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl mb-[20vh] mt-[20vh] lg:mt-0 items-center justify-center lg:justify-start`}
+        className={`w-full flex ${font_accent.className} 
+          text-4xl sm:text-5xl lg:text-6xl mb-[20vh] mt-[20vh] 
+          lg:mt-0 items-center justify-center lg:justify-start`}
       >
         Что мы делаем?
       </div>
@@ -109,7 +123,7 @@ export default function Slider() {
                   transition={{
                     type: "spring",
                     stiffness: 400,
-                    damping: 20,
+                    damping: 25,
                   }}
                   className={`flex flex-col lg:flex-row w-full h-full absolute inset-0 bg-primary text-secondary`}
                 >
@@ -118,7 +132,7 @@ export default function Slider() {
                       <h2 className="p-4">{item.label}</h2>
                     </div>
                     <div className="w-full h-3/4 lg:h-full text-xs lg:text-base">
-                      <TextBlock text={item.description} translateLeft/>
+                      <TextBlock text={item.description} animate={false} />
                     </div>
                   </div>
                   <div className="w-full lg:w-1/2 h-1/2 lg:h-full">

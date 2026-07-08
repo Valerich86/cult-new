@@ -7,7 +7,7 @@ import NewsSection from "@/components/sections/news";
 
 export const metadata: Metadata = {
   title: "Новости",
-  description: "Новости тату-студии CULT",
+  description: "Новости тату-студии CULT, город Пермь",
 };
 
 export default async function NewsPage() {

@@ -5,18 +5,18 @@ import { font_default } from "@/lib/fonts";
 
 interface Props {
   text: string;
-  translateLeft?: boolean;
+  animate?: boolean;
   options?: string;
 }
 
-export default function TextBlock({ text, translateLeft=false, options="bg-primary px-4 text-secondary" }: Props) {
+export default function TextBlock({ text, animate=true, options="bg-primary px-4 text-secondary" }: Props) {
   return (
     <div className={
       `${options} w-full h-full flex items-center overflow-hidden`
       }>
       <motion.pre
-        initial={{ x: translateLeft ? 100 : -100, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: animate ? 30 : 0, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.4 }}
         className={`${font_default.className} whitespace-pre-wrap`}

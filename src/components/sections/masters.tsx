@@ -73,9 +73,10 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
         return (
           <section
             key={index}
-            className="grid gap-4 grid-cols-1 h-[200vh] sm:h-screen sm:grid-cols-2 grid-rows-4 sm:grid-rows-2 relative"
+            className="grid gap-4 grid-cols-1 h-[200vh] sm:h-screen sm:grid-cols-2 grid-rows-4 sm:grid-rows-2 relative overflow-hidden"
             id={master.id}
           >
+            <div className="w-full h-full absolute top-1/2 left-0 lg:left-1/3 bg-peachy1 -rotate-35"></div>
             <Decor />
             <div
               className={
@@ -95,7 +96,7 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
               />
             </div>
             <div className="col-span-1 row-span-1 border-b-2 border-brown relative overflow-hidden">
-              <div className="w-[120%] h-[130%] absolute top-[35%] left-0 lg:left-1/4 bg-peachy2 -rotate-35"></div>
+              
               <ImageBlock
                 src={`${cloudPath}/tech/masters-${master.id}.png`}
                 position={master.id === "tan" ? "10% 60%" : master.id === "sonya" ? "10% 35%" : "10% 20%"}

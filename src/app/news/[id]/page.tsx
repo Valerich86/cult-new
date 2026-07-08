@@ -16,7 +16,7 @@ export async function generateMetadata(props: {
 
   return {
     title: `${newsItem?.title}`,
-    description: `${newsItem?.title}. ${newsItem?.content.substring(0, 50)}`,
+    description: `Полный текст новости "${newsItem?.title}": ${newsItem?.content.substring(0, 50)}`,
   };
 }
 
