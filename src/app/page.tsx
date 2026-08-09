@@ -9,7 +9,6 @@ import FaqSection from "@/components/sections/faq";
 import Draining from "@/components/animation/draining";
 import NewsSection from "@/components/sections/news";
 import Slider from "@/components/sections/slider";
-import GiftSection from "@/components/sections/gift";
 import BtnTop from "@/components/UI/btn-top";
 
 const folders = ["tan", "sonya", "arthur"] as const; // const-assertion фиксирует литералы
@@ -30,7 +29,7 @@ export default async function Home() {
 
   return (
     <main
-      className="xl:px-50 sm:px-25 flex flex-col gap-4 pb-25 relative"
+      className="xl:px-50 sm:px-25 flex flex-col gap-4 pb-25 relative overflow-hidden"
       aria-label="Главная"
     >
       <div className="absolute top-0 right-0 w-50 hidden lg:flex">
@@ -40,7 +39,6 @@ export default async function Home() {
       <div className="px-4 xl:px-0 sm:px-0 flex flex-col lg:gap-30">
         <AboutSection1 cloudPath={cloudPath}/>
         <AboutSection2 cloudPath={cloudPath}/>
-        {/* <GiftSection cloudPath={cloudPath}/> */}
         <Slider />
         {gallery && <MastersSection gallery={gallery} cloudPath={cloudPath}/>}
         {news && <NewsSection news={news}/>}
