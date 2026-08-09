@@ -34,10 +34,10 @@ export default function VideoBlock({ src }: VideoContainerProps) {
   }, [isInView]);
 
   return (
-    <div className="w-full h-full overflow-hidden shadow-[0px_0px_5px_1px_black] opacity-50">
+    <div className="w-full h-full overflow-hidden shadow-[0px_0px_5px_1px_black]">
       <motion.video
         ref={ref}
-        className="object-cover h-full w-full grayscale-90 pointer-events-none"
+        className="object-cover h-full w-full grayscale-90 pointer-events-none select-none"
         muted
         playsInline
         controls={false}

@@ -10,6 +10,7 @@ import Draining from "@/components/animation/draining";
 import NewsSection from "@/components/sections/news";
 import Slider from "@/components/sections/slider";
 import GiftSection from "@/components/sections/gift";
+import BtnTop from "@/components/UI/btn-top";
 
 const folders = ["tan", "sonya", "arthur"] as const; // const-assertion фиксирует литералы
 
@@ -46,6 +47,7 @@ export default async function Home() {
         <FaqSection cloudPath={cloudPath}/>
         <ActionSection />
       </div>
+      <BtnTop />
     </main>
   );
 }

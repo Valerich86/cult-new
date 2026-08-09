@@ -6,6 +6,7 @@ import ImageBlock from "../UI/image-block";
 import { cult1, cult2 } from "@/lib/text";
 import { font_accent } from "@/lib/fonts";
 import Decor from "../UI/decor";
+import Draining from "../animation/draining";
 
 export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
   return (
@@ -35,7 +36,6 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
           </motion.span>
         </div>
 
-        {/* Голубой блок: на lg — занимает 2 строки */}
         <div className="col-span-1 lg:row-span-2 relative">
           <ImageBlock
             src={`${cloudPath}/tech/about-6.webp`}

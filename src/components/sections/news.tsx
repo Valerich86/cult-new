@@ -87,7 +87,7 @@ export default function NewsSection({ news, isPage = false }: Props) {
           </div>
         );
       })}
-      {!isPage && (
+      {!isPage && news.length && (
         <div className="w-full flex justify-center lg:justify-end">
           <span>Все новости <Link href={"/news"} className={`${font_caption.className} link animate-pulse`}>здесь</Link></span>
         </div>

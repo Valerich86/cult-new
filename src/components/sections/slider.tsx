@@ -17,17 +17,12 @@ export default function Slider() {
   const timerRef = useRef<NodeJS.Timeout | null>(null); // Храним таймер в ref — он не будет сбрасываться при ререндерах
 
 
-
-  // Функция сброса и перезапуска таймера
   const resetTimer = () => {
     if (!play) {
-      // Если автоплей выключен, просто ничего не делаем или можно явно остановить
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
-    // Останавливаем старый таймер, если есть
     if (timerRef.current) clearInterval(timerRef.current);
-    // Запускаем новый
     timerRef.current = setInterval(() => {
       nextSlide();
     }, 10000);
@@ -41,7 +36,7 @@ export default function Slider() {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
-    resetTimer(); // Запускаем таймер при включении
+    resetTimer(); 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
@@ -55,7 +50,7 @@ export default function Slider() {
     const nextSlide = slides[nextIndex];
     if (nextSlide?.media_url) {
       const img = new Image();
-      img.src = nextSlide.media_url; // браузер начнёт качать заранее
+      img.src = nextSlide.media_url; 
     }
   }, [currentSlide, slides]);
 
@@ -75,7 +70,6 @@ export default function Slider() {
 
   const handleClickNav = (index: number) => {
     setCurrentSlide(index);
-    // При клике по навигации обязательно перезапускаем таймер (сбрасываем отсчет)
     resetTimer();
   };
 

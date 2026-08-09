@@ -19,7 +19,7 @@ interface Props {
   cloudPath: string;
 }
 
-export default function MastersSection({ gallery, cloudPath }:Props) {
+export default function MastersSection({ gallery, cloudPath }: Props) {
   const PhotoContainer = ({
     images,
     interval = 2000,
@@ -73,16 +73,13 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
         return (
           <section
             key={index}
-            className="grid gap-4 grid-cols-1 h-[200vh] sm:h-screen sm:grid-cols-2 grid-rows-4 sm:grid-rows-2 relative overflow-hidden"
+            className="grid gap-4 grid-cols-1 h-[200vh] sm:h-screen sm:grid-cols-2 grid-rows-4 sm:grid-rows-2 relative"
             id={master.id}
           >
-            <div className="w-full h-full absolute top-1/2 left-0 lg:left-1/3 bg-peachy1 -rotate-35"></div>
             <Decor />
             <div
-              className={
-                `col-span-1 row-span-1 ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl 
-                flex items-center justify-center sm:justify-start`
-              }
+              className={`col-span-1 row-span-1 ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl 
+                flex items-center justify-center sm:justify-start`}
             >
               {master.name}
             </div>
@@ -96,10 +93,16 @@ export default function MastersSection({ gallery, cloudPath }:Props) {
               />
             </div>
             <div className="col-span-1 row-span-1 border-b-2 border-brown relative overflow-hidden">
-              
+              <div className="w-full h-full absolute top-1/4 left-1/4 bg-peachy1 -rotate-35"></div>
               <ImageBlock
                 src={`${cloudPath}/tech/masters-${master.id}.png`}
-                position={master.id === "tan" ? "10% 60%" : master.id === "sonya" ? "10% 35%" : "10% 20%"}
+                position={
+                  master.id === "tan"
+                    ? "10% 60%"
+                    : master.id === "sonya"
+                      ? "10% 35%"
+                      : "10% 20%"
+                }
                 options="bg-secondary"
                 priority
               />
