@@ -19,7 +19,7 @@ export default function TextBlock({ text, animate=true, options="bg-primary px-4
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.4 }}
-        className={`${font_default.className} whitespace-pre-wrap`}
+        className={`${font_default.className} whitespace-pre-wrap sm:text-2xl xl:text-base`}
       >
         {text}
       </motion.pre>

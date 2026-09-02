@@ -11,7 +11,7 @@ import NewsSection from "@/components/sections/news";
 import Slider from "@/components/sections/slider";
 import BtnTop from "@/components/UI/btn-top";
 
-const folders = ["tan", "sonya", "arthur"] as const; // const-assertion фиксирует литералы
+const folders = ["tan", "sonya", "arthur"] as const; 
 
 type Folder = (typeof folders)[number];
 

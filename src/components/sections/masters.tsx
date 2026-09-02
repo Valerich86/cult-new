@@ -7,6 +7,7 @@ import PopupLink from "../UI/popup-link";
 import { font_accent } from "@/lib/fonts";
 import { photoComposition, masters } from "@/lib/utils";
 import Decor from "../UI/decor";
+import AnimatedTitle from "../animation/title";
 
 type Gallery = {
   tan: string[];
@@ -38,7 +39,7 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
     return (
       <div className={`h-full w-full overflow-x-hidden relative`}>
         {photoComposition.map((pos, i) => (
-          <div key={i} className={`absolute w-60 h-60 ${pos}`}>
+          <div key={i} className={`absolute w-60 h-60 sm:w-80 sm:h-80 xl:w-60 xl:h-60 ${pos}`}>
             <Image
               src={images[i]}
               alt={`Фото тату "${images[i]}"`}
@@ -73,15 +74,14 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
         return (
           <section
             key={index}
-            className="grid gap-4 grid-cols-1 h-[200vh] sm:h-screen sm:grid-cols-2 grid-rows-4 sm:grid-rows-2 relative"
+            className="grid gap-4 grid-cols-1 h-[200vh] xl:h-screen xl:grid-cols-2 grid-rows-4 xl:grid-rows-2 relative"
             id={master.id}
           >
             <Decor />
             <div
-              className={`col-span-1 row-span-1 ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl 
-                flex items-center justify-center sm:justify-start`}
+              className={`col-span-1 row-span-1 flex items-center justify-center xl:justify-start`}
             >
-              {master.name}
+              <AnimatedTitle text={master.name}/>
             </div>
             <div className="col-span-1 row-span-1">
               <PhotoContainer images={images.slice(0, images.length / 2)} />

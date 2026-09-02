@@ -21,7 +21,7 @@ export default function Caption({text, startDelay=5, color="secondary"}:Props) {
       {chars.map((char, index) => (
         <motion.span
           key={index}
-          className={`${font_caption.className} text-${color} tracking-widest text-md md:text-xl block min-w-[0.5em]`}
+          className={`${font_caption.className} text-${color} tracking-widest text-md md:text-3xl xl:text-xl block min-w-[0.5em]`}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}

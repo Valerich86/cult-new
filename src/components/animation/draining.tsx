@@ -13,7 +13,6 @@ export default function Draining({ length = 5, maxHeight = 100 }: Props) {
     {
       height: number;
       width: number;
-      // duration: number;
       delay: number;
     }[]
   >([]);
@@ -21,8 +20,7 @@ export default function Draining({ length = 5, maxHeight = 100 }: Props) {
   useEffect(() => {
     const newItems = Array.from({ length: length }, (_, i) => ({
       height: i % 2 === 0 || i % 5 === 0 ? 0 : Math.random() * maxHeight + 20,
-      width: 10 + Math.random() * 20,
-      // duration: 150 + Math.random() * 250,
+      width: 5 + Math.random() * 10,
       delay: 10 + Math.random() * 30,
     }));
 

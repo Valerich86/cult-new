@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <div className="w-screen h-screen overflow-hidden">
       <div
-        className={`${isAnimated ? "animate-alternativeBG" : "animate-logoShiningBG"} opacity-70 absolute top-0 left-0 w-full h-full flex justify-center items-center overflow-hidden`}
+        className={`${isAnimated ? "animate-alternativeBG" : "animate-logoShiningBG"} opacity-80 absolute top-0 left-0 w-full h-full flex justify-center items-center overflow-hidden`}
       >
         <Image
           id="logo-BG"

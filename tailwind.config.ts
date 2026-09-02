@@ -21,7 +21,7 @@ const config: Config = {
             backgroundColor: "black",
           },
           "100%": {
-            opacity: 0.7,
+            opacity: 0.8,
           },
         },
         logoShiningFG: {

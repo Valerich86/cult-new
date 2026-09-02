@@ -49,7 +49,7 @@ export default function Decor({ count = 5 }: Props) {
 
   return (
     <div className="absolute inset-0 w-full h-full -z-10">
-      {circles.map((c) => (
+      {circles.map((c, i) => (
         <div
           key={c.id}
           className={`absolute border border-peachy1 rounded-full origin-center`}
@@ -58,7 +58,7 @@ export default function Decor({ count = 5 }: Props) {
             height: `${c.size}px`,
             left: `${c.x}%`,
             top: `${c.y}%`,
-            transform: `translate(-50%, -50%)`,
+            transform: `translate(-50%, -50%)`
           }}
         />
       ))}

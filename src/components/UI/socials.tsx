@@ -5,8 +5,8 @@ import Link from "next/link";
 import { font_caption } from "@/lib/fonts";
 
 interface SocialsProps {
-  name: string;
-  href: string;
+  name?: string;
+  href?: string;
   tg_href?: string;
   vk_href?: string;
   phone?: string;
@@ -23,7 +23,7 @@ export default function Socials({
 }: SocialsProps) {
   return (
     <div className="flex flex-wrap gap-5 items-center text-xs">
-      <Link href={href} className={`link ${font_caption.className}`}>{name}</Link>
+      {name && href && <Link href={href} className={`link ${font_caption.className}`}>{name}</Link>}
       {tg_href && (
         <a href={tg_href} target="_blank" aria-label="Telegram">
           <RiTelegramFill

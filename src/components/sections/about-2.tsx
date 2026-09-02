@@ -7,17 +7,17 @@ import { cult1, cult2 } from "@/lib/text";
 import { font_accent } from "@/lib/fonts";
 import Decor from "../UI/decor";
 import Draining from "../animation/draining";
+import AnimatedTitle from "../animation/title";
 
 export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 gap-4 h-[250vh] w-full lg:h-screen lg:grid-cols-4 lg:grid-rows-2 relative">
+      <div className="grid grid-cols-1 gap-4 h-[250vh] w-full xl:h-screen xl:grid-cols-4 xl:grid-rows-2 relative">
         <Decor />
         <div
-          className={`${font_accent.className} col-span-1 lg:col-span-2 lg:row-span-1
-        text-4xl sm:text-5xl lg:text-6xl flex items-center justify-center lg:justify-start`}
+          className={`col-span-1 xl:col-span-2 xl:row-span-1 flex flex-wrap justify-center xl:justify-start items-center`}
         >
-          Почему мы?
+          <AnimatedTitle text="Почему мы?"/>
         </div>
 
         <div className="col-span-1 row-span-1 relative">
@@ -36,7 +36,7 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
           </motion.span>
         </div>
 
-        <div className="col-span-1 lg:row-span-2 relative">
+        <div className="col-span-1 xl:row-span-2 relative">
           <ImageBlock
             src={`${cloudPath}/tech/about-6.webp`}
             position="center"
@@ -52,7 +52,7 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
           </motion.span>
         </div>
 
-        <div className="bg-gray-900 col-span-1 lg:col-span-2 lg:row-span-1 relative">
+        <div className="bg-gray-900 col-span-1 xl:col-span-2 xl:row-span-1 relative">
           <ImageBlock
             src={`${cloudPath}/tech/about-3.webp`}
             position="bottom"

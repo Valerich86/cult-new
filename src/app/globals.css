@@ -41,11 +41,11 @@ h2 {
 }
 
 .link {
-  @apply text-2xl cursor-pointer hover:scale-105 transition duration-500;
+  @apply text-2xl sm:text-3xl xl:text-2xl cursor-pointer hover:scale-105 transition duration-500;
 }
 
 .image-text {
-  @apply text-secondary text-sm absolute bottom-5 bg-primary left-0 px-4 py-2 hover:scale-105 hover:bg-brown transition duration-2000 z-10;
+  @apply text-secondary sm:text-2xl text-sm xl:text-sm absolute bottom-5 bg-primary left-0 px-4 py-2 hover:scale-105 hover:bg-brown transition duration-2000 z-10;
 }
 
 .button-loader {

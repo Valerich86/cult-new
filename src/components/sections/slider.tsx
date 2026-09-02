@@ -9,6 +9,7 @@ import { slides } from "@/lib/text";
 import VideoBlock from "../UI/video-block";
 import Decor from "../UI/decor";
 import ImageBlock from "../UI/image-block";
+import AnimatedTitle from "../animation/title";
 
 export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -94,11 +95,9 @@ export default function Slider() {
     <section id="styles" className="w-full relative">
       <Decor />
       <div
-        className={`w-full flex ${font_accent.className} 
-          text-4xl sm:text-5xl lg:text-6xl mb-[20vh] mt-[20vh] 
-          lg:mt-0 items-center justify-center lg:justify-start`}
+        className={`flex flex-wrap justify-center xl:justify-start items-center min-h-[40vh]`}
       >
-        Что мы делаем?
+        <AnimatedTitle text="Что мы делаем?"/>
       </div>
       <div
         className="w-full h-[90vh] relative overflow-x-hidden shadow-[0px_0px_2px_1px_gray] bg-primary"
@@ -119,17 +118,17 @@ export default function Slider() {
                     stiffness: 400,
                     damping: 25,
                   }}
-                  className={`flex flex-col lg:flex-row w-full h-full absolute inset-0 bg-primary text-secondary`}
+                  className={`flex flex-col xl:flex-row w-full h-full absolute inset-0 bg-primary text-secondary`}
                 >
-                  <div className="w-full lg:w-1/2 flex flex-col h-1/2 lg:h-full justify-between">
-                    <div className="h-1/4 lg:h-1/3 flex items-center">
+                  <div className="w-full xl:w-1/2 flex flex-col h-1/2 xl:h-full justify-between">
+                    <div className="h-1/4 xl:h-1/3 flex items-center">
                       <h2 className="p-4">{item.label}</h2>
                     </div>
-                    <div className="w-full h-3/4 lg:h-full text-xs lg:text-base">
+                    <div className="w-full h-3/4 xl:h-full text-xs xl:text-base">
                       <TextBlock text={item.description} animate={false} />
                     </div>
                   </div>
-                  <div className="w-full lg:w-1/2 h-1/2 lg:h-full">
+                  <div className="w-full xl:w-1/2 h-1/2 xl:h-full">
                     {item.media_type === "video" ? (
                       <VideoBlock src={item.media_url} />
                     ) : (

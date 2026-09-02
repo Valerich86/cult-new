@@ -41,12 +41,12 @@ export default async function NewsItemPage(props: {
       <Decor />
       <div className="w-full">
         <div
-          className={`w-full flex ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl min-h-[50vh] items-center`}
+          className={`w-full flex ${font_accent.className} text-3xl sm:text-7xl xl:text-5xl min-h-[50vh] items-center`}
         >
           {newsItem.title}
         </div>
-        <div className="w-full flex flex-col lg:flex-row gap-5 items-stretch">
-          <div className="w-full lg:w-1/2">
+        <div className="w-full flex flex-col xl:flex-row gap-5 items-stretch">
+          <div className="w-full xl:w-1/2">
             <TextBlock
               text={newsItem.content}
               options="bg-transparent text-brown text-sm"
@@ -63,7 +63,7 @@ export default async function NewsItemPage(props: {
               </div>
             )}
           </div>
-          <div className="w-full lg:w-1/2 h-[90vh]">
+          <div className="w-full xl:w-1/2 h-[90vh]">
             {newsItem.media_type === "image" && (
               <ImageBlock
                 src={newsItem.media_url}

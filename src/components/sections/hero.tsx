@@ -18,14 +18,24 @@ export default function HeroSection() {
       id="cult"
       className="w-full h-screen flex justify-center relative"
     >
-      <Image
+      {/* <Image
         src={"/tech/hero-desktop.jpg"}
         alt="Hero-image"
         fill
         sizes="100%"
         priority
         loading="eager"
-        className="hidden lg:block object-cover object-[85%_50%]"
+        className="hidden xl:block object-cover object-[85%_50%]"
+      /> */}
+      <Image
+        src={"/tech/sculpture-5.jpg"}
+        alt="Hero-image"
+        fill
+        sizes="100%"
+        priority
+        quality={100}
+        loading="eager"
+        className="hidden xl:block object-cover"
       />
       <Image
         src={"/tech/hero-mobile.jpg"}
@@ -34,7 +44,8 @@ export default function HeroSection() {
         sizes="100%"
         loading="eager"
         priority
-        className="lg:hidden object-cover"
+        quality={100}
+        className="xl:hidden object-cover"
       />
       <Hero />
       <div className="absolute w-full flex justify-center left-0 top-[55vh] sm:top-[30vh]">
@@ -46,7 +57,7 @@ export default function HeroSection() {
             key={i}
             href={link.href}
             className={`${font_caption.className} text-peachy1 -rotate-45 
-              sm:rotate-0 text-xs link animate-pulse`}
+              lg:rotate-0 link animate-pulse`}
           >
             {link.name}
           </Link>

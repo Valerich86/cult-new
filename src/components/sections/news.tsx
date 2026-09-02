@@ -8,6 +8,7 @@ import TextBlock from "../UI/text-block";
 import { font_accent, font_caption } from "@/lib/fonts";
 import PopupLink from "../UI/popup-link";
 import Decor from "../UI/decor";
+import AnimatedTitle from "../animation/title";
 
 interface Props {
   news: News[];
@@ -31,14 +32,14 @@ export default function NewsSection({ news, isPage = false }: Props) {
           <div
             key={item.id}
             id={item.id.toString()}
-            className="w-full flex flex-col lg:flex-row gap-5 items-stretch justify-stretch relative"
+            className="w-full flex flex-col xl:flex-row gap-5 items-stretch justify-stretch relative"
           >
             <Decor />
-            <div className="w-full lg:w-1/2 flex items-center flex-col">
+            <div className="w-full xl:w-1/2 flex items-center flex-col">
               <div
-                className={`w-full flex ${font_accent.className} text-4xl sm:text-5xl lg:text-6xl min-h-[40vh] justify-center lg:justify-start items-center`}
+                className={`w-full flex min-h-[40vh] justify-center xl:justify-start items-center`}
               >
-                {item.title}
+                <AnimatedTitle text={item.title}/>
               </div>
               <TextBlock
                 text={croppedContent}
@@ -57,14 +58,14 @@ export default function NewsSection({ news, isPage = false }: Props) {
                   <Link
                     href={item.link_href}
                     target="_blank"
-                    className={`${font_caption.className} text-xl animate-pulse text-peachy2 mt-5`}
+                    className={`${font_caption.className} sm:text-3xl text-xl xl:text-xl animate-pulse text-peachy2 mt-5`}
                   >
                     {item.link_name}
                   </Link>
                 </div>
               )}
             </div>
-            <div className="w-full lg:w-1/2 h-[90vh] lg:flex-1">
+            <div className="w-full xl:w-1/2 h-[90vh] xl:flex-1">
               {item.media_type === "image" && (
                 <ImageBlock
                   src={item.media_url}
@@ -88,7 +89,7 @@ export default function NewsSection({ news, isPage = false }: Props) {
         );
       })}
       {!isPage && news.length && (
-        <div className="w-full flex justify-center lg:justify-end">
+        <div className="w-full flex justify-center xl:justify-end sm:text-3xl xl:text-base">
           <span>Все новости <Link href={"/news"} className={`${font_caption.className} link animate-pulse`}>здесь</Link></span>
         </div>
       )}
