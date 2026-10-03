@@ -28,7 +28,7 @@ export default function HeroSection() {
         className="hidden xl:block object-cover object-[85%_50%]"
       /> */}
       <Image
-        src={"/tech/sculpture-5.jpg"}
+        src={"/tech/sculpture.jpg"}
         alt="Hero-image"
         fill
         sizes="100%"

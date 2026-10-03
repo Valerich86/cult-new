@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import pool from "@/lib/db";
 import { getCloudPath, bucketName, s3Client } from "@/lib/cloud";
-import { QueryResult, ResultSetHeader } from "mysql2";
+import { ResultSetHeader } from "mysql2";
 
 export async function uploadFileToCloud(
   file: File,
@@ -11,7 +11,6 @@ export async function uploadFileToCloud(
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
   const cloudPath = getCloudPath();
-
   const command = new PutObjectCommand({
     Bucket: bucketName,
     Key: fileName,
@@ -36,7 +35,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const content = formData.get("content")?.toString() || "";
     const linkName = formData.get("linkName")?.toString() || "";
     const linkHref = formData.get("linkHref")?.toString() || "";
-
     const media = formData.get("media") as File | null;
     if (!media) {
       return NextResponse.json(
@@ -47,7 +45,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const mediaType = media.type.startsWith("image/") ? "image" : "video";
     const fileName = generateFileName(media.name);
     const mediaUrl = await uploadFileToCloud(media, fileName);
-
     const [result] = await pool.execute<ResultSetHeader>(
       `INSERT INTO news (title, content, media_url, media_type, link_name, link_href)
         VALUES (?,?,?,?,?,?)`,

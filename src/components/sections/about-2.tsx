@@ -32,7 +32,7 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="image-text"
           >
-            Тату, перекрытие, эскизы, коррекция — берём задачи любой сложности
+            Разнообразие татуировок, от классического черного до ярких цветных изображений.
           </motion.span>
         </div>
 
@@ -64,8 +64,7 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="image-text"
           >
-            Опытные мастера и авторские эскизы — каждая работа продумана до
-            линии.
+            Опытные мастера, у каждого уникальный стиль и подход к работе.
           </motion.span>
         </div>
 

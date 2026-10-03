@@ -10,6 +10,7 @@ import Draining from "@/components/animation/draining";
 import NewsSection from "@/components/sections/news";
 import Slider from "@/components/sections/slider";
 import BtnTop from "@/components/UI/btn-top";
+import ReviewsSection from "@/components/sections/reviews";
 
 const folders = ["tan", "sonya", "arthur"] as const; 
 
@@ -43,6 +44,7 @@ export default async function Home() {
         {gallery && <MastersSection gallery={gallery} cloudPath={cloudPath}/>}
         {news && <NewsSection news={news}/>}
         <FaqSection cloudPath={cloudPath}/>
+        <ReviewsSection />
         <ActionSection />
       </div>
       <BtnTop />
