@@ -5,12 +5,7 @@ import { reviews, REVIEWS_HREF } from "@/lib/temp";
 import AnimatedTitle from "../animation/title";
 import Decor from "../UI/decor";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { font_caption } from "@/lib/fonts";
-import Image from "next/image";
-import ImageBlock from "../UI/image-block";
-import PopupLink from "../UI/popup-link";
-import TruncatedText from "../UI/trancated-text";
 import ReviewDesktop from "../UI/review-desktop";
 import ReviewMobile from "../UI/review-mobile";
 import { useEffect, useRef, useState } from "react";
@@ -102,7 +97,7 @@ export default function ReviewsSection() {
               key={index}
               onClick={() => handleClickNav(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer
-                        ${current === index ? "bg-primary scale-65" : "bg-brown scale-100"}`}
+                        ${current === index ? "bg-brown scale-65" : "bg-peachy2 scale-100"}`}
             ></div>
           ))}
         </div>

@@ -6,9 +6,11 @@ import { useInView } from "framer-motion";
 
 interface VideoContainerProps {
   src: string;
+  shadow?: boolean;
+  loop?: boolean;
 }
 
-export default function VideoBlock({ src }: VideoContainerProps) {
+export default function VideoBlock({ src, shadow=false, loop=false }: VideoContainerProps) {
   const ref = useRef<HTMLVideoElement | null>(null);
   const isInView = useInView(ref, { amount: 0.3 });
   useEffect(() => {
@@ -34,12 +36,13 @@ export default function VideoBlock({ src }: VideoContainerProps) {
   }, [isInView]);
 
   return (
-    <div className="w-full h-full overflow-hidden shadow-[0px_0px_5px_1px_black]">
+    <div className={`${shadow && "shadow-[0px_0px_5px_1px_black]"} w-full h-full overflow-hidden`}>
       <motion.video
         ref={ref}
         className="object-cover h-full w-full grayscale-90 pointer-events-none select-none"
         muted
         playsInline
+        loop={loop}
         controls={false}
       >
         <source src={src} />
