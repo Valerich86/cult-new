@@ -35,7 +35,7 @@ export default function BtnTop() {
 
   return (
     <span
-      className="fixed right-[5%] bottom-[10%] animate-pulse text-brown cursor-pointer"
+      className="fixed right-[5%] bottom-[10%] animate-pulse text-brown cursor-pointer z-100"
       onClick={scrollToTop}
       aria-label="Наверх"
       role="button"

@@ -24,7 +24,6 @@ export default function RootLayout({
       <body
         className={`min-h-full flex flex-col overflow-x-hidden ${font_default.className} text-brown bg-secondary`}
       >
-        {/* <Decor /> */}
         {children}
         <Footer />
       </body>

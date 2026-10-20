@@ -11,3 +11,11 @@ export const masters = [
   {name: "Соня", id: "sonya"},
   {name: "Артур", id: "arthur"},
 ];
+
+export type VkReview = {
+  id: number;
+  text: string;
+  date: number; // unix-время
+  authorName: string;
+  authorPhoto?: string;
+};

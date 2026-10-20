@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: 'hb.ru-msk.vkcloud-storage.ru', 
         pathname: '/**', 
       },
+      {
+        protocol: 'https',
+        hostname: 'sun9-80.vkuserphoto.ru', 
+        pathname: '/**', 
+      },
     ],
   },
 };

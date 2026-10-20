@@ -15,7 +15,7 @@ export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [play, setPlay] = useState(true);
   const length = slides.length;
-  const timerRef = useRef<NodeJS.Timeout | null>(null); // Храним таймер в ref — он не будет сбрасываться при ререндерах
+  const timerRef = useRef<NodeJS.Timeout | null>(null); 
 
 
   const resetTimer = () => {

@@ -1,10 +1,4 @@
-export type VkReview = {
-  id: number;
-  text: string;
-  date: number; // unix-время
-  authorName: string;
-  authorPhoto?: string;
-};
+import type { VkReview } from "./utils";
 
 export async function getReviews(limit = 5): Promise<VkReview[]> {
   const url = new URL("https://api.vk.com/method/board.getComments");
@@ -18,6 +12,9 @@ export async function getReviews(limit = 5): Promise<VkReview[]> {
 
   const res = await fetch(url, { next: { revalidate: 600 } }); // кэш на 10 минут
   const json = await res.json();
+
+  console.log("json:");
+  console.log(json);
 
   if (json.error) {
     throw new Error(`VK API: ${json.error.error_msg}`);

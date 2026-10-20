@@ -37,7 +37,7 @@ export default async function Home() {
         <Draining />
       </div>
       <HeroSection />
-      <div className="px-4 xl:px-0 sm:px-0 flex flex-col lg:gap-30">
+      <div className="px-4 xl:px-0 sm:px-0 flex flex-col lg:gap-10">
         <AboutSection1 cloudPath={cloudPath}/>
         <AboutSection2 cloudPath={cloudPath}/>
         <Slider />

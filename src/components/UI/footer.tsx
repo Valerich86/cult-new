@@ -10,7 +10,8 @@ export default function Footer() {
     <div
       className="bg-peachy1/20 border-t border-peachy1 x-spacing flex flex-col xl:flex-row text-sm xl:text-sm justify-between relative overflow-hidden"
       aria-label="footer"
-    >
+      >
+      <Decor />
       <div className="w-full xl:w-[30%] xl:h-[50vh] py-10 flex flex-col justify-between">
         <pre className="whitespace-pre-wrap sm:text-2xl xl:text-sm">
           {footerText}
@@ -67,7 +68,6 @@ export default function Footer() {
           className="rounded-2xl"
         ></iframe>
       </div>
-          <Decor />
     </div>
   );
 }

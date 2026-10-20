@@ -10,6 +10,7 @@
   --color-black: #030303;
 
   --animate-links: fade-out 7s;
+  --animate-tremor: tremor 0.3s ease-in-out infinite alternate;
 }
 
 @keyframes fade-out {
@@ -19,6 +20,38 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes tremor {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    text-shadow:
+      0 0 3px rgba(255, 255, 255, 0.25),
+      0 0 6px rgba(100, 200, 255, 0.15),
+      0 0 9px rgba(100, 200, 255, 0.08);
+  }
+  25% {
+    transform: translate(-0.5px, 0.5px) rotate(-0.2deg) scale(1.003);
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.3),
+      0 0 8px rgba(120, 220, 255, 0.2),
+      0 0 11px rgba(120, 220, 255, 0.12);
+  }
+  50% {
+    transform: translate(0.5px, -0.5px) rotate(0.15deg) scale(0.997);
+    text-shadow:
+      0 0 2.5px rgba(255, 255, 255, 0.28),
+      0 0 5px rgba(80, 180, 240, 0.12),
+      0 0 8px rgba(80, 180, 240, 0.07);
+  }
+  75% {
+    transform: translate(-0.3px, -0.3px) rotate(-0.1deg) scale(1.002);
+    text-shadow:
+      0 0 3.5px rgba(255, 255, 255, 0.27),
+      0 0 7px rgba(110, 210, 250, 0.18),
+      0 0 10px rgba(110, 210, 250, 0.1);
   }
 }
 
@@ -68,7 +101,7 @@ input,
 textarea {
   @apply w-full bg-secondary rounded min-h-8 px-2 outline-peachy2 border-none 
  placeholder:text-gray-400 text-brown
-  transition-all duration-200 resize-none
+  transition-all duration-200 resize-none;
 }
 
 button {
