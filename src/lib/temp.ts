@@ -8,20 +8,23 @@ export const reviews: VkReview[] = [
     text: "Пришла к Андрею с исправлением татуировки .Мастер топ ,переделал работу за другого мастера и дополнил эскиз 😻Работой довольна 🔥 рекомендую мастера .",
     date: dateToUnix("2026-10-14"),
     authorName: "Маша Липатова",
+    vkHref: "https://vk.ru/topic-17736985_35735126?post=459"
   },
   {
     id: 2,
     text: "Андрей топ, хожу только к нему на забивку:)",
     date: dateToUnix("2026-10-13"),
     authorName: "Hello Din'ya",
-    authorPhoto: "https://sun9-6.vkuserphoto.ru/s/v1/ig2/LW_72CpF8h1-zxbPhcJjeRN-SznuG2jxTL8rXar30fU_2Ffdn6FwDSyIWC4DMWtmZ9y4dfdunNJjTeFN0wrOGF5q.jpg?quality=95&as=32x31,48x47,72x70,108x105,160x155,240x233,360x349,480x466,540x524,640x621,720x699,1080x1048,1125x1092&from=bu&cs=1125x0"
+    authorPhoto: "https://sun9-6.vkuserphoto.ru/s/v1/ig2/LW_72CpF8h1-zxbPhcJjeRN-SznuG2jxTL8rXar30fU_2Ffdn6FwDSyIWC4DMWtmZ9y4dfdunNJjTeFN0wrOGF5q.jpg?quality=95&as=32x31,48x47,72x70,108x105,160x155,240x233,360x349,480x466,540x524,640x621,720x699,1080x1048,1125x1092&from=bu&cs=1125x0",
+    vkHref: "https://vk.ru/topic-17736985_35735126?post=457"
   },
   {
     id: 3,
     text: "Тааакс, с чего бы начать… Это моя первая и единственная любимая🖤тату-студия, в которую я хожу с 2019го. Практически все мои тату (около 20ти штук), я делал именно тут. Андрей - мой первый тату мастер и настоящий товарищ, к которому я прихожу по сей день набить что нибудь новенькое, или просто потусить вместе😎 Ещё, около двух лет назад туда пришел новенький, очень активный тату-мастер, который подходит к своим работам с большим энтузиазмом - Артур✌Последняя фоточка как раз его работа (к сожалению больше фоточек не влезло) Его проекты мне тоже нравятся, и к нему я залетаю в перерывах, между проектами у Андрея🔥",
     date: dateToUnix("2026-10-12"),
     authorName: "Миша Котков",
-    authorPhoto: "https://sun9-4.vkuserphoto.ru/s/v1/ig2/7j60nsnXeHh6gjSuyPGNsAsxPeeyMclwMahS3O3JvnsxQR5Hy5syyFUN0j7oL8iENHalb9Z3pY4rS0N2SfZicy6z.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1920x0"
+    authorPhoto: "https://sun9-4.vkuserphoto.ru/s/v1/ig2/7j60nsnXeHh6gjSuyPGNsAsxPeeyMclwMahS3O3JvnsxQR5Hy5syyFUN0j7oL8iENHalb9Z3pY4rS0N2SfZicy6z.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1920x0",
+    vkHref: "https://vk.ru/topic-17736985_35735126?post=456"
   },
   // {
   //   id: 4,

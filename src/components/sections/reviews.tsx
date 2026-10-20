@@ -36,7 +36,7 @@ export default function ReviewsSection() {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 10000);
   };
 
   // Эффект следит за состоянием play и запускает/останавливает таймер
@@ -92,7 +92,7 @@ export default function ReviewsSection() {
           <ReviewDesktop key={r.id} review={r} index={i} />
         ))}
       </div>
-      <div className="w-full sm:hidden h-120 relative" {...swipeHandlers}>
+      <div className="w-full sm:hidden h-140 relative" {...swipeHandlers}>
         {reviews.map((r, i) => (
           <ReviewMobile key={r.id} review={r} index={i} current={current} />
         ))}

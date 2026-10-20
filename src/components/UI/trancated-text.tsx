@@ -7,10 +7,11 @@ import { useEffect, useRef, useState } from "react";
 
 interface Props {
   text: string;
-  maxLines: number;
+  vkHref?: string;
+  maxLines?: number;
 }
 
-export default function TruncatedText({ text, maxLines }: Props) {
+export default function TruncatedText({ text, vkHref, maxLines=6 }: Props) {
   const ref = useRef<HTMLParagraphElement>(null);
   const [isTruncated, setIsTruncated] = useState(false);
   const [showFull, setShowFull] = useState(false);
@@ -28,19 +29,19 @@ export default function TruncatedText({ text, maxLines }: Props) {
   }, [text, maxLines]);
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2">
       <p
         ref={ref}
-        className={`text-sm xl:text-xs overflow-hidden ${
-          showFull ? "" : `line-clamp-${maxLines} [--line-clamp:${maxLines}]`
-        }`}
+        className={`text-base xl:text-xs overflow-hidden 
+          line-clamp-${maxLines} [--line-clamp:${maxLines}]
+        `}
       >
         {text}
       </p>
 
-      {isTruncated && (
+      {vkHref && (
         <Link
-          href={REVIEWS_HREF}
+          href={vkHref}
           target={"_blank"}
           className={`${font_caption.className} animate-pulse text-lg text-right`}
         >

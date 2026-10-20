@@ -18,4 +18,5 @@ export type VkReview = {
   date: number; // unix-время
   authorName: string;
   authorPhoto?: string;
+  vkHref?: string;
 };
