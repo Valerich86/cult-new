@@ -40,13 +40,13 @@ export default async function InfoPage(props: {
 
   return (
     <main
-      className="x-spacing flex flex-col gap-10 pb-25 lg:py-10 relative"
+      className="x-spacing flex flex-col gap-10 pb-25 lg:py-10 relative overflow-hidden"
       aria-label={`Информация о мастере ${master}`}
       id="gallery"
     >
       <BackButton target={`/#${master}`} />
       <Draining />
-      <Decor />
+      <Decor count={10}/>
       <div
         className="w-full h-screen lg:h-[50vh] flex flex-col lg:flex-row"
         id="masters"

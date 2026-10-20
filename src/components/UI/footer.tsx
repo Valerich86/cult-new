@@ -50,16 +50,6 @@ export default function Footer() {
         <div className="flex items-center">
           <span className="sm:text-2xl xl:text-sm">Разработал сайт:</span>
           <div className="h-20">
-            {/* <video
-              className="object-contain h-full w-auto grayscale-90 pointer-events-none select-none"
-              muted
-              autoPlay
-              loop
-              playsInline
-              controls={false}
-            >
-              <source src={"/tech/my-logo.webm"} />
-            </video> */}
             <VideoBlock src={"/tech/my-logo.webm"} loop/>
           </div>
           <Socials tg_href="https://t.me/ryazanovyozh" />

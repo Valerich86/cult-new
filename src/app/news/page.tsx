@@ -19,7 +19,7 @@ export default async function NewsPage() {
 
   return (
     <main
-      className="x-spacing pt-10 pb-25 relative"
+      className="x-spacing pt-10 pb-25 relative overflow-hidden"
       aria-label={"Страница новостей"}
     >
       <BackButton target={`/#news`} />

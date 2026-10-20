@@ -32,7 +32,7 @@ export default async function NewsItemPage(props: {
 
   return (
     <main
-      className="x-spacing flex flex-col gap-10 pb-25 relative"
+      className="x-spacing flex flex-col gap-10 pb-25 relative overflow-hidden"
       aria-label={`Полный текст новости ${newsItem?.title}`}
       id={newsItem?.id.toString()}
     >
