@@ -4,12 +4,15 @@ import { Roboto } from "next/font/google";
 
 export const font_default = Roboto({
   weight: "400",
+  subsets: ["cyrillic", "latin"]
 });
 
 export const font_accent = Old_Standard_TT({
   weight: "400",
+  subsets: ["cyrillic", "latin"]
 });
 
 export const font_caption = Caveat({
   weight: "400",
+  subsets: ["cyrillic", "latin"]
 });

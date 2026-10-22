@@ -2,7 +2,7 @@ import { font_caption } from "@/lib/fonts";
 import { VkReview } from "@/lib/utils";
 import Link from "next/link";
 
-export default function ReviewEntries({review}:{review:VkReview}) {
+export default function ReviewEntries({ review }: { review: VkReview }) {
   const MAX_LINES = 6;
   return (
     <>
@@ -14,9 +14,8 @@ export default function ReviewEntries({review}:{review:VkReview}) {
           </time>
         </div>
         <p
-          className={`text-xs overflow-hidden line-clamp-${MAX_LINES} 
-        `}
-        style={{ lineClamp: MAX_LINES }}
+          className={`text-xs overflow-hidden line-clamp-6`}
+          style={{ lineClamp: MAX_LINES }}
         >
           {review.text}
         </p>

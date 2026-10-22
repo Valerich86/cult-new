@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
 import { font_default } from "@/lib/fonts";
-import BackButton from "@/components/UI/back-button";
 import Footer from "@/components/UI/footer";
-import Decor from "@/components/UI/decor";
 
 export const metadata: Metadata = {
   title: {

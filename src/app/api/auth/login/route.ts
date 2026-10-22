@@ -6,7 +6,7 @@ import type { User } from "@/lib/data";
 import { createSessionToken } from "@/lib/auth";
 import { z } from "zod";
 
-export const LoginSchema = z.object({
+const LoginSchema = z.object({
   email: z.string().trim().min(1, "Ничего же не набрал!..").email("Фигню какую-то набрал! Это не почта."),
   password: z.string().trim().min(1, "Напиши что-нибудь..."),
 });
