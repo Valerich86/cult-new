@@ -7,43 +7,56 @@ export function getCloudPath() {
   return `${baseUrl}/${bucketName}`;
 }
 
-export function getS3Client() {
-  if (!baseUrl) {
-    throw new Error("Невозможно подключиться по указанному baseUrl");
+export function createS3Client() {
+  const endpoint = baseUrl;
+  const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+
+  if (!accessKeyId) {
+    throw new Error("AWS_ACCESS_KEY_ID is not set in environment variables");
   }
+  if (!secretAccessKey) {
+    throw new Error("AWS_SECRET_ACCESS_KEY is not set in environment variables");
+  }
+
   return new S3Client({
-    endpoint: baseUrl,
+    endpoint: endpoint,
+    region: "ru-msk", // Обязательно для @aws-sdk/client-s3, даже при кастомном endpoint
     credentials: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      accessKeyId,
+      secretAccessKey,
     },
+    forcePathStyle: true, // Критично для S3‑совместимых хранилищ (VK Cloud)
   });
 }
 
 export async function getGallery(folder, limit = 0) {
   try {
+    const s3Client = createS3Client();
+
     const command = new ListObjectsV2Command({
-      Bucket: bucketName, // имя вашего бакета
-      Prefix: `${folder}/`, // путь к папке (обязательно с / в конце!)
-      Delimiter: "/", // опционально: ограничивает вывод только объектами в указанной папке (без подпапок)
+      Bucket: bucketName,
+      Prefix: `${folder}/`,
+      Delimiter: "/",
     });
-    const s3Client = getS3Client();
+
     const response = await s3Client.send(command);
     const contents = response.Contents || [];
 
     let photos = contents
-      .filter((obj) => obj.Key !== `${folder}/`) // убираем саму папку из списка, если она попала
+      .filter((obj) => obj.Key !== `${folder}/`)
       .map(
         (obj) =>
           `${baseUrl.replace(/\/$/, "")}/${bucketName.replace(/^\//, "")}/${obj.Key.replace(/^\/+/, "")}`,
       );
 
+    // Перемешивание (Fisher–Yates)
     for (let i = photos.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [photos[i], photos[j]] = [photos[j], photos[i]];
     }
 
-    if (limit !== 0) {
+    if (limit > 0) {
       photos = photos.slice(0, limit);
     }
 
