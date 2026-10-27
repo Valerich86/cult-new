@@ -16,6 +16,8 @@ const folders = ["tan", "sonya", "arthur"] as const;
 
 type Folder = (typeof folders)[number];
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const gallery: Record<
     Folder,
