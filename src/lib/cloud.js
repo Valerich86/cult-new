@@ -7,7 +7,7 @@ export function getCloudPath() {
   return `${baseUrl}/${bucketName}`;
 }
 
-export function createS3Client() {
+export function getS3Client() {
   const endpoint = baseUrl;
   const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
   const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
@@ -32,7 +32,7 @@ export function createS3Client() {
 
 export async function getGallery(folder, limit = 0) {
   try {
-    const s3Client = createS3Client();
+    const s3Client = getS3Client();
 
     const command = new ListObjectsV2Command({
       Bucket: bucketName,
