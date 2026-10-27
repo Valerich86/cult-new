@@ -8,11 +8,11 @@ export function getCloudPath() {
 }
 
 export function getS3Client() {
-  if (!process.env.VK_CLOUD_ENDPOINT) {
-    throw new Error("VK_CLOUD_ENDPOINT is not set");
+  if (!baseUrl) {
+    throw new Error("Невозможно подключиться по указанному baseUrl");
   }
-  return new S3({
-    endpoint: process.env.VK_CLOUD_ENDPOINT,
+  return new S3Client({
+    endpoint: baseUrl,
     credentials: {
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
