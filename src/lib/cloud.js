@@ -28,6 +28,7 @@ export function getS3Client() {
     },
     forcePathStyle: true, // Критично для S3‑совместимых хранилищ (VK Cloud)
   });
+  // console.log("Да сколько можно уже!???")
 }
 
 export async function getGallery(folder, limit = 0) {
