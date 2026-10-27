@@ -1,5 +1,5 @@
 import DeleteNewsForm from "../../components/forms/delete-news";
-import { News } from "../../lib/data";
+import { getNews, News } from "../../lib/data";
 import { font_caption } from "../../lib/fonts";
 import Link from "next/link";
 import { AiFillEdit } from "react-icons/ai";
@@ -7,15 +7,14 @@ import { AiFillEdit } from "react-icons/ai";
 export const dynamic = 'force-dynamic';
 
 export default async function AdminPage() {
-  const res = await fetch('/api/news', {
-    cache: 'no-store', 
-  });
+  let news: News[] = [];
 
-  if (!res.ok) {
+  try {
+    news = await getNews();
+  } catch (error) {
+    console.error('Ошибка получения новостей:', error);
     return <p>Ошибка загрузки новостей</p>;
   }
-
-  const news:News[] = await res.json();
 
   return (
     <div>

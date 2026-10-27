@@ -1,5 +1,5 @@
 import { getCloudPath, getGallery } from "../lib/cloud";
-import { News } from "../lib/data";
+import { getNews, News } from "../lib/data";
 import HeroSection from "../components/sections/hero";
 import AboutSection1 from "../components/sections/about-1";
 import AboutSection2 from "../components/sections/about-2";
@@ -27,15 +27,14 @@ export default async function Home() {
   for (const folder of folders) {
     gallery[folder] = await getGallery(folder, 10);
   }
-  const res = await fetch("/api/news?limit=2", {
-    cache: "no-store",
-  });
+  let news: News[] = [];
 
-  if (!res.ok) {
+  try {
+    news = await getNews();
+  } catch (error) {
+    console.error('Ошибка получения новостей:', error);
     return <p>Ошибка загрузки новостей</p>;
   }
-
-  const news: News[] = await res.json();
   const cloudPath = getCloudPath();
 
   return (

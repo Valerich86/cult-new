@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Draining from "../../components/animation/draining";
 import BackButton from "../../components/UI/back-button";
-import { News } from "../../lib/data";
+import { getNews, News } from "../../lib/data";
 import Decor from "../../components/UI/decor";
 import NewsSection from "../../components/sections/news";
 
@@ -11,15 +11,14 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsPage() {
-  const res = await fetch('/api/news', {
-      cache: 'no-store', 
-    });
-  
-    if (!res.ok) {
-      return <p>Ошибка загрузки новостей</p>;
-    }
-  
-    const news:News[] = await res.json();
+  let news: News[] = [];
+
+  try {
+    news = await getNews();
+  } catch (error) {
+    console.error('Ошибка получения новостей:', error);
+    return <p>Ошибка загрузки новостей</p>;
+  }
 
   if (!news || news.length === 0) {
     return (<div className="x-spacing pt-10 h-screen">Новостей нет...</div>)
