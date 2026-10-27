@@ -35,3 +35,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 }
+
+export async function GET() {
+  try {
+    const pool = getPool(); 
+    const [rows]: any[][] = await pool.execute('SELECT * FROM news ORDER BY published_at DESC');
+    return NextResponse.json(rows);
+  } catch (error) {
+    console.error('Ошибка получения новостей:', error);
+    return NextResponse.json({ error: 'Failed to fetch news' }, { status: 500 });
+  }
+}

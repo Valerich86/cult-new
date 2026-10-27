@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
-import { bucketName, s3Client } from "../../../../lib/cloud";
+import { bucketName, getS3Client } from "../../../../lib/cloud";
 import { getPool } from "../../../../lib/db";
 import { generateFileName, uploadFileToCloud } from "../../../../lib/utils";
 import { RowDataPacket } from "mysql2";
@@ -47,6 +47,7 @@ async function deleteFromCloud(url: string) {
       Bucket: bucketName,
       Key: key,
     });
+    const s3Client = getS3Client();
     await s3Client.send(command);
   } catch (e) {
     console.warn("Не удалось удалить файл:", url);

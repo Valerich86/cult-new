@@ -1,5 +1,5 @@
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { bucketName, getCloudPath, s3Client } from "./cloud";
+import { bucketName, getCloudPath, getS3Client } from "./cloud";
 
 export const photoComposition = [
   "inset-0",
@@ -10,9 +10,9 @@ export const photoComposition = [
 ];
 
 export const masters = [
-  {name: "Андрей", id: "tan"},
-  {name: "Соня", id: "sonya"},
-  {name: "Артур", id: "arthur"},
+  { name: "Андрей", id: "tan" },
+  { name: "Соня", id: "sonya" },
+  { name: "Артур", id: "arthur" },
 ];
 
 export type VkReview = {
@@ -31,14 +31,19 @@ export async function uploadFileToCloud(
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
   const cloudPath = getCloudPath();
-  const command = new PutObjectCommand({
-    Bucket: bucketName,
-    Key: fileName,
-    Body: buffer,
-    ContentType: file.type,
-    ACL: "public-read",
-  });
-  await s3Client.send(command);
+  try {
+    const command = new PutObjectCommand({
+      Bucket: bucketName,
+      Key: fileName,
+      Body: buffer,
+      ContentType: file.type,
+      ACL: "public-read",
+    });
+    const s3Client = getS3Client();
+    await s3Client.send(command);
+  } catch (error) {
+    console.error(error);
+  }
   return `${cloudPath}/${fileName}`;
 }
 

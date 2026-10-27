@@ -11,6 +11,8 @@ const links = [
   {name: "Отзывы", href: "/admin"},
 ];
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminLayout({
   children,
 }: Readonly<{

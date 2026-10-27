@@ -7,15 +7,28 @@ export function getCloudPath() {
   return `${baseUrl}/${bucketName}`;
 }
 
-export const s3Client = new S3Client({
-  region: "ru-msk",
-  endpoint: baseUrl,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
-  forcePathStyle: true,
-});
+export function getS3Client() {
+  if (!process.env.VK_CLOUD_ENDPOINT) {
+    throw new Error("VK_CLOUD_ENDPOINT is not set");
+  }
+  return new S3({
+    endpoint: process.env.VK_CLOUD_ENDPOINT,
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    },
+  });
+}
+
+// export const s3Client = new S3Client({
+//   region: "ru-msk",
+//   endpoint: baseUrl,
+//   credentials: {
+//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//   },
+//   forcePathStyle: true,
+// });
 
 export async function getGallery(folder, limit = 0) {
   try {
