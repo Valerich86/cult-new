@@ -1,6 +1,5 @@
 import DeleteNewsForm from "../../components/forms/delete-news";
 import { News } from "../../lib/data";
-// import { getNews } from "../../lib/data";
 import { font_caption } from "../../lib/fonts";
 import Link from "next/link";
 import { AiFillEdit } from "react-icons/ai";

@@ -36,11 +36,36 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const limitParam = searchParams.get('limit');
+
+  let limitValue: number | null = null;
+
+  // Парсим только если параметр есть и он валидный
+  if (limitParam) {
+    const parsed = parseInt(limitParam, 10);
+    if (!isNaN(parsed) && parsed > 0 && parsed <= 100) {
+      limitValue = parsed;
+    }
+  }
+
   try {
-    const pool = getPool(); 
-    const [rows]: any[][] = await pool.execute('SELECT * FROM news ORDER BY published_at DESC');
-    return NextResponse.json(rows);
+    const pool = getPool();
+
+    if (limitValue !== null) {
+      const [rows]: any[][] = await pool.execute(
+        'SELECT * FROM news ORDER BY published_at DESC LIMIT ?',
+        [limitValue]
+      );
+      return NextResponse.json(rows);
+    } else {
+      // Если лимита нет — обычный запрос без LIMIT
+      const [rows]: any[][] = await pool.execute(
+        'SELECT * FROM news ORDER BY published_at DESC'
+      );
+      return NextResponse.json(rows);
+    }
   } catch (error) {
     console.error('Ошибка получения новостей:', error);
     return NextResponse.json({ error: 'Failed to fetch news' }, { status: 500 });
