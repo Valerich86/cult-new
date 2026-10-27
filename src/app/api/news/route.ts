@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import pool from "../../../lib/db";
+import { getPool } from "../../../lib/db";
 import { ResultSetHeader } from "mysql2";
 import { generateFileName, uploadFileToCloud } from "../../../lib/utils";
 
@@ -20,6 +20,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const mediaType = media.type.startsWith("image/") ? "image" : "video";
     const fileName = generateFileName(media.name);
     const mediaUrl = await uploadFileToCloud(media, fileName);
+    const pool = getPool(); 
     const [result] = await pool.execute<ResultSetHeader>(
       `INSERT INTO news (title, content, media_url, media_type, link_name, link_href)
         VALUES (?,?,?,?,?,?)`,

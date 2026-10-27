@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { bucketName, s3Client } from "../../../../lib/cloud";
-import pool from "../../../../lib/db";
+import { getPool } from "../../../../lib/db";
 import { generateFileName, uploadFileToCloud } from "../../../../lib/utils";
 import { RowDataPacket } from "mysql2";
 
@@ -13,6 +13,7 @@ export async function DELETE(
   const numId = Number(id);
 
   try {
+    const pool = getPool(); 
     const [result] = await pool.execute<RowDataPacket[]>(
       "SELECT media_url FROM news WHERE id = ?", [numId],
     );
@@ -67,6 +68,7 @@ export async function PUT(
     const linkHref = formData.get("linkHref")?.toString() || "";
 
     const media = formData.get("media") as File | null;
+    const pool = getPool(); 
     const [currentMediaResult] = await pool.execute<RowDataPacket[]>(
       "SELECT media_url, media_type FROM news WHERE id = ?", [numId],
     );

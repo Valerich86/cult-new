@@ -1,4 +1,4 @@
-import pool from "./db";
+import { getPool } from "./db";
 import { RowDataPacket } from "mysql2/promise";
 
 export type News = {
@@ -22,6 +22,7 @@ export async function getNews(limit?: number){
   let query = 'SELECT * FROM news ORDER BY published_at DESC';
   if (limit) query += ` LIMIT ${limit}`;
   try {
+    const pool = getPool(); 
     const [result] = await pool.execute(query);
     return result as News[];
   } catch (error) {
@@ -32,6 +33,7 @@ export async function getNews(limit?: number){
 
 export async function getOneNewsItem(id: string) {
   try {
+    const pool = getPool(); 
     const [result] = await pool.execute<RowDataPacket[]>('SELECT * FROM news WHERE id = ?', [id]);
     return result[0] as News;
   } catch (error) {

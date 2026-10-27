@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { RowDataPacket } from "mysql2";
 import bcrypt from "bcryptjs";
-import pool from "../../../../lib/db";
+import { getPool } from "../../../../lib/db";
 import type { User } from "../../../../lib/data";
 import { createSessionToken } from "../../../../lib/auth";
 import { z } from "zod";
@@ -13,6 +13,7 @@ const LoginSchema = z.object({
 
 async function checkUser(email: string) {
   try {
+    const pool = getPool(); 
     const [result] = await pool.execute<RowDataPacket[]>(
       `SELECT * FROM users WHERE email=?`,
       [email],
