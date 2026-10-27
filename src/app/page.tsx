@@ -37,6 +37,8 @@ export default async function Home() {
   }
   const cloudPath = getCloudPath();
 
+  console.log('>>> DEBUG: ЗАПУСК НОВОГО КОДА NEWS PAGE (без fetch!)');
+
   return (
     <main
       className="xl:px-50 sm:px-25 flex flex-col gap-4 pb-25 relative overflow-hidden"

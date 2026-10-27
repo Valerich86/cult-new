@@ -20,10 +20,6 @@ export default async function NewsPage() {
     return <p>Ошибка загрузки новостей</p>;
   }
 
-  if (!news || news.length === 0) {
-    return (<div className="x-spacing pt-10 h-screen">Новостей нет...</div>)
-  }
-
   return (
     <main
       className="x-spacing pt-10 pb-25 relative overflow-hidden"
@@ -33,7 +29,7 @@ export default async function NewsPage() {
       <Draining />
       <Decor />
       
-      <NewsSection news={news} isPage/>
+      {news && news.length && <NewsSection news={news} isPage/>}
     </main>
   );
 }
