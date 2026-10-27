@@ -65,7 +65,7 @@ export default async function InfoPage(props: {
         <TextBlock text={info.about} />
       </div>
       <div className="w-full flex flex-wrap justify-center gap-5 sm:justify-between z-50">
-        {photos?.map((url, i) => (
+        {photos?.map((url:string, i:number) => (
           <div className="relative w-36 h-28" key={i}>
             <GalleryItem
               src={url}
