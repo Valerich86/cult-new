@@ -12,11 +12,11 @@ import Slider from "../components/sections/slider";
 import BtnTop from "../components/UI/btn-top";
 import ReviewsSection from "../components/sections/reviews";
 
-const folders = ["tan", "sonya", "arthur"] as const; 
+const folders = ["tan", "sonya", "arthur"] as const;
 
 type Folder = (typeof folders)[number];
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const gallery: Record<
@@ -27,15 +27,15 @@ export default async function Home() {
   for (const folder of folders) {
     gallery[folder] = await getGallery(folder, 10);
   }
-  const res = await fetch('/api/news?limit=2', {
-      cache: 'no-store', 
-    });
-  
-    if (!res.ok) {
-      return <p>Ошибка загрузки новостей</p>;
-    }
-  
-    const news:News[] = await res.json();
+  const res = await fetch("/api/news?limit=2", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return <p>Ошибка загрузки новостей</p>;
+  }
+
+  const news: News[] = await res.json();
   const cloudPath = getCloudPath();
 
   return (
@@ -48,12 +48,12 @@ export default async function Home() {
       </div>
       <HeroSection />
       <div className="px-4 xl:px-0 sm:px-0 flex flex-col lg:gap-10">
-        <AboutSection1 cloudPath={cloudPath}/>
-        <AboutSection2 cloudPath={cloudPath}/>
+        <AboutSection1 cloudPath={cloudPath} />
+        <AboutSection2 cloudPath={cloudPath} />
         <Slider />
-        {gallery && <MastersSection gallery={gallery} cloudPath={cloudPath}/>}
-        {news && <NewsSection news={news}/>}
-        <FaqSection cloudPath={cloudPath}/>
+        {gallery && <MastersSection gallery={gallery} cloudPath={cloudPath} />}
+        {news && <NewsSection news={news} />}
+        <FaqSection cloudPath={cloudPath} />
         <ReviewsSection />
         <ActionSection />
       </div>

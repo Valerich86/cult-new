@@ -20,16 +20,6 @@ export function getS3Client() {
   });
 }
 
-// export const s3Client = new S3Client({
-//   region: "ru-msk",
-//   endpoint: baseUrl,
-//   credentials: {
-//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//   },
-//   forcePathStyle: true,
-// });
-
 export async function getGallery(folder, limit = 0) {
   try {
     const command = new ListObjectsV2Command({
@@ -37,6 +27,7 @@ export async function getGallery(folder, limit = 0) {
       Prefix: `${folder}/`, // путь к папке (обязательно с / в конце!)
       Delimiter: "/", // опционально: ограничивает вывод только объектами в указанной папке (без подпапок)
     });
+    const s3Client = getS3Client();
     const response = await s3Client.send(command);
     const contents = response.Contents || [];
 
