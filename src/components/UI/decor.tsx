@@ -2,14 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// type Stripe = {
-//   id: number;
-//   lengthPercent: number;
-//   rotation: number;
-//   x: number;
-//   y: number;
-// };
-
 type Circle = {
   id: number;
   size: number;

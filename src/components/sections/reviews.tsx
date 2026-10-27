@@ -1,11 +1,10 @@
 "use client";
 
-import { getReviews } from "@/lib/vk-reviews";
-import { reviews, REVIEWS_HREF } from "@/lib/temp";
+import { reviews, REVIEWS_HREF } from "../../lib/temp";
 import AnimatedTitle from "../animation/title";
 import Decor from "../UI/decor";
 import Link from "next/link";
-import { font_caption } from "@/lib/fonts";
+import { font_caption } from "../../lib/fonts";
 import ReviewDesktop from "../UI/review-desktop";
 import ReviewMobile from "../UI/review-mobile";
 import { useEffect, useRef, useState } from "react";

@@ -1,8 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import Caption from "../animation/caption";
 import Hero from "../animation/hero";
-import { font_caption } from "@/lib/fonts";
 import Navigation from "../UI/navigation";
 import Decor from "../UI/decor";
 

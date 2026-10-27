@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { RowDataPacket } from "mysql2";
 import bcrypt from "bcryptjs";
-import pool from "@/lib/db";
-import type { User } from "@/lib/data";
-import { createSessionToken } from "@/lib/auth";
+import pool from "../../../../lib/db";
+import type { User } from "../../../../lib/data";
+import { createSessionToken } from "../../../../lib/auth";
 import { z } from "zod";
 
 const LoginSchema = z.object({

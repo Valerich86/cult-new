@@ -1,4 +1,4 @@
-import { verifySession } from "@/lib/auth";
+import { verifySession } from "../../lib/auth";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { font_default } from "@/lib/fonts";
+import { font_default } from "../../lib/fonts";
 
 interface Props {
   text: string;

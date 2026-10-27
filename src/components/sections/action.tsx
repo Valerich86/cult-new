@@ -1,4 +1,3 @@
-import { font_caption } from "@/lib/fonts";
 import PopupLink from "../UI/popup-link";
 import Decor from "../UI/decor";
 

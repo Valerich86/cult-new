@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import LoginForm from "@/components/forms/login";
-import { font_accent } from "@/lib/fonts";
+import LoginForm from "../../../components/forms/login";
+import { font_accent } from "../../../lib/fonts";
 
 export const metadata: Metadata = {
   title: "Вход в админ-панель",

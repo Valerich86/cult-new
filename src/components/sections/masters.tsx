@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import ImageBlock from "../UI/image-block";
 import PopupLink from "../UI/popup-link";
-import { font_accent } from "@/lib/fonts";
-import { photoComposition, masters } from "@/lib/utils";
+import { photoComposition, masters } from "../../lib/utils";
 import Decor from "../UI/decor";
 import AnimatedTitle from "../animation/title";
 

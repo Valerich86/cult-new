@@ -1,6 +1,6 @@
 "use client";
 
-import { font_accent } from "@/lib/fonts";
+import { font_accent } from "../../lib/fonts";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 

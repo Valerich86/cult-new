@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
-import { bucketName, s3Client } from "@/lib/cloud";
-import pool from "@/lib/db";
-import { uploadFileToCloud, generateFileName } from "@/lib/utils";
+import { bucketName, s3Client } from "../../../../lib/cloud";
+import pool from "../../../../lib/db";
+import { generateFileName, uploadFileToCloud } from "../../../../lib/utils";
 import { RowDataPacket } from "mysql2";
 
 export async function DELETE(

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { News } from "@/lib/data";
+import { News } from "../../lib/data";
 import Link from "next/link";
-import { font_caption } from "@/lib/fonts";
+import { font_caption } from "../../lib/fonts";
 
 export default function UpdateNewsForm({ news }: { news: News }) {
   const [isLoading, setIsLoading] = useState(false);

@@ -1,12 +1,12 @@
 import { Metadata } from "next";
-import Draining from "@/components/animation/draining";
-import { font_accent, font_caption } from "@/lib/fonts";
-import BackButton from "@/components/UI/back-button";
-import ImageBlock from "@/components/UI/image-block";
-import TextBlock from "@/components/UI/text-block";
-import { getOneNewsItem } from "@/lib/data";
+import Draining from "../../../components/animation/draining";
+import { font_accent, font_caption } from "../../../lib/fonts";
+import BackButton from "../../../components/UI/back-button";
+import ImageBlock from "../../../components/UI/image-block";
+import TextBlock from "../../../components/UI/text-block";
+import { getOneNewsItem } from "../../../lib/data";
 import Link from "next/link";
-import Decor from "@/components/UI/decor";
+import Decor from "../../../components/UI/decor";
 
 export async function generateMetadata(props: {
   params: Promise<{ id: string }>;

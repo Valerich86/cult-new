@@ -1,16 +1,16 @@
-import { getCloudPath, getGallery } from "@/lib/cloud";
-import { getNews } from "@/lib/data";
-import HeroSection from "@/components/sections/hero";
-import AboutSection1 from "@/components/sections/about-1";
-import AboutSection2 from "@/components/sections/about-2";
-import MastersSection from "@/components/sections/masters";
-import ActionSection from "@/components/sections/action";
-import FaqSection from "@/components/sections/faq";
-import Draining from "@/components/animation/draining";
-import NewsSection from "@/components/sections/news";
-import Slider from "@/components/sections/slider";
-import BtnTop from "@/components/UI/btn-top";
-import ReviewsSection from "@/components/sections/reviews";
+import { getCloudPath, getGallery } from "../lib/cloud";
+import { getNews } from "../lib/data";
+import HeroSection from "../components/sections/hero";
+import AboutSection1 from "../components/sections/about-1";
+import AboutSection2 from "../components/sections/about-2";
+import MastersSection from "../components/sections/masters";
+import ActionSection from "../components/sections/action";
+import FaqSection from "../components/sections/faq";
+import Draining from "../components/animation/draining";
+import NewsSection from "../components/sections/news";
+import Slider from "../components/sections/slider";
+import BtnTop from "../components/UI/btn-top";
+import ReviewsSection from "../components/sections/reviews";
 
 const folders = ["tan", "sonya", "arthur"] as const; 
 

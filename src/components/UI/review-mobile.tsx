@@ -1,4 +1,4 @@
-import { VkReview } from "@/lib/utils";
+import { VkReview } from "../../lib/utils";
 import ReviewEntries from "./review-entries";
 
 export default function ReviewMobile({

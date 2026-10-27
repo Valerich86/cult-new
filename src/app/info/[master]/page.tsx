@@ -1,13 +1,13 @@
 import { Metadata } from "next";
-import { getGallery } from "@/lib/cloud";
-import GalleryItem from "@/components/UI/gallery-item";
-import Draining from "@/components/animation/draining";
-import { font_accent } from "@/lib/fonts";
-import BackButton from "@/components/UI/back-button";
-import ImageBlock from "@/components/UI/image-block";
-import { mastersInfo } from "@/lib/text";
-import TextBlock from "@/components/UI/text-block";
-import Decor from "@/components/UI/decor";
+import { getGallery } from "../../../lib/cloud";
+import GalleryItem from "../../../components/UI/gallery-item";
+import Draining from "../../../components/animation/draining";
+import { font_accent } from "../../../lib/fonts";
+import BackButton from "../../../components/UI/back-button";
+import ImageBlock from "../../../components/UI/image-block";
+import { mastersInfo } from "../../../lib/text";
+import TextBlock from "../../../components/UI/text-block";
+import Decor from "../../../components/UI/decor";
 
 export async function generateMetadata(props: {
   params: Promise<{ master: string }>;

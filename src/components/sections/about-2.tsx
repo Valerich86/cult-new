@@ -3,10 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import ImageBlock from "../UI/image-block";
-import { cult1, cult2 } from "@/lib/text";
-import { font_accent } from "@/lib/fonts";
 import Decor from "../UI/decor";
-import Draining from "../animation/draining";
 import AnimatedTitle from "../animation/title";
 
 export default function AboutSection2({ cloudPath }: { cloudPath: string }) {

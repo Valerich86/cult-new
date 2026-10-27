@@ -1,7 +1,7 @@
-import UpdateNewsForm from "@/components/forms/update-news";
-import BackButton from "@/components/UI/back-button";
-import { getOneNewsItem } from "@/lib/data";
-import { font_accent } from "@/lib/fonts";
+import UpdateNewsForm from "../../../../components/forms/update-news";
+import BackButton from "../../../../components/UI/back-button";
+import { getOneNewsItem } from "../../../../lib/data";
+import { font_accent } from "../../../../lib/fonts";
 
 export default async function UpdateNewsPage(props: {
   params: Promise<{ id: string }>;

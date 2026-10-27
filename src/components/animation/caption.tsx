@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { font_caption } from "@/lib/fonts";
+import { font_caption } from "../../lib/fonts";
 
 interface Props {
   text: string;

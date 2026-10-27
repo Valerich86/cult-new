@@ -1,6 +1,6 @@
-import PostNewsForm from "@/components/forms/post-news";
-import BackButton from "@/components/UI/back-button";
-import { font_accent } from "@/lib/fonts";
+import PostNewsForm from "../../../components/forms/post-news";
+import BackButton from "../../../components/UI/back-button";
+import { font_accent } from "../../../lib/fonts";
 
 export default function PostNewsPage() {
   return (

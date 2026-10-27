@@ -1,6 +1,6 @@
 "use client";
 
-import { font_caption } from "@/lib/fonts";
+import { font_caption } from "../../lib/fonts";
 import { motion } from "framer-motion";
 import Link from "next/link";
 

@@ -1,8 +1,5 @@
-import { font_caption } from "@/lib/fonts";
-import { Metadata } from "next";
 import Socials from "./socials";
-import { footerText } from "@/lib/text";
-import Image from "next/image";
+import { footerText } from "../../lib/text";
 import Decor from "./decor";
 import VideoBlock from "./video-block";
 

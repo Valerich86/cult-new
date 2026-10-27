@@ -1,5 +1,5 @@
-import { font_caption } from "@/lib/fonts";
-import { VkReview } from "@/lib/utils";
+import { font_caption } from "../../lib/fonts";
+import { VkReview } from "../../lib/utils";
 import Link from "next/link";
 
 export default function ReviewEntries({ review }: { review: VkReview }) {

@@ -1,9 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
-import { PutObjectCommand } from "@aws-sdk/client-s3";
-import pool from "@/lib/db";
-import { getCloudPath, bucketName, s3Client } from "@/lib/cloud";
+import pool from "../../../lib/db";
 import { ResultSetHeader } from "mysql2";
-import { uploadFileToCloud, generateFileName } from "@/lib/utils";
+import { generateFileName, uploadFileToCloud } from "../../../lib/utils";
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {

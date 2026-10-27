@@ -1,10 +1,10 @@
-export const dynamic = 'force-dynamic';
-
-import DeleteNewsForm from "@/components/forms/delete-news";
-import { getNews } from "@/lib/data";
-import { font_caption } from "@/lib/fonts";
+import DeleteNewsForm from "../../components/forms/delete-news";
+import { getNews } from "../../lib/data";
+import { font_caption } from "../../lib/fonts";
 import Link from "next/link";
 import { AiFillEdit } from "react-icons/ai";
+
+export const dynamic = 'force-dynamic';
 
 export default async function AdminPage() {
   const news = await getNews();

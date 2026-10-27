@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { font_accent } from "@/lib/fonts";
+import { font_accent } from "../../lib/fonts";
 
 export default function PostNewsForm() {
   const [isLoading, setIsLoading] = useState(false);

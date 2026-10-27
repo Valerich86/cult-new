@@ -1,8 +1,8 @@
-import { FaInstagram, FaPhone } from "react-icons/fa";
-import { RiTelegramFill, RiYoutubeFill } from "react-icons/ri";
+import { FaPhone } from "react-icons/fa";
+import { RiTelegramFill } from "react-icons/ri";
 import { FaVk } from "react-icons/fa";
 import Link from "next/link";
-import { font_caption } from "@/lib/fonts";
+import { font_caption } from "../../lib/fonts";
 
 interface SocialsProps {
   name?: string;

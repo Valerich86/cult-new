@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { News } from "@/lib/data";
+import { News } from "../../lib/data";
 import ImageBlock from "../UI/image-block";
 import TextBlock from "../UI/text-block";
-import { font_accent, font_caption } from "@/lib/fonts";
+import { font_caption } from "../../lib/fonts";
 import PopupLink from "../UI/popup-link";
 import Decor from "../UI/decor";
 import AnimatedTitle from "../animation/title";

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import Draining from "@/components/animation/draining";
-import BackButton from "@/components/UI/back-button";
-import { getNews } from "@/lib/data";
-import Decor from "@/components/UI/decor";
-import NewsSection from "@/components/sections/news";
+import Draining from "../../components/animation/draining";
+import BackButton from "../../components/UI/back-button";
+import { getNews } from "../../lib/data";
+import Decor from "../../components/UI/decor";
+import NewsSection from "../../components/sections/news";
 
 export const metadata: Metadata = {
   title: "Новости",

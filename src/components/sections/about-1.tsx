@@ -1,10 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import TextBlock from "../UI/text-block";
 import ImageBlock from "../UI/image-block";
-import { cult1, cult2 } from "@/lib/text";
-import { font_accent } from "@/lib/fonts";
+import { cult1, cult2 } from "../../lib/text";
 import Decor from "../UI/decor";
 
 export default function AboutSection1({ cloudPath }: { cloudPath: string }) {
