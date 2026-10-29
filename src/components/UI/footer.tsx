@@ -2,6 +2,7 @@ import Socials from "./socials";
 import { footerText } from "../../lib/text";
 import Decor from "./decor";
 import VideoBlock from "./video-block";
+import ImageBlock from "./image-block";
 
 export default function Footer() {
   return (
@@ -46,8 +47,8 @@ export default function Footer() {
         />
         <div className="flex items-center">
           <span className="sm:text-2xl xl:text-sm">Разработал сайт:</span>
-          <div className="h-20">
-            <VideoBlock src={"/tech/my-logo.webm"} loop/>
+          <div className="w-30 h-15">
+            <ImageBlock src={"/tech/my-logo.png"} alt="Логотип разработчика" shadowLess bgStyle="bg-transparent"/>
           </div>
           <Socials tg_href="https://t.me/ryazanovyozh" />
         </div>

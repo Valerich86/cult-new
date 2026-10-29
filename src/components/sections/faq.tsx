@@ -9,8 +9,8 @@ import ImageBlock from "../UI/image-block";
 export default function FaqSection({ cloudPath }: { cloudPath: string }) {
   const [visibleAnswer, setVisibleAnswer] = useState<Number | null>(null);
   return (
-    <div
-      className="w-full flex flex-col xl:flex-row bg-primary text-secondary mt-20 xl:mt-0"
+    <section
+      className="w-full flex flex-col xl:flex-row bg-primary text-secondary mt-20 xl:mt-0 shadow"
       id="faq"
     >
       <div className="h-[90vh] w-full xl:w-1/2">
@@ -53,8 +53,9 @@ export default function FaqSection({ cloudPath }: { cloudPath: string }) {
           src={`${cloudPath}/tech/faq-1.webp`}
           alt={"Фото к секции FAQ"}
           position="top"
+          shadowLess
         />
       </div>
-    </div>
+    </section>
   );
 }

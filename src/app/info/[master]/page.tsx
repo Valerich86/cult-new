@@ -61,7 +61,7 @@ export default async function InfoPage(props: {
           <ImageBlock src={info.src} alt={info.alt} priority />
         </div>
       </div>
-      <div className="w-full min-h-screen lg:min-h-[50vh]">
+      <div className="w-full">
         <TextBlock text={info.about} />
       </div>
       <div className="w-full flex flex-wrap justify-center gap-5 sm:justify-between z-50">

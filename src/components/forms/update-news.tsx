@@ -17,9 +17,6 @@ export default function UpdateNewsForm({ news }: { news: News }) {
     setError(null);
 
     const form = e.currentTarget;
-    const title = (
-      form.elements.namedItem("title") as HTMLInputElement
-    ).value.trim();
     const content = (
       form.elements.namedItem("content") as HTMLTextAreaElement
     ).value.trim();
@@ -34,7 +31,6 @@ export default function UpdateNewsForm({ news }: { news: News }) {
 
     try {
       const formData = new FormData();
-      formData.append("title", title);
       formData.append("content", content);
       formData.append("linkName", linkName);
       formData.append("linkHref", linkHref);
@@ -67,11 +63,6 @@ export default function UpdateNewsForm({ news }: { news: News }) {
           {error}
         </div>
       )}
-
-      <div className="w-full">
-        <label>Заголовок:</label>
-        <input name="title" defaultValue={news.title} />
-      </div>
 
       <div className="w-full">
         <label>Текст:</label>

@@ -64,10 +64,10 @@ export async function POST(req: Request) {
     const response = NextResponse.json({ status: 201 });
 
     response.cookies.set({
-      name: "cult_session", // Отдельное имя cookie для админов
+      name: "cult_session", 
       value: token,
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       maxAge: 7 * 24 * 60 * 60,
       path: "/",
       sameSite: "lax",

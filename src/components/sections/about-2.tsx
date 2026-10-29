@@ -84,6 +84,10 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
       </div>
       <div className="h-[50vh] w-full relative mt-4">
         <div className="w-full h-full overflow-hidden relative">
+          {/* <ImageBlock
+            src={`${cloudPath}/tech/gift.webp`}
+            position="50%_50%"
+          /> */}
           <Image
             src={`${cloudPath}/tech/gift.webp`}
             alt={`Изображение подарочного сертификата`}
@@ -101,7 +105,7 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
           className="image-text"
         >
           В нашей студии вы всегда можете приобрести подарочный сертификат на
-          татуировку на любую сумму от 2000₽
+          татуировку на любую сумму от 3000₽
         </motion.span>
       </div>
     </div>

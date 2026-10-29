@@ -30,14 +30,12 @@ export default async function Home() {
   let news: News[] = [];
 
   try {
-    news = await getNews();
+    news = await getNews(3);
   } catch (error) {
     console.error('Ошибка получения новостей:', error);
     return <p>Ошибка загрузки новостей</p>;
   }
   const cloudPath = getCloudPath();
-
-  console.log('>>> DEBUG: ЗАПУСК НОВОГО КОДА NEWS PAGE (без fetch!)');
 
   return (
     <main
@@ -48,7 +46,7 @@ export default async function Home() {
         <Draining />
       </div>
       <HeroSection />
-      <div className="px-4 xl:px-0 sm:px-0 flex flex-col lg:gap-10">
+      <div className="px-4 xl:px-0 sm:px-0 flex flex-col lg:gap-10 w-full">
         <AboutSection1 cloudPath={cloudPath} />
         <AboutSection2 cloudPath={cloudPath} />
         <Slider />

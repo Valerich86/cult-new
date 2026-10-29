@@ -81,7 +81,7 @@ export default function ReviewsSection() {
       >
         <AnimatedTitle text="Отзывы" />
       </div>
-      <div className="hidden sm:flex flex-wrap w-full gap-10 justify-between overflow-hidden max-h-100">
+      <div className="hidden sm:flex flex-wrap w-full gap-10 justify-between max-h-100">
         {reviews.map((r, i) => (
           <ReviewDesktop key={r.id} review={r} index={i} />
         ))}

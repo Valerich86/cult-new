@@ -8,7 +8,7 @@ interface Props {
   maxHeight?: number;
 }
 
-export default function Draining({ length = 5, maxHeight = 100 }: Props) {
+export default function Draining({ length = 5, maxHeight = 75 }: Props) {
   const [items, setItems] = useState<
     {
       height: number;

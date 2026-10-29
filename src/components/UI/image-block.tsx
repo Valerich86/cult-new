@@ -7,21 +7,23 @@ interface Props {
   src: string;
   alt?: string;
   position?: string;
-  options?: string;
   priority?: boolean;
+  shadowLess?: boolean;
+  bgStyle?: "bg-primary"|"bg-secondary"|"bg-transparent";
 }
 
 export default function ImageBlock({
   src,
   alt = "",
   position = "right",
-  options = "",
-  priority = false
+  priority = false,
+  shadowLess = false,
+  bgStyle = "bg-primary"
 }: Props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
   return ( 
-    <div className={`w-full h-full relative overflow-hidden ${options} bg-transparent`}>
+    <div className={`w-full h-full relative overflow-hidden ${bgStyle} ${!shadowLess && "shadow"}`}>
       {!isLoaded && (
         <div className="absolute inset-0 w-full h-full flex justify-center items-center">
           <div className="w-10 h-10 rounded-full border-b-3 border-secondary animate-spin"></div>

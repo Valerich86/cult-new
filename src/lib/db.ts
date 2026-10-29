@@ -1,24 +1,31 @@
-// lib/db.ts
 import mysql from 'mysql2/promise';
 
 let pool: mysql.Pool | null = null;
 
 export function getPool(): mysql.Pool {
   if (!pool) {
-    // Проверка переменных — сработает только при вызове функции (в рантайме)
-    if (!process.env.MYSQL_HOST) {
-      throw new Error('MYSQL_HOST is not set');
+    const isDev = process.env.APP_ENV === 'development';
+    if (!isDev) {
+      const config = {
+        host: process.env.DBHOST || 'localhost',
+        user: process.env.DBUSER,
+        password: process.env.DBPASS,
+        database: process.env.DBNAME,
+        socketPath: process.env.MYSQL_SOCKET,
+      };
+
+      if (!config.user || !config.password || !config.database) {
+        throw new Error('Missing DB environment variables for production');
+      }
+
+      pool = mysql.createPool(config);
+    } else {
+      const connectionString = process.env.LOCAL_CONNECTION_STRING;
+      if (!connectionString) {
+        throw new Error('LOCAL_CONNECTION_STRING is not set');
+      }
+      pool = mysql.createPool(connectionString);
     }
-    pool = mysql.createPool({
-      host: process.env.MYSQL_HOST,
-      port: parseInt(process.env.MYSQL_PORT || '3306', 10),
-      user: process.env.MYSQL_USER,
-      password: process.env.MYSQL_PASSWORD,
-      database: process.env.MYSQL_DATABASE,
-      waitForConnections: true,
-      connectionLimit: 10,
-      queueLimit: 0,
-    });
   }
   return pool;
 }

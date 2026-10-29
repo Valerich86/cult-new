@@ -23,17 +23,6 @@ export default async function AdminLayout({
 
   return (
     <main aria-label="admin" className="bg-primary text-secondary w-full min-h-screen relative text-base">
-      {/* <nav className="absolute h-5 inset-0 w-full flex justify-center gap-10 my-3" aria-label="Навигация по админ. панели">
-        {links.map((link, i) => (
-          <Link
-            key={i}
-            href={link.href}
-            className={`${font_caption.className} text-peachy1 text-xs link animate-pulse`}
-          >
-            {link.name}
-          </Link>
-        ))}
-      </nav> */}
       <div className="w-full x-spacing my-20">
         {children}
       </div>

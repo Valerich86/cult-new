@@ -63,7 +63,6 @@ export async function PUT(
     const { id } = await params;
     const numId = Number(id);
     const formData = await request.formData();
-    const title = formData.get("title")?.toString() || "";
     const content = formData.get("content")?.toString() || "";
     const linkName = formData.get("linkName")?.toString() || "";
     const linkHref = formData.get("linkHref")?.toString() || "";
@@ -83,11 +82,10 @@ export async function PUT(
       currentMediaUrl = await uploadFileToCloud(media, fileName);
     }
     const query = `
-      UPDATE news SET title=?, content=?, media_url=?, 
+      UPDATE news SET content=?, media_url=?, 
       media_type=?, link_name=?, link_href=? WHERE id=?;
     `;
     const values = [
-      title,
       content,
       currentMediaUrl,
       currentMediaType,

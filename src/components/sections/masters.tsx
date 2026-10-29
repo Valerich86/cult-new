@@ -22,7 +22,7 @@ interface Props {
 export default function MastersSection({ gallery, cloudPath }: Props) {
   const PhotoContainer = ({
     images,
-    interval = 2000,
+    interval = 3000,
   }: {
     images: string[];
     interval?: number;
@@ -33,12 +33,17 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
       const timer = setInterval(() => {
         setCurIndex((prev) => (prev !== 4 ? prev + 1 : 0));
       }, interval);
+
+      return () => clearInterval(timer);
     }, []);
 
     return (
-      <div className={`h-full w-full overflow-x-hidden relative`}>
+      <div className={`relative rounded-full h-full w-full`}>
         {photoComposition.map((pos, i) => (
-          <div key={i} className={`absolute w-60 h-60 sm:w-80 sm:h-80 xl:w-60 xl:h-60 ${pos}`}>
+          <div
+            key={i}
+            className={`absolute w-60 h-60 sm:w-80 sm:h-80 xl:w-60 xl:h-60 ${pos}`}
+          >
             <Image
               src={images[i]}
               alt={`Фото тату "${images[i]}"`}
@@ -46,7 +51,7 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
               height={300}
               loading="lazy"
               style={{ opacity: curIndex === i ? 1 : 0 }}
-              className={`object-contain h-full w-full object-center grayscale-80 transition-all duration-1000`}
+              className={`object-cover h-full w-full object-center grayscale-80 transition-all duration-1000 shadow`}
             />
           </div>
         ))}
@@ -78,9 +83,9 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
           >
             <Decor />
             <div
-              className={`col-span-1 row-span-1 flex items-center justify-center xl:justify-start`}
+              className={`col-span-1 row-span-1 flex items-center justify-center xl:justify-start border-b`}
             >
-              <AnimatedTitle text={master.name}/>
+              <AnimatedTitle text={master.name} />
             </div>
             <div className="col-span-1 row-span-1">
               <PhotoContainer images={images.slice(0, images.length / 2)} />
@@ -88,7 +93,7 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
             <div className="col-span-1 row-span-1">
               <PhotoContainer
                 images={images.slice(images.length / 2, images.length)}
-                interval={2500}
+                interval={1700}
               />
             </div>
             <div className="col-span-1 row-span-1 border-b-2 border-brown relative overflow-hidden">
@@ -102,8 +107,9 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
                       ? "10% 35%"
                       : "10% 20%"
                 }
-                options="bg-secondary"
+                bgStyle="bg-secondary"
                 priority
+                shadowLess
               />
               <PopupLink href={`/info/${master.id}`} />
             </div>

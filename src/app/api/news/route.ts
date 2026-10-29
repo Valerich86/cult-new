@@ -6,7 +6,6 @@ import { generateFileName, uploadFileToCloud } from "../../../lib/utils";
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const formData = await request.formData();
-    const title = formData.get("title")?.toString() || "";
     const content = formData.get("content")?.toString() || "";
     const linkName = formData.get("linkName")?.toString() || "";
     const linkHref = formData.get("linkHref")?.toString() || "";
@@ -22,9 +21,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const mediaUrl = await uploadFileToCloud(media, fileName);
     const pool = getPool(); 
     const [result] = await pool.execute<ResultSetHeader>(
-      `INSERT INTO news (title, content, media_url, media_type, link_name, link_href)
-        VALUES (?,?,?,?,?,?)`,
-      [title, content, mediaUrl, mediaType, linkName, linkHref],
+      `INSERT INTO news (content, media_url, media_type, link_name, link_href)
+        VALUES (?,?,?,?,?)`,
+      [content, mediaUrl, mediaType, linkName, linkHref],
     );
     console.log("result.insertId: ", result.insertId);
     return NextResponse.json({}, { status: 201 });

@@ -21,7 +21,8 @@ export async function generateMetadata(props: {
 }
 
 export default async function NewsItemPage(props: {
-  params: Promise<{ id: string }>, searchParams: Promise<{ prevPage: string }>;
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ prevPage: string }>;
 }) {
   const { id } = await props.params;
   const { prevPage } = await props.searchParams;
@@ -39,30 +40,8 @@ export default async function NewsItemPage(props: {
       <BackButton target={`${prevPage}#${newsItem?.id}`} />
       <Draining />
       <Decor />
-      <div className="w-full">
-        <div
-          className={`w-full flex ${font_accent.className} text-3xl sm:text-7xl xl:text-5xl min-h-[50vh] items-center`}
-        >
-          {newsItem.title}
-        </div>
-        <div className="w-full flex flex-col xl:flex-row gap-5 items-stretch">
-          <div className="w-full xl:w-1/2">
-            <TextBlock
-              text={newsItem.content}
-              options="bg-transparent text-brown text-sm"
-            />
-            {newsItem.link_href && (
-              <div className="w-full flex justify-end pr-5">
-                <Link
-                  href={newsItem.link_href}
-                  target="_blank"
-                  className={`${font_caption.className} text-xl animate-pulse text-peachy2 mt-5`}
-                >
-                  {newsItem.link_name}
-                </Link>
-              </div>
-            )}
-          </div>
+      <div className="w-full py-25">
+        <div className="w-full flex flex-col xl:flex-row gap-5">
           <div className="w-full xl:w-1/2 h-[90vh]">
             {newsItem.media_type === "image" && (
               <ImageBlock
@@ -81,6 +60,23 @@ export default async function NewsItemPage(props: {
               >
                 <source src={newsItem.media_url} />
               </video>
+            )}
+          </div>
+          <div className="w-full xl:w-1/2">
+            <TextBlock
+              text={newsItem.content}
+              options="bg-transparent text-brown text-sm"
+            />
+            {newsItem.link_href && (
+              <div className="w-full flex justify-end pr-5">
+                <Link
+                  href={newsItem.link_href}
+                  target="_blank"
+                  className={`${font_caption.className} text-xl animate-pulse text-peachy2 mt-5`}
+                >
+                  {newsItem.link_name}
+                </Link>
+              </div>
             )}
           </div>
         </div>

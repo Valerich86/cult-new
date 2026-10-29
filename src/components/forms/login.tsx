@@ -29,6 +29,7 @@ export default function LoginForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
+        credentials: 'include', // БЕЗ ЭТОГО КУКИ НЕ СОХРАНЯЮТСЯ В БРАУЗЕРЕ
       });
       if (response.ok) {
         router.replace("/admin");

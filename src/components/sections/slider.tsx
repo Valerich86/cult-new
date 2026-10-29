@@ -25,7 +25,7 @@ export default function Slider() {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       nextSlide();
-    }, 10000);
+    }, 15000);
   };
 
 
@@ -99,7 +99,7 @@ export default function Slider() {
         <AnimatedTitle text="Что мы делаем?"/>
       </div>
       <div
-        className="w-full h-[90vh] relative overflow-x-hidden shadow-[0px_0px_2px_1px_gray] bg-primary"
+        className="w-full h-[90vh] relative overflow-x-hidden shadow bg-primary"
         {...swipeHandlers}
       >
         <AnimatePresence>
