@@ -60,7 +60,12 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
   };
 
   return (
-    <>
+    <div className="w-full flex flex-col gap-40 mt-40">
+      <div
+        className={`flex flex-wrap justify-center xl:justify-start items-center `}
+      >
+        <AnimatedTitle text="Наши мастера" />
+      </div>
       {masters.map((master, index) => {
         let images: string[] = [];
         switch (master.name) {
@@ -78,14 +83,14 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
         return (
           <section
             key={index}
-            className="grid gap-4 grid-cols-1 h-[200vh] xl:h-screen xl:grid-cols-2 grid-rows-4 xl:grid-rows-2 relative"
+            className="p-5 grid gap-4 grid-cols-1 h-[200vh] xl:h-screen xl:grid-cols-2 grid-rows-4 xl:grid-rows-2 relative bg-[url('/tech/wall.webp')] bg-no-repeat bg-cover shadow"
             id={master.id}
           >
             <Decor />
             <div
-              className={`col-span-1 row-span-1 flex items-center justify-center xl:justify-start border-b`}
+              className={`col-span-1 row-span-1 flex items-center justify-center xl:justify-start`}
             >
-              <AnimatedTitle text={master.name} />
+              <AnimatedTitle text={master.name} colorStyle="text-secondary" />
             </div>
             <div className="col-span-1 row-span-1">
               <PhotoContainer images={images.slice(0, images.length / 2)} />
@@ -97,7 +102,7 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
               />
             </div>
             <div className="col-span-1 row-span-1 border-b-2 border-brown relative overflow-hidden">
-              <div className="w-full h-full absolute top-1/4 left-1/4 bg-peachy1 -rotate-35"></div>
+              <div className="w-100 h-100 absolute inset-0 bg-peachy1 rounded-full"></div>
               <ImageBlock
                 src={`${cloudPath}/tech/masters-${master.id}.png`}
                 position={
@@ -107,7 +112,7 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
                       ? "10% 35%"
                       : "10% 20%"
                 }
-                bgStyle="bg-secondary"
+                bgStyle="bg-transparent"
                 priority
                 shadowLess
               />
@@ -116,6 +121,6 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
           </section>
         );
       })}
-    </>
+    </div>
   );
 }

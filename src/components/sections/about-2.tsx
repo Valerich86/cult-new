@@ -9,12 +9,27 @@ import AnimatedTitle from "../animation/title";
 export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
   return (
     <div className="w-full">
+      <div
+        className={`flex flex-wrap justify-center xl:justify-start items-center mb-40`}
+      >
+        <AnimatedTitle text="Почему мы?" />
+      </div>
       <div className="grid grid-cols-1 gap-4 h-[250vh] w-full xl:h-screen xl:grid-cols-4 xl:grid-rows-2 relative">
         <Decor />
-        <div
-          className={`col-span-1 xl:col-span-2 xl:row-span-1 flex flex-wrap justify-center xl:justify-start items-center`}
-        >
-          <AnimatedTitle text="Почему мы?"/>
+        <div className={`col-span-1 xl:col-span-2 xl:row-span-1 relative`}>
+          <ImageBlock
+            src={`${cloudPath}/tech/skull.jpg`}
+            position="20% 50%"
+          />
+          <motion.span
+            initial={{ backgroundColor: "#8c5e4d" }}
+            whileInView={{ backgroundColor: "#0d0d0d" }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="image-text"
+          >
+            Здесь ты можешь расслабиться. Будь, как дома 🤘
+          </motion.span>
         </div>
 
         <div className="col-span-1 row-span-1 relative">
@@ -26,10 +41,11 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
             initial={{ backgroundColor: "#0d0d0d" }}
             whileInView={{ backgroundColor: "#402319" }}
             viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="image-text"
           >
-            Разнообразие татуировок, от классического черного до ярких цветных изображений.
+            Разнообразие татуировок, от классического черного до ярких цветных
+            изображений.
           </motion.span>
         </div>
 
@@ -40,9 +56,9 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
           />
           <motion.span
             initial={{ backgroundColor: "#0d0d0d" }}
-            whileInView={{ backgroundColor: "#402319" }}
+            whileInView={{ backgroundColor: "#8c5e4d" }}
             viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="image-text"
           >
             Прозрачность, сроки и результат, который хочется показывать.
@@ -58,7 +74,7 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
             initial={{ backgroundColor: "#0d0d0d" }}
             whileInView={{ backgroundColor: "#402319" }}
             viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="image-text"
           >
             Опытные мастера, у каждого уникальный стиль и подход к работе.
@@ -71,10 +87,10 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
             position="50%_50%"
           />
           <motion.span
-            initial={{ backgroundColor: "#0d0d0d" }}
-            whileInView={{ backgroundColor: "#402319" }}
+            initial={{ backgroundColor: "#8c5e4d" }}
+            whileInView={{ backgroundColor: "#0d0d0d" }}
             viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="image-text"
           >
             Гарантия качества и стерильность на каждом этапе — доверьте кожу
@@ -101,7 +117,7 @@ export default function AboutSection2({ cloudPath }: { cloudPath: string }) {
           initial={{ backgroundColor: "#0d0d0d" }}
           whileInView={{ backgroundColor: "#402319" }}
           viewport={{ once: false, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1, ease: "easeOut" }}
           className="image-text"
         >
           В нашей студии вы всегда можете приобрести подарочный сертификат на

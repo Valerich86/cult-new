@@ -40,7 +40,7 @@ export default async function InfoPage(props: {
 
   return (
     <main
-      className="x-spacing flex flex-col gap-10 pb-25 lg:py-10 relative overflow-hidden"
+      className="x-spacing flex flex-col gap-10 pb-40 lg:py-10 relative overflow-hidden"
       aria-label={`Информация о мастере ${master}`}
       id="gallery"
     >

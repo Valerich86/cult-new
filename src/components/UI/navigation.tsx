@@ -33,13 +33,13 @@ export default function Navigation() {
         ))}
       </nav>
       <div className="absolute top-5 left-5 text-peachy1 sm:hidden">
-        <div className={`${font_caption.className} border p-2 animate-tremor`}>
+        <div className={`${font_caption.className} border p-2 text-center animate-tremor`}>
           <span
             role="button"
             onClick={() => setMenuOpened((prev) => !prev)}
             className="text-2xl"
           >
-            Карта сайта
+            Навигация
           </span>
           <nav
             className={`${menuOpened && "mt-10 mb-5"} flex-col gap-y-10 text-lg overflow-hidden`}

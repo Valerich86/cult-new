@@ -39,18 +39,18 @@ export default async function Home() {
 
   return (
     <main
-      className="xl:px-50 sm:px-25 flex flex-col gap-4 pb-25 relative overflow-hidden"
+      className="xl:px-50 sm:px-25 flex flex-col gap-4 pb-40 relative overflow-hidden"
       aria-label="Главная"
     >
       <div className="absolute top-0 right-0 w-50 hidden lg:flex">
         <Draining />
       </div>
       <HeroSection />
-      <div className="px-4 xl:px-0 sm:px-0 flex flex-col lg:gap-10 w-full">
+      <div className="px-4 xl:px-0 sm:px-0 w-full space-y-40">
         <AboutSection1 cloudPath={cloudPath} />
         <AboutSection2 cloudPath={cloudPath} />
-        <Slider />
         {gallery && <MastersSection gallery={gallery} cloudPath={cloudPath} />}
+        <Slider />
         {news && <NewsSection news={news} />}
         <FaqSection cloudPath={cloudPath} />
         <ReviewsSection />

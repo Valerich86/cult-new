@@ -20,14 +20,14 @@ interface Props {
 
 export default function NewsSection({ news, isPage = false }: Props) {
   return (
-    <section id="news" className="w-full flex flex-col gap-10 relative mb-20">
+    <section id="news" className="w-full relative">
       <Decor />
       <div
-        className={`w-full flex min-h-[40vh] justify-center xl:justify-start items-center`}
+        className={`w-full mb-40 flex justify-center xl:justify-start items-center`}
       >
         <AnimatedTitle text={"Есть новости"} />
       </div>
-      <div className="w-full flex flex-wrap gap-10 justify-between">
+      <div className="w-full flex flex-wrap gap-x-10 gap-y-20 justify-between">
         {news?.map((item, index) => {
           const arrayContent = item.content.split(" ");
           const croppedArray = arrayContent.slice(0, 60);
@@ -45,14 +45,13 @@ export default function NewsSection({ news, isPage = false }: Props) {
               className="w-full sm:w-[40%] xl:w-[30%]"
             >
               <motion.div
-                className="w-full h-100"
+                className="w-full h-100 relative"
                 initial={{ scale: 0.95 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ delay: 0.2 * index, duration: 0.3 }}
               >
                 {item.media_type === "image" && (
-                  // <GalleryItem src={item.media_url} containerId={item.id.toString()}/>
                   <ImageBlock
                     src={item.media_url}
                     alt={`Изображение к новости ${item.media_url}`}
@@ -61,13 +60,16 @@ export default function NewsSection({ news, isPage = false }: Props) {
                 {item.media_type === "video" && (
                   <VideoBlock src={item.media_url} shadow controls />
                 )}
+                <span className="absolute top-0 right-0 p-1 shadow  rotate-30">
+                  {new Date(item.published_at).toLocaleDateString()}
+                </span>
               </motion.div>
               <div className="w-full max-h-100">
                 <motion.pre
                   initial={{ y: 50, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true, amount: 0 }}
-                  transition={{ delay: 0.2 * index, duration: 0.3  }}
+                  transition={{ delay: 0.2 * index, duration: 0.3 }}
                   className={`whitespace-pre-wrap pt-5 text-sm`}
                 >
                   {croppedContent}
@@ -97,7 +99,7 @@ export default function NewsSection({ news, isPage = false }: Props) {
         })}
       </div>
       {!isPage && news.length && (
-        <div className="w-full flex justify-center xl:justify-end sm:text-3xl xl:text-base">
+        <div className="w-full flex justify-center xl:justify-end sm:text-3xl xl:text-base mt-10">
           <span>
             Все новости{" "}
             <Link

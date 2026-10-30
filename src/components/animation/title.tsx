@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 interface Props {
   text: string;
+  colorStyle?: "text-brown"|"text-secondary";
 }
 
 type TitleItem = {
@@ -31,7 +32,7 @@ const leftAnimated = [
 ];
 const rightAnimated = ["л", "п", "ч", "Ч", "щ", "ы", "я"];
 
-export default function AnimatedTitle({ text }: Props) {
+export default function AnimatedTitle({ text, colorStyle="text-brown" }: Props) {
   const maxHeight = 20;
   const minHeight = 1;
   const [items, setItems] = useState<TitleItem[]>([]);
@@ -62,7 +63,7 @@ export default function AnimatedTitle({ text }: Props) {
         return (
           <div
             key={index}
-            className={`${font_accent.className} relative text-brown text-3xl sm:text-7xl xl:text-5xl`}
+            className={`${font_accent.className} ${colorStyle} relative text-3xl sm:text-7xl xl:text-5xl`}
           >
             {item.char}
             <motion.div
@@ -74,7 +75,8 @@ export default function AnimatedTitle({ text }: Props) {
                 delay: index + 3,
                 ease: "easeOut",
               }}
-              className={`w-0.5 bg-linear-to-b from-brown/50 via-90% via-brown to-black 
+              className={`w-0.5 bg-linear-to-b 
+                ${colorStyle === "text-brown" ? "from-brown/50 via-90% via-brown to-black" : "from-secondary to-gray-400"} 
                 rounded-b-full absolute top-6.5 sm:top-13 xl:top-8.75 ${item.position}-0`}
             />
           </div>

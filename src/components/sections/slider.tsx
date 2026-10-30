@@ -94,12 +94,12 @@ export default function Slider() {
     <section id="styles" className="w-full relative">
       <Decor />
       <div
-        className={`flex flex-wrap justify-center xl:justify-start items-center min-h-[40vh]`}
+        className={`flex flex-wrap justify-center xl:justify-start items-center`}
       >
         <AnimatedTitle text="Что мы делаем?"/>
       </div>
       <div
-        className="w-full h-[90vh] relative overflow-x-hidden shadow bg-primary"
+        className="w-full h-[90vh] relative overflow-x-hidden shadow bg-primary mt-40"
         {...swipeHandlers}
       >
         <AnimatePresence>

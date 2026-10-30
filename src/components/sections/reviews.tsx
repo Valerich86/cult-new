@@ -77,7 +77,7 @@ export default function ReviewsSection() {
     <section id="reviews" className="relative">
       <Decor />
       <div
-        className={`flex flex-wrap justify-center xl:justify-start items-center min-h-[40vh]`}
+        className={`flex flex-wrap justify-center xl:justify-start items-center mb-40`}
       >
         <AnimatedTitle text="Отзывы" />
       </div>
@@ -102,7 +102,7 @@ export default function ReviewsSection() {
         </div>
       </div>
       {reviews.length && (
-        <div className="w-full flex justify-center xl:justify-end sm:text-3xl xl:text-base mt-10 border-t">
+        <div className="w-full flex justify-center xl:justify-end sm:text-3xl xl:text-base mt-10">
           <span>
             Все отзывы{" "}
             <Link
