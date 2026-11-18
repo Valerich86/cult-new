@@ -43,7 +43,7 @@ export default function Draining({ length = 5, maxHeight = 75 }: Props) {
               ease: "easeOut",
             }}
             style={{ width: `${item.width}px` }}
-            className="bg-linear-to-b from-transparent via-90% via-brown to-black rounded-b-full relative"
+            className="bg-linear-to-b from-brown via-90% via-brown/90 to-black rounded-b-full relative"
           ></motion.div>
         ))}
       </div>

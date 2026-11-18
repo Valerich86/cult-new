@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
-import { bucketName, getS3Client } from "../../../../lib/cloud";
+import { bucketName, deleteFromCloud, getS3Client } from "../../../../lib/cloud";
 import { getPool } from "../../../../lib/db";
 import { generateFileName, uploadFileToCloud } from "../../../../lib/utils";
 import { RowDataPacket } from "mysql2";
@@ -27,31 +27,12 @@ export async function DELETE(
       "DELETE FROM news WHERE id = ?", [numId],
     );
     await deleteFromCloud(result[0].media_url);
-    return NextResponse.json({ status: 204 });
   } catch (error) {
     console.error("Ошибка удаления данных:", error);
     return NextResponse.json(
       { message: "Внутренняя ошибка сервера" },
       { status: 500 },
     );
-  }
-}
-
-async function deleteFromCloud(url: string) {
-  try {
-    const parsedUrl = new URL(url);
-    const pathname = parsedUrl.pathname;
-    const parts = pathname.slice(1).split("/");
-    const key = parts.slice(1).join("/");
-    const command = new DeleteObjectCommand({
-      Bucket: bucketName,
-      Key: key,
-    });
-    const s3Client = getS3Client();
-    await s3Client.send(command);
-  } catch (e) {
-    console.warn("Не удалось удалить файл:", url);
-    return NextResponse.json({}, { status: 204 });
   }
 }
 
@@ -78,7 +59,7 @@ export async function PUT(
     if (media) {
       currentMediaType = media.type.startsWith("image/") ? "image" : "video";
       await deleteFromCloud(currentMediaUrl);
-      const fileName = generateFileName(media.name);
+      const fileName = generateFileName(media.name, "news");
       currentMediaUrl = await uploadFileToCloud(media, fileName);
     }
     const query = `

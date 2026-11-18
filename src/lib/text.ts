@@ -19,6 +19,8 @@ export const cult2 = `Это — "ламповая" студия. Спокойн
 export const mastersInfo = [
   {
     name: "Андрей Тарасов",
+    slug: "andrey-tarasov",
+    folder: "tan",
     src: `${cloudPath}/tech/masters-tan.webp`,
     alt: "Фото Андрея",
     about: `
@@ -31,6 +33,8 @@ export const mastersInfo = [
   },
   {
     name: "Соня Вафлина",
+    slug: "sonya-vaflina",
+    folder: "sonya",
     src: `${cloudPath}/tech/masters-sonya.webp`,
     alt: "Фото Сони",
     about: `
@@ -50,6 +54,8 @@ export const mastersInfo = [
   },
   {
     name: "Артур Эккерт",
+    slug: "arthur-eckert",
+    folder: "arthur",
     src: `${cloudPath}/tech/masters-arthur.webp`,
     alt: "Фото Артура",
     about: `
@@ -66,8 +72,7 @@ export const mastersInfo = [
   },
 ];
 
-export const footerText = `CULT — студия татуировки:
-
+export const footerText = `
 г.Пермь, ул.Петропавловская, 15А, офис 35 (3 этаж) 
 
 Пн-Чт 12:00 - 22:00 

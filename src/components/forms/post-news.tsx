@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { font_accent } from "../../lib/fonts";
+import Spinner from "../UI/spinner";
 
 export default function PostNewsForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +46,7 @@ export default function PostNewsForm() {
         setError(error);
       }
       router.refresh();
-      router.replace("/admin");
+      router.replace("/admin/news");
     } catch (error) {
       setError((error as Error).message);
     } finally {
@@ -55,7 +55,7 @@ export default function PostNewsForm() {
   };
 
   return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="bg-primary text-secondary p-5">
         {error && (
           <div className="p-3 bg-red-100 text-red-700 border border-red-300 rounded w-full">
             {error}
@@ -94,7 +94,7 @@ export default function PostNewsForm() {
 
         <button type="submit" disabled={isLoading}>
           {isLoading ? (
-            <div className="button-loader"></div>
+            <Spinner />
           ) : (
             "Сохранить"
           )}

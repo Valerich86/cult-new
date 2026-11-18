@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PopupLink from "../UI/popup-link";
 import Decor from "../UI/decor";
+import AnimatedBg from "../animation/bg";
 
 export default function ActionSection() {
   return (
@@ -9,15 +10,7 @@ export default function ActionSection() {
       id="action"
     >
       <Decor />
-      <div className="absolute inset-0 w-full h-full grayscale-75 shadow overflow-hidden">
-        <Image
-          src={"/tech/wall.webp"}
-          alt="action-bg"
-          fill
-          sizes="100%"
-          className="object-cover animate-heroImage"
-        />
-      </div>
+      <AnimatedBg shadow/>
       <h1 className="text-xl sm:text-5xl xl:text-2xl z-10">
         Не уверены, что хотите тату? А вдруг хотите? Давайте поговорим.
       </h1>

@@ -13,13 +13,18 @@ export default function ReviewDesktop({
 }) {
   return (
     <motion.div
-      initial={{ scale: 0.95 }}
+      initial={{ scale: 0.8 }}
       whileInView={{ scale: 1 }}
       viewport={{ once: false, amount: 0.4 }}
-      transition={{ delay: 0.2 * index, duration: 0.3 }}
+      transition={{
+        type: "spring",
+        stiffness: 400,
+        damping: 15,
+        delay: 0.2 * index,
+      }}
       className="h-100 w-[30%] bg-peachy1 p-2 shadow"
     >
-      <ReviewEntries review={review}/>
+      <ReviewEntries review={review} />
     </motion.div>
   );
 }

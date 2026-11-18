@@ -16,17 +16,13 @@ export default function AboutSection1({ cloudPath }: { cloudPath: string }) {
         <ImageBlock src={`${cloudPath}/tech/about-1.webp`} />
       </div>
       <div className="col-span-1 row-span-1 xl:hidden">
-        <TextBlock
-          text={cult2}
-        />
+        <TextBlock text={cult2} />
       </div>
       <div className="col-span-1 row-span-1">
         <ImageBlock src={`${cloudPath}/tech/about-2.webp`} />
       </div>
       <div className="col-span-1 row-span-1 hidden xl:flex">
-        <TextBlock
-          text={cult2}
-          options="px-5 bg-transparent text-brown"
+        <TextBlock text={cult2} options="px-5 bg-transparent text-brown"
         />
       </div>
     </div>

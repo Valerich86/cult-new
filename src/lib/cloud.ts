@@ -1,4 +1,8 @@
-import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  ListObjectsV2Command,
+  DeleteObjectCommand,
+} from "@aws-sdk/client-s3";
 
 export const baseUrl = "https://hb.ru-msk.vkcloud-storage.ru";
 export const bucketName = "cult-test";
@@ -16,7 +20,9 @@ export function getS3Client() {
     throw new Error("AWS_ACCESS_KEY_ID is not set in environment variables");
   }
   if (!secretAccessKey) {
-    throw new Error("AWS_SECRET_ACCESS_KEY is not set in environment variables");
+    throw new Error(
+      "AWS_SECRET_ACCESS_KEY is not set in environment variables",
+    );
   }
 
   return new S3Client({
@@ -31,7 +37,7 @@ export function getS3Client() {
   // console.log("Да сколько можно уже!???")
 }
 
-export async function getGallery(folder, limit = 0) {
+export async function getGallery(folder: string, limit = 0, mix = false) {
   try {
     const s3Client = getS3Client();
 
@@ -45,16 +51,20 @@ export async function getGallery(folder, limit = 0) {
     const contents = response.Contents || [];
 
     let photos = contents
-      .filter((obj) => obj.Key !== `${folder}/`)
+      .filter(
+        (obj): obj is typeof obj & { Key: string } =>
+          obj.Key !== undefined && obj.Key !== `${folder}/`,
+      )
       .map(
         (obj) =>
           `${baseUrl.replace(/\/$/, "")}/${bucketName.replace(/^\//, "")}/${obj.Key.replace(/^\/+/, "")}`,
       );
 
-    // Перемешивание (Fisher–Yates)
-    for (let i = photos.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [photos[i], photos[j]] = [photos[j], photos[i]];
+    if (mix) {
+      for (let i = photos.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [photos[i], photos[j]] = [photos[j], photos[i]];
+      }
     }
 
     if (limit > 0) {
@@ -65,5 +75,22 @@ export async function getGallery(folder, limit = 0) {
   } catch (error) {
     console.error("Ошибка получения данных:", error);
     throw error;
+  }
+}
+
+export async function deleteFromCloud(url: string) {
+  try {
+    const parsedUrl = new URL(url);
+    const pathname = parsedUrl.pathname;
+    const parts = pathname.slice(1).split("/");
+    const key = parts.slice(1).join("/");
+    const command = new DeleteObjectCommand({
+      Bucket: bucketName,
+      Key: key,
+    });
+    const s3Client = getS3Client();
+    await s3Client.send(command);
+  } catch (e) {
+    console.error(e);
   }
 }

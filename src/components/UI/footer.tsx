@@ -3,6 +3,7 @@ import { footerText } from "../../lib/text";
 import Decor from "./decor";
 import VideoBlock from "./video-block";
 import ImageBlock from "./image-block";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -12,6 +13,7 @@ export default function Footer() {
     >
       <Decor />
       <div className="w-full xl:w-[30%] xl:h-[50vh] py-10 flex flex-col justify-between">
+        <span>© {new Date().getFullYear()} CULT. Все права защищены.</span>
         <pre className="whitespace-pre-wrap sm:text-2xl xl:text-sm">
           {footerText}
         </pre>
@@ -28,7 +30,7 @@ export default function Footer() {
         />
         <Socials
           name="Андрей"
-          href={`/info/tan`}
+          href={`/masters/andrey-tarasov`}
           vk_href="https://vk.com/id90911293"
           tg_href="https://t.me/tancult"
           phone_href="tel:+79630173055"
@@ -36,15 +38,16 @@ export default function Footer() {
         />
         <Socials
           name="Соня"
-          href={`/info/sonya`}
+          href={`/masters/sonya-vaflina`}
           vk_href="https://vk.com/id33149904"
         />
         <Socials
           name="Артур"
-          href={`/info/arthur`}
+          href={`/masters/arthur-eckert`}
           vk_href="https://vk.com/id638396972"
           tg_href="https://t.me/eckerttattoo"
         />
+        <Link href={"/privacy"} className="link mt-3" style={{fontSize: 14, textDecoration: "underline"}}>Политика конфиденциальности</Link>
         <div className="flex items-center">
           <span className="sm:text-2xl xl:text-sm">Разработал сайт:</span>
           <div className="w-30 h-15">

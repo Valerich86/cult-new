@@ -11,9 +11,10 @@ type Circle = {
 
 interface Props {
   count?: number;
+  zIgnore?: boolean;
 }
 
-export default function Decor({ count = 5 }: Props) {
+export default function Decor({ count = 5, zIgnore = false }: Props) {
   const [circles, setCircles] = useState<Circle[]>([]);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function Decor({ count = 5 }: Props) {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full -z-10">
+    <div className={`${!zIgnore && "-z-10"} absolute inset-0 w-full h-full`}>
       {circles.map((c, i) => (
         <div
           key={c.id}

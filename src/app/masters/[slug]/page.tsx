@@ -10,43 +10,39 @@ import TextBlock from "../../../components/UI/text-block";
 import Decor from "../../../components/UI/decor";
 
 export async function generateMetadata(props: {
-  params: Promise<{ master: string }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { master } = await props.params;
-  const text =
-    master === "tan"
-      ? "Андрей Тарасов"
-      : master === "sonya"
-        ? "Соня Вафлина"
-        : "Артур Эккерт";
+  const { slug } = await props.params;
+  let masterName;
+  mastersInfo.forEach((m) => {
+    if (slug === m.slug) masterName = m.name;
+  });
 
   return {
-    title: `Мастер ${text}`,
-    description: `Реальные работы и информация о мастере ${text}.`,
+    title: `Мастер ${masterName}`,
+    description: `Реальные работы и информация о мастере ${masterName}.`,
   };
 }
 
 export default async function InfoPage(props: {
-  params: Promise<{ master: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { master } = await props.params;
-  const info =
-    master === "tan"
-      ? mastersInfo[0]
-      : master === "sonya"
-        ? mastersInfo[1]
-        : mastersInfo[2];
-  const photos = await getGallery(master);
+  const { slug } = await props.params;
+  let info = mastersInfo[0];
+  mastersInfo.forEach((m) => {
+    if (slug === m.slug) info = m;
+  });
+  const photos = await getGallery(info?.folder);
 
   return (
     <main
-      className="x-spacing flex flex-col gap-10 pb-40 lg:py-10 relative overflow-hidden"
-      aria-label={`Информация о мастере ${master}`}
+      className="x-spacing flex flex-col gap-10 pb-40 lg:pt-10 relative overflow-hidden"
+      aria-label={`Информация о мастере ${info.name}`}
       id="gallery"
     >
-      <BackButton target={`/#${master}`} />
+      <BackButton target={`/#${info.slug}`} />
       <Draining />
-      <Decor count={10}/>
+      <Decor count={10} />
       <div
         className="w-full h-screen lg:h-[50vh] flex flex-col lg:flex-row"
         id="masters"
@@ -65,7 +61,7 @@ export default async function InfoPage(props: {
         <TextBlock text={info.about} />
       </div>
       <div className="w-full flex flex-wrap justify-center gap-5 sm:justify-between z-50">
-        {photos?.map((url:string, i:number) => (
+        {photos?.map((url: string, i: number) => (
           <div className="relative w-36 h-28" key={i}>
             <GalleryItem
               src={url}

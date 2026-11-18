@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AiOutlineUp } from "react-icons/ai";
 
-export default function BtnTop() {
+export default function BtnTop({target="cult"}:{target?:string}) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function BtnTop() {
   }, []);
 
   const scrollToTop = () => {
-    const el = document.getElementById("cult");
+    const el = document.getElementById(target);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {

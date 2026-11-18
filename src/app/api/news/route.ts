@@ -17,7 +17,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
     const mediaType = media.type.startsWith("image/") ? "image" : "video";
-    const fileName = generateFileName(media.name);
+    const fileName = generateFileName(media.name, "news");
     const mediaUrl = await uploadFileToCloud(media, fileName);
     const pool = getPool(); 
     const [result] = await pool.execute<ResultSetHeader>(

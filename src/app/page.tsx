@@ -25,7 +25,7 @@ export default async function Home() {
   > = {} as any;
 
   for (const folder of folders) {
-    gallery[folder] = await getGallery(folder, 10);
+    gallery[folder] = await getGallery(folder, 10, true);
   }
   let news: News[] = [];
 
@@ -45,13 +45,13 @@ export default async function Home() {
       <div className="absolute top-0 right-0 w-50 hidden lg:flex">
         <Draining />
       </div>
-      <HeroSection />
+      <HeroSection needNews={news && news.length ? true : false}/>
       <div className="px-4 xl:px-0 sm:px-0 w-full space-y-40">
         <AboutSection1 cloudPath={cloudPath} />
         <AboutSection2 cloudPath={cloudPath} />
         {gallery && <MastersSection gallery={gallery} cloudPath={cloudPath} />}
         <Slider />
-        {news && <NewsSection news={news} />}
+        {news.length > 0 && <NewsSection news={news} />}
         <FaqSection cloudPath={cloudPath} />
         <ReviewsSection />
         <ActionSection />

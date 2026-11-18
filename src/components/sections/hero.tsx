@@ -4,7 +4,7 @@ import HeroAnimation from "../animation/hero";
 import Navigation from "../UI/navigation";
 import Decor from "../UI/decor";
 
-export default function HeroSection() {
+export default function HeroSection({needNews}:{needNews:Boolean}) {
   return (
     <div
       aria-label="hero-section"
@@ -36,7 +36,7 @@ export default function HeroSection() {
       <div className="absolute w-full flex justify-center left-0 top-[55vh] sm:top-[30vh]">
         <Caption text="Студия татуировки. Пермь" />
       </div>
-      <Navigation />
+      <Navigation needNews={needNews}/>
     </div>
   );
 }

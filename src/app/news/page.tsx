@@ -4,10 +4,11 @@ import BackButton from "../../components/UI/back-button";
 import { getNews, News } from "../../lib/data";
 import Decor from "../../components/UI/decor";
 import NewsSection from "../../components/sections/news";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Новости",
-  description: "Новости тату-студии CULT, город Пермь",
+  description: "Новости тату-студии CULT в Перми",
 };
 
 export default async function NewsPage() {
@@ -15,6 +16,7 @@ export default async function NewsPage() {
 
   try {
     news = await getNews();
+    if (news.length === 0) redirect("/");
   } catch (error) {
     console.error('Ошибка получения новостей:', error);
     return <p>Ошибка загрузки новостей</p>;
@@ -29,7 +31,7 @@ export default async function NewsPage() {
       <Draining />
       <Decor />
       
-      {news && news.length && <NewsSection news={news} isPage/>}
+      {news && news.length > 0 && <NewsSection news={news} isPage/>}
     </main>
   );
 }

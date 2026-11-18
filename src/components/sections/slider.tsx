@@ -124,7 +124,7 @@ export default function Slider() {
                       <h2 className="p-4">{item.label}</h2>
                     </div>
                     <div className="w-full h-3/4 xl:h-full text-xs xl:text-base">
-                      <TextBlock text={item.description} animate={false} />
+                      <TextBlock text={item.description} animType="fromRight" />
                     </div>
                   </div>
                   <div className="w-full xl:w-1/2 h-1/2 xl:h-full">

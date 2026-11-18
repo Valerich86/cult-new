@@ -1,45 +1,31 @@
-import DeleteNewsForm from "../../components/forms/delete-news";
-import { getNews, News } from "../../lib/data";
-import { font_caption } from "../../lib/fonts";
 import Link from "next/link";
-import { AiFillEdit } from "react-icons/ai";
+import Image from "next/image";
+import { font_caption } from "../../lib/fonts";
 
-export const dynamic = 'force-dynamic';
-
-export default async function AdminPage() {
-  let news: News[] = [];
-
-  try {
-    news = await getNews();
-  } catch (error) {
-    console.error('Ошибка получения новостей:', error);
-    return <p>Ошибка загрузки новостей</p>;
-  }
+export default function AdminPage() {
+  const links = [
+    { name: "Новости", href: "/admin/news" },
+    { name: "Галерея", href: "/admin/gallery" },
+    // { name: "Другое", href: "/admin/any" },
+  ];
 
   return (
-    <div>
-      <Link
-        href={"/admin/post-news"}
-        className={`${font_caption.className} text-peachy1 text-xs link animate-pulse`}
-      >
-        Добавить новость
-      </Link>
-      <div className="w-full flex flex-col gap-5 mt-10">
-        {!news || news?.length === 0 && (
-          <p>Новостей нет...</p>
-        )}
-        {news && news.length > 0 && news.map((item) => (
-          <div key={item.id} className="w-full flex flex-col gap-3 border rounded p-2 text-sm relative">
-            <div>{new Date(item.published_at).toLocaleDateString()}</div>
-            <div>{item.title}</div>
-            <div>{item.content.substring(0, 200)}...</div>
-            <div className="absolute right-5 top-5 flex gap-5 items-center">
-              <Link href={`/admin/update-news/${item.id}`}><AiFillEdit size={20} className="link text-white"/></Link>
-              <DeleteNewsForm id={item.id}/>
-            </div>
-          </div>
+    <main className="w-full min-h-screen relative overflow-hidden flex justify-center items-center">
+      <Image
+        src={"/tech/wall.webp"}
+        alt="action-bg"
+        fill
+        sizes="100%"
+        className="object-cover animate-heroImage"
+      />
+      <div className="absolute w-full h-full inset-0 bg-primary/70"></div>
+      <nav className={`${font_caption.className} z-20 text-peachy1 flex flex-col gap-y-10 animate-tremor`}>
+        {links.map((link, i) => (
+          <Link href={link.href} key={i} className={`link`} style={{fontSize: "30px"}}>
+            {link.name}
+          </Link>
         ))}
-      </div>
-    </div>
+      </nav>
+    </main>
   );
 }

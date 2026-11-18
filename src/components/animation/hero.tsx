@@ -17,7 +17,7 @@ export default function HeroAnimation() {
     <div className="w-screen h-screen overflow-hidden">
       <div
         className={
-          `${animation === "intro" ? "animate-logoShiningBG" : "animate-bg"} opacity-80 absolute inset-0 w-full h-full flex justify-center items-center overflow-hidden`
+          `${animation === "intro" ? "animate-logoShiningBG" : "animate-bg"} opacity-70 absolute inset-0 w-full h-full flex justify-center items-center overflow-hidden`
         }
       >
         <Image

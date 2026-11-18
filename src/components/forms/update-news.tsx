@@ -48,7 +48,7 @@ export default function UpdateNewsForm({ news }: { news: News }) {
         setError(error);
       }
       router.refresh();
-      router.replace("/admin");
+      router.replace("/admin/news");
     } catch (error) {
       setError((error as Error).message);
     } finally {
@@ -57,7 +57,7 @@ export default function UpdateNewsForm({ news }: { news: News }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="bg-primary text-secondary p-5">
       {error && (
         <div className="p-3 bg-red-100 text-red-700 border border-red-300 rounded w-full">
           {error}

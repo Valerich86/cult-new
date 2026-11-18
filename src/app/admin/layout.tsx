@@ -1,9 +1,10 @@
 import { verifySession } from "../../lib/auth";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import Decor from "../../components/UI/decor";
 
 export const metadata: Metadata = {
-  title: "Административная панель"
+  title: "CULT - Административная панель"
 };
 
 const links = [
@@ -22,8 +23,9 @@ export default async function AdminLayout({
   if (!session?.userId) redirect("/auth/login");
 
   return (
-    <main aria-label="admin" className="bg-primary text-secondary w-full min-h-screen relative text-base">
-      <div className="w-full x-spacing my-20">
+    <main aria-label="admin" className="bg-secondary overflow-hidden text-brown w-full min-h-screen relative text-base">
+      <Decor count={10} zIgnore/>
+      <div className="w-full x-spacing relative">
         {children}
       </div>
     </main>

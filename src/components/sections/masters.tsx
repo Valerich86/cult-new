@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import ImageBlock from "../UI/image-block";
 import PopupLink from "../UI/popup-link";
-import { photoComposition, masters } from "../../lib/utils";
+import { photoComposition } from "../../lib/utils";
+import { mastersInfo } from "../../lib/text";
 import Decor from "../UI/decor";
 import AnimatedTitle from "../animation/title";
+import AnimatedBg from "../animation/bg";
 
 type Gallery = {
   tan: string[];
@@ -60,37 +62,27 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
   };
 
   return (
-    <div className="w-full flex flex-col gap-40 mt-40">
+    <div className="w-full flex flex-col gap-40 mt-40 relative" id={"masters"}>
+      <Decor count={15}/>
       <div
         className={`flex flex-wrap justify-center xl:justify-start items-center `}
       >
         <AnimatedTitle text="Наши мастера" />
       </div>
-      {masters.map((master, index) => {
-        let images: string[] = [];
-        switch (master.name) {
-          case "Андрей":
-            images = gallery.tan;
-            break;
-          case "Соня":
-            images = gallery.sonya;
-            break;
-          case "Артур":
-            images = gallery.arthur;
-            break;
-        }
+      {mastersInfo.map((master, index) => {
+        const images = (gallery as Record<string, string[]>) [master.folder] ?? [];
 
         return (
           <section
             key={index}
-            className="p-5 grid gap-4 grid-cols-1 h-[200vh] xl:h-screen xl:grid-cols-2 grid-rows-4 xl:grid-rows-2 relative bg-[url('/tech/wall.webp')] bg-no-repeat bg-cover shadow"
-            id={master.id}
+            className="p-5 grid gap-4 grid-cols-1 h-[200vh] xl:h-screen xl:grid-cols-2 grid-rows-4 xl:grid-rows-2 shadow relative"
+            id={master.slug}
           >
-            <Decor />
+            <AnimatedBg darkened/>
             <div
-              className={`col-span-1 row-span-1 flex items-center justify-center xl:justify-start`}
+              className={`col-span-1 row-span-1 flex items-center justify-center xl:pl-10`}
             >
-              <AnimatedTitle text={master.name} colorStyle="text-secondary" />
+              <AnimatedTitle text={master.name.split(" ")[0]} colorStyle="text-secondary" />
             </div>
             <div className="col-span-1 row-span-1">
               <PhotoContainer images={images.slice(0, images.length / 2)} />
@@ -102,13 +94,13 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
               />
             </div>
             <div className="col-span-1 row-span-1 border-b-2 border-brown relative overflow-hidden">
-              <div className="w-100 h-100 absolute inset-0 bg-peachy1 rounded-full"></div>
+              {/* <div className="w-100 h-100 absolute inset-0 bg-peachy1/40 rounded-full"></div> */}
               <ImageBlock
-                src={`${cloudPath}/tech/masters-${master.id}.png`}
+                src={`${cloudPath}/tech/masters-${master.folder}.png`}
                 position={
-                  master.id === "tan"
+                  master.folder === "tan"
                     ? "10% 60%"
-                    : master.id === "sonya"
+                    : master.folder === "sonya"
                       ? "10% 35%"
                       : "10% 20%"
                 }
@@ -116,7 +108,7 @@ export default function MastersSection({ gallery, cloudPath }: Props) {
                 priority
                 shadowLess
               />
-              <PopupLink href={`/info/${master.id}`} />
+              <PopupLink href={`/masters/${master.slug}`} />
             </div>
           </section>
         );

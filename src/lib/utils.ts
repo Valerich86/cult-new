@@ -9,12 +9,6 @@ export const photoComposition = [
   "right-0 top-0",
 ];
 
-export const masters = [
-  { name: "Андрей", id: "tan" },
-  { name: "Соня", id: "sonya" },
-  { name: "Артур", id: "arthur" },
-];
-
 export type VkReview = {
   id: number;
   text: string;
@@ -22,6 +16,15 @@ export type VkReview = {
   authorName: string;
   authorPhoto?: string;
   vkHref?: string;
+};
+
+export type MasterInfo = {
+  name: string;
+  slug: string;
+  folder: string;
+  src: string;
+  alt: string;
+  about: string;
 };
 
 export async function uploadFileToCloud(
@@ -47,8 +50,8 @@ export async function uploadFileToCloud(
   return `${cloudPath}/${fileName}`;
 }
 
-export function generateFileName(originalName: string): string {
+export function generateFileName(originalName: string, folder: string): string {
   const timestamp = Date.now();
   const extension = originalName.split(".").pop();
-  return `news/${timestamp}-${Math.random().toString(36).substring(2, 8)}.${extension}`;
+  return `${folder}/${timestamp}-${Math.random().toString(36).substring(2, 8)}.${extension}`;
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Spinner from "./spinner";
 
 interface Props {
   src: string;
@@ -26,7 +27,7 @@ export default function ImageBlock({
     <div className={`w-full h-full relative overflow-hidden ${bgStyle} ${!shadowLess && "shadow"}`}>
       {!isLoaded && (
         <div className="absolute inset-0 w-full h-full flex justify-center items-center">
-          <div className="w-10 h-10 rounded-full border-b-3 border-secondary animate-spin"></div>
+          <Spinner />
         </div>
       )}
       <Image

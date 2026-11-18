@@ -6,18 +6,18 @@ import { useEffect, useState } from "react";
 
 interface Props {
   text: string;
-  colorStyle?: "text-brown"|"text-secondary";
+  colorStyle?: "text-brown" | "text-secondary" | "text-primary";
 }
 
 type TitleItem = {
   char: string;
   height: number;
   position: "left" | "right";
+  gradient: string;
 };
 
 const leftAnimated = [
   "А",
-  "в",
   "г",
   "и",
   "й",
@@ -32,7 +32,10 @@ const leftAnimated = [
 ];
 const rightAnimated = ["л", "п", "ч", "Ч", "щ", "ы", "я"];
 
-export default function AnimatedTitle({ text, colorStyle="text-brown" }: Props) {
+export default function AnimatedTitle({
+  text,
+  colorStyle = "text-brown",
+}: Props) {
   const maxHeight = 20;
   const minHeight = 1;
   const [items, setItems] = useState<TitleItem[]>([]);
@@ -48,10 +51,15 @@ export default function AnimatedTitle({ text, colorStyle="text-brown" }: Props) 
         arr.includes(char),
       );
       const position = leftAnimated.includes(char) ? "left" : "right";
+      const gradient =
+        colorStyle === "text-brown"
+          ? "from-brown via-90% via-brown/90 to-black"
+          : "from-secondary to-white";
       newItems.push({
         char: chars[i],
         height: isAnimated ? Math.random() * maxHeight + minHeight : 0,
         position: position,
+        gradient: gradient,
       });
     }
     setItems(newItems);
@@ -75,8 +83,7 @@ export default function AnimatedTitle({ text, colorStyle="text-brown" }: Props) 
                 delay: index + 3,
                 ease: "easeOut",
               }}
-              className={`w-0.5 bg-linear-to-b 
-                ${colorStyle === "text-brown" ? "from-brown/50 via-90% via-brown to-black" : "from-secondary to-gray-400"} 
+              className={`w-0.5 bg-linear-to-b ${item.gradient} 
                 rounded-b-full absolute top-6.5 sm:top-13 xl:top-8.75 ${item.position}-0`}
             />
           </div>

@@ -4,16 +4,16 @@ import { font_caption } from "../../lib/fonts";
 import Link from "next/link";
 import { useState } from "react";
 
-const links = [
-  { name: "Команда", href: "/#tan" },
-  { name: "Новости", href: "/#news" },
-  { name: "FAQ", href: "/#faq" },
-  { name: "Отзывы", href: "/#reviews" },
-  { name: "Консультация", href: "/#action" },
-];
-
-export default function Navigation() {
+export default function Navigation({needNews}:{needNews:Boolean}) {
   const [menuOpened, setMenuOpened] = useState(false);
+
+  const links = [
+    { name: "Команда", href: "/#masters" },
+    ...(needNews ? [{ name: "Новости", href: "/#news" }] : []),
+    { name: "FAQ", href: "/#faq" },
+    { name: "Отзывы", href: "/#reviews" },
+    { name: "Консультация", href: "/#action" },
+  ];
 
   return (
     <>
@@ -32,12 +32,12 @@ export default function Navigation() {
           </Link>
         ))}
       </nav>
-      <div className="absolute top-5 left-5 text-peachy1 sm:hidden">
-        <div className={`${font_caption.className} border p-2 text-center animate-tremor`}>
+      <div className="absolute top-5 left-5 text-peachy1 sm:hidden animate-links">
+        <div className={`${font_caption.className} border p-2 bg-peachy1/10 text-center animate-tremor`}>
           <span
             role="button"
             onClick={() => setMenuOpened((prev) => !prev)}
-            className="text-2xl"
+            className={`text-2xl ${menuOpened && "border-b"}`}
           >
             Навигация
           </span>

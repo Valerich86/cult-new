@@ -5,20 +5,22 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  id: number;
+  param: number|string;
+  from: "news"|"gallery";
 }
 
-export default function DeleteNewsForm ({id}:Props) {
+export default function DeleteForm ({param, from}:Props) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   
   const handleDelete = async() => {
     if (isLoading) return;
     setIsLoading(true);
-    const agree = confirm('Уверен, что хочешь удалить запись?');
+    const agree = confirm('ОСТОРОЖНО! Данное действие необратимо! 🙈');
     if (agree) {
+      const url = from === "news" ? `/api/news/${param}` : `/api/gallery?url=${param}`
       try {
-        await fetch(`/api/news/${id}`, {
+        await fetch(url, {
           method: "DELETE"
         });
       } catch (error) {
