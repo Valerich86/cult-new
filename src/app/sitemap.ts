@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { mastersInfo } from '../lib/text';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.BASE_URL?.trim().replace(/\/$/, '') ?? 'https://cult.na4u.ru';
+  const baseUrl = process.env.BASE_URL?.trim().replace(/\/$/, '') ?? 'https://culttattoo.ru';
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },

@@ -17,7 +17,11 @@ export default function CookieBanner({
 
   useEffect(() => {
     const path = window.location.pathname;
-    if (path === "/privacy") {
+    if (
+      path === "/privacy" ||
+      path.startsWith("/admin") ||
+      path.startsWith("/auth")
+    ) {
       setIsVisible(false);
       return;
     }
@@ -33,18 +37,14 @@ export default function CookieBanner({
   const handleAccept = () => {
     localStorage.setItem("cult-consent", "true");
     setIsVisible(false);
-    setHasConsent(true);
-    // Здесь можно безопасно инициализировать Яндекс Метрику
-    console.log("Пользователь дал согласие — можно загружать скрипт Метрики");
-    // Например, вызвать функцию загрузки скрипта из отдельного модуля
+    window.dispatchEvent(new Event("consent-changed")); // ← Метрика смонтируется
   };
 
   const handleRevoke = () => {
-    // Удаляем согласие, чтобы баннер снова появился при следующем визите
     localStorage.removeItem("cult-consent");
     setIsVisible(false);
-    setHasConsent(false);
-    console.log("Согласие отозвано — скрипт Метрики не должен загружаться");
+    // Метрика уже загружена, корректно «выгрузить» её нельзя — просто перезагружаем страницу
+    window.location.reload();
   };
 
   if (hasConsent || !isVisible) {
@@ -52,30 +52,34 @@ export default function CookieBanner({
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 w-full bg-white shadow p-3 animate-bunner">
-      <div className="flex flex-wrap justify-center xl:justify-between items-center gap-y-3 w-full">
-        <h3 className="font-bold">Мы используем Яндекс Метрику</h3>
-        <p className="text-sm text-brown/70">
-          Подробнее — в{" "}
-          <Link href="/privacy" target="_blank" className="underline">
-            Политике конфиденциальности
-          </Link>
-        </p>
-
-        <div>
-          <button onClick={handleAccept} className="text-secondary py-1 px-3">
-            Принять и продолжить
-          </button>
+    <div className="fixed bottom-0 left-0 right-0 z-50 w-full bg-white shadow x-spacing py-2 animate-bunner">
+      <div className="flex flex-wrap justify-center xl:justify-between items-center gap-y-2 w-full">
+        <div className="text-sm text-brown/70 text-center w-full">
+          <p>
+            Мы используем cookies Яндекс.Метрики для анализа посещаемости сайта.
+            Подробнее в{" "}
+            <Link href="/privacy" target="_blank" className="underline">
+              Политике конфиденциальности
+            </Link>
+          </p>
         </div>
 
-        {/* Кнопка отзыва — опционально, можно убрать, если не нужна прямо в баннере */}
-        {/* <button
-            onClick={handleRevoke}
-            type="button"
-            className="text-gray-500 text-sm font-medium hover:text-gray-700 underline transition-colors"
+        <div className="flex gap-2 w-full justify-center">
+          <button
+            onClick={handleAccept}
+            className="text-peachy1 py-1"
+            style={{ width: "100px" }}
           >
-            Отозвать согласие
-          </button> */}
+            Принять
+          </button>
+          <button
+            onClick={handleRevoke}
+            className="text-secondary py-1 px-5"
+            style={{ backgroundColor: "#8c5e4d", width: "100px" }}
+          >
+            Отклонить
+          </button>
+        </div>
       </div>
     </div>
   );

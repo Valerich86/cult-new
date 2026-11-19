@@ -1,77 +1,168 @@
 import { Metadata } from "next";
-import AnimatedTitle from '../../components/animation/title';
+import { font_accent, font_caption } from "../../lib/fonts";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'Политика конфиденциальности',
-  description: 'Политика использования Яндекс Метрики на сайте тату-салона CULT',
+  title: "Политика конфиденциальности",
+  description:
+    "Политика использования Яндекс Метрики на сайте тату-салона CULT",
 };
 
 export default function PrivacyPolicy() {
   return (
     <main className="pt-10 pb-40 relative overflow-hidden w-full text-base x-spacing">
-        <article className="flex flex-col gap-5">
-          <div>
-            <AnimatedTitle text='Политика'/>
-          <AnimatedTitle text='конфиденциальности'/>
-          </div>
-
-          <section>
-            <strong>1. Цель использования Яндекс Метрики</strong>
-            <p>
-              Сайт тату-салона CULT использует сервис Яндекс Метрика для сбора обезличенных данных о посещаемости и поведении пользователей. Цель — улучшение пользовательского опыта и оптимизация контента.
-            </p>
-          </section>
-
-          <section>
-            <strong>2. Какие данные собирает Яндекс Метрика</strong>
-            <ul className='list-disc pl-7'>
-              <li>IP-адрес (в обезличенном виде, без полного раскрытия персональных данных)</li>
-              <li>Тип устройства и операционная система</li>
-              <li>Браузер и его версия</li>
-              <li>Геолокация (на уровне города)</li>
-              <li>Время посещения и длительность сессии</li>
-              <li>Просмотры страниц и переходы между ними</li>
-              <li>События (клики, скролл, отправка форм)</li>
-            </ul>
-          </section>
-
-          <section>
-            <strong>3. Как обрабатываются данные</strong>
-            <p>
-              Данные собираются и обрабатываются ООО «Яндекс» в соответствии с их собственной политикой конфиденциальности. Мы не храним и не обрабатываем эти данные на своих серверах. Мы используем только агрегированные отчёты (суммарные показатели без привязки к конкретному человеку).
-            </p>
-          </section>
-
-          <section>
-            <strong>4. Исключение собственных визитов</strong>
-            <p>
-              В настройках Яндекс Метрики включена опция «Не учитывать мои визиты», чтобы исключить из статистики посещения администраторов и сотрудников студии.
-            </p>
-          </section>
-
-          <section>
-            <strong>5. Согласие пользователя и управление данными</strong>
-            <p>
-              Использование Яндекс Метрики возможно только при наличии вашего согласия. Нажимая кнопку «Принять и продолжить», вы даёте согласие на обработку обезличенных данных в целях аналитики. Вы можете отозвать согласие, очистив cookie и localStorage браузера либо отключив сбор данных в настройках браузера.
-            </p>
-          </section>
-
-          <section>
-            <strong>6. Изменения в политике</strong>
-            <p>
-              Мы можем обновлять эту политику. При существенных изменениях мы опубликуем новую версию на этой странице и обновим дату внизу.
-            </p>
-          </section>
-        </article>
-
-        <section className="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-500 flex flex-wrap justify-between">
-          <span>
-            Версия документа: 1.0
-          </span>
-          <span>
-            Дата публикации: {new Date().toLocaleDateString('ru-RU')}
-          </span>
+      <article className="flex flex-col gap-5">
+        <h1
+          className={`${font_accent.className} text-3xl sm:text-7xl xl:text-5xl text-center xl:text-start`}
+        >
+          Политика конфиденциальности
+        </h1>
+        <section className="border-b border-white text-gray-500 w-full text-center xl:text-start">
+          <span>Редакция от 18.11.2026</span>
         </section>
+
+        <section>
+          <strong className="uppercase">1.Общие положения</strong>
+          <p>
+            Настоящая политика распространяется на сайт{" "}
+            <a
+              href={"/"}
+              className={`${font_caption.className} link text-peachy2`}
+            >
+              culttattoo.ru
+            </a>
+            . Оператором обработки персональных данных является физическое лицо
+            — Тарасов Андрей Николаевич. Email:{" "}
+            <a
+              href="mailto:tanforever@mail.ru"
+              target="_blank"
+              className={`${font_caption.className} link text-peachy2`}
+            >
+              tanforever@mail.ru
+            </a>{" , "}
+            тел: +7(963)017-30-55
+          </p>
+        </section>
+
+        <section>
+          <strong className="uppercase">2.Какие cookies мы собираем</strong>
+          <p>
+            При наличие вашего согласия используются аналитические cookies
+            сервиса «Яндекс.Метрика» ООО «Яндекс» (119021, Москва, ул. Льва Толстого, 16) с целью анализа посещаемости сайта: источники
+            трафика, страницы, время на сайте, карты кликов, вебвизор. 
+            Также собираются обезличенные данные, такие как IP-адрес, версия браузера, геолокация. 
+            Данные хранятся на серверах Яндекса. Политика конфиденциальности Яндекса:{" "}
+            <a
+              href={"https://yandex.ru/legal/confidential/ru/"}
+              className={`${font_caption.className} link text-peachy2`}
+            >
+              yandex.ru/legal/confidential
+            </a>{" . "}
+            Условия использования сервиса Яндекс Метрика:{" "}
+            <a
+              href={"https://yandex.ru/legal/metrica_termsofuse"}
+              className={`${font_caption.className} link text-peachy2`}
+            >
+              https://yandex.ru/legal/metrica_termsofuse
+            </a>{" . "}
+            Срок хранения: до 1 года. Основание: согласие пользователя (ст. 6 ч.
+            1 п. 1 152-ФЗ).
+          </p>
+        </section>
+
+        <section>
+          <strong className="uppercase">3.Согласие и отказ</strong>
+          <p>
+            При первом посещении сайта появляется баннер с кнопками «Принять» и
+            «Отклонить».
+            <ul className="list-disc pl-5">
+              <li>
+                «Принять» — аналитические cookies активируются немедленно и при
+                каждом последующем посещении.
+              </li>
+              <li>
+                «Отклонить» — счетчики не загружаются, аналитические cookies не
+                устанавливаются.
+              </li>
+            </ul>
+            Ваш выбор сохраняется в localStorage браузера под ключом
+            cult_consent. Данные сайта можно очистить в браузере — баннер
+            появится снова.
+          </p>
+        </section>
+
+        <section>
+          <strong className="uppercase">4.Управление cookies через браузер</strong>
+          <p>
+            Большинство браузеров позволяют управлять cookies в настройках. Вы
+            можете заблокировать или удалить cookies для конкретного сайта или
+            для всех сайтов.
+            <ul className="list-disc pl-5">
+              <li>
+                <a
+                  href={"https://support.google.com/chrome/answer/95647"}
+                  className={`${font_caption.className} link text-peachy2`}
+                >
+                  Google Chrome
+                </a>
+              </li>
+              <li>
+                <a
+                  href={
+                    "https://support.mozilla.org/ru/kb/usilennaya-zashita-ot-otslezhivaniya-v-firefox"
+                  }
+                  className={`${font_caption.className} link text-peachy2`}
+                >
+                  Mozilla Firefox
+                </a>
+              </li>
+              <li>
+                <a
+                  href={
+                    "https://support.apple.com/ru-ru/guide/safari/sfri11471/mac"
+                  }
+                  className={`${font_caption.className} link text-peachy2`}
+                >
+                  Safari
+                </a>
+              </li>
+              <li>
+                <a
+                  href={
+                    "https://support.microsoft.com/ru-ru/windows/delete-and-manage-cookies"
+                  }
+                  className={`${font_caption.className} link text-peachy2`}
+                >
+                  Microsoft Edge
+                </a>
+              </li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <strong className="uppercase">5.Изменения в политике</strong>
+          <p>
+            Оператор вправе вносить изменения в настоящую политику. Актуальная
+            версия всегда размещена на данной странице с указанием даты
+            последней редакции.
+          </p>
+        </section>
+
+        <section>
+          <strong className="uppercase">6.Контакты</strong>
+          <p>
+            По вопросам использования cookies: 
+            <a
+              href="mailto:ryazanov_suspense@mail.ru"
+              target="_blank"
+              className={`${font_caption.className} link text-peachy2`}
+            >
+              ryazanov_suspense@mail.ru
+            </a>
+          </p>
+        </section>
+      </article>
     </main>
   );
 }

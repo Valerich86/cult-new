@@ -1,9 +1,8 @@
 import Socials from "./socials";
 import { footerText } from "../../lib/text";
 import Decor from "./decor";
-import VideoBlock from "./video-block";
-import ImageBlock from "./image-block";
 import Link from "next/link";
+import { font_caption } from "../../lib/fonts";
 
 export default function Footer() {
   return (
@@ -47,14 +46,29 @@ export default function Footer() {
           vk_href="https://vk.com/id638396972"
           tg_href="https://t.me/eckerttattoo"
         />
-        <Link href={"/privacy"} className="link mt-3" style={{fontSize: 14, textDecoration: "underline"}}>Политика конфиденциальности</Link>
-        <div className="flex items-center">
-          <span className="sm:text-2xl xl:text-sm">Разработал сайт:</span>
-          <div className="w-30 h-15">
+
+        <div className="flex flex-wrap items-center gap-x-5">
+          <span className="sm:text-2xl xl:text-sm">Контакты разработчика:</span>
+          {/* <div className="w-30 h-15">
             <ImageBlock src={"/tech/my-logo.png"} alt="Логотип разработчика" shadowLess bgStyle="bg-transparent"/>
-          </div>
+          </div> */}
           <Socials tg_href="https://t.me/ryazanovyozh" />
+          <a
+            href="mailto:ryazanov_suspense@mail.ru"
+            target="_blank"
+            className={`${font_caption.className} link text-peachy2`}
+          >
+            ryazanov_suspense@mail.ru
+          </a>
         </div>
+        <Link
+          href={"/privacy"}
+          target="_blank"
+          className="link"
+          style={{ fontSize: 14, textDecoration: "underline" }}
+        >
+          Политика конфиденциальности
+        </Link>
       </div>
 
       {/* интерактивная карта */}

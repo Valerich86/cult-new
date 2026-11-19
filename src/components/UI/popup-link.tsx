@@ -1,9 +1,9 @@
 "use client";
 
+import Link from "next/link";
+import { useLinkStatus } from "next/link";
 import { font_caption } from "../../lib/fonts";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { useState } from "react";
 import Spinner from "./spinner";
 
 interface Props {
@@ -12,13 +12,28 @@ interface Props {
   blank?: boolean;
 }
 
+function LinkInner({ text, className }: { text: string; className: string }) {
+  const { pending } = useLinkStatus();
+
+  return (
+    <span
+      className={`${className} ${!pending && "animate-pulse link"}`}
+      style={{
+        pointerEvents: pending ? "none" : "auto",
+        opacity: pending ? 0.6 : 1,
+        cursor: pending ? "not-allowed" : "pointer",
+      }}
+    >
+      {pending ? <Spinner /> : text}
+    </span>
+  );
+}
+
 export default function PopupLink({
   href,
   text = "Подробнее",
   blank = false,
 }: Props) {
-  const [isClicked, setIsClicked] = useState(false);
-
   return (
     <motion.div
       initial={{ height: 0, opacity: 0 }}
@@ -27,19 +42,11 @@ export default function PopupLink({
       transition={{ duration: 0.2, ease: "easeOut", delay: 0.5 }}
       className="w-full flex justify-center items-center bg-brown absolute bottom-0 left-0 shadow-xs"
     >
-      <Link
-        href={href}
-        target={blank ? "_blank" : "_self"}
-        
-        className={`${font_caption.className} ${!isClicked && "animate-pulse link"} text-secondary`}
-        onClick={() => setIsClicked(true)}
-        style={{
-          pointerEvents: isClicked ? 'none' : 'auto',
-          opacity: isClicked ? 0.6 : 1,
-          cursor: isClicked ? 'not-allowed' : 'pointer',
-        }}
-      >
-        {isClicked ? <Spinner /> : text}
+      <Link href={href} target={blank ? "_blank" : "_self"}>
+        <LinkInner
+          text={text}
+          className={`${font_caption.className} text-secondary`}
+        />
       </Link>
     </motion.div>
   );

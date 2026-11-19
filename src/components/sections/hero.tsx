@@ -23,7 +23,7 @@ export default function HeroSection({needNews}:{needNews:Boolean}) {
       />
       <div className="absolute w-full h-full top-0 right-0">
         <Image
-          src={"/tech/hero-sculpture.png"}
+          src={"/tech/girl-2.png"}
           alt="Hero-image"
           fill
           sizes="100%"
